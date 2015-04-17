@@ -5,10 +5,20 @@
  */
 package beans;
 
+import java.util.Date;
+
 /**
  *
  * @author Dominik
  */
-public class prisoner {
+public class prisoner 
+{
+    String vorname;
+    String nachname;
+    Date gebDate;
+    Date inDate;
+    Date outDate;
+    int priority;
+    
     
 }
