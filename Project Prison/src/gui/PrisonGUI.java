@@ -5,10 +5,12 @@
  */
 package gui;
 
+import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.BorderLayout;
+import java.awt.Graphics2D;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JButton;
@@ -31,10 +33,11 @@ public class PrisonGUI {
             JPanel panel = new JPanel() {
                 @Override
                 public void paintComponent(Graphics g) {
+                    Graphics2D g2d = (Graphics2D) g;
                     super.paintComponent(g);
-                    g.setColor(Color.darkGray);
-                    
-                    g.drawRect(10, 30, 180, 280);
+                    g2d.setColor(Color.darkGray);
+                    g2d.setStroke(new BasicStroke(5.0f));
+                    g2d.drawRect(10, 30, 180, 280);
                 }
             };
             panel.setLayout(new BorderLayout());
