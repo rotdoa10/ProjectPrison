@@ -16,7 +16,7 @@ import java.util.Properties;
 
 /**
  *
- * @author Dominik
+ * @author 
  */
 public final class DataBase {
 

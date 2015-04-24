@@ -11,7 +11,7 @@ import java.util.Queue;
 
 /**
  *
- * @author Dominik
+ * @author 
  */
 public class CachedConnection {
 
