@@ -28,6 +28,8 @@ import javax.swing.border.TitledBorder;
 public class PrisonGUI implements ActionListener {
     
     LinkedList<JPanel> panelFeld = new LinkedList<JPanel>();
+    LinkedList<JButton> buttonFeld = new LinkedList<JButton>();
+    private int anzahl=20;
     
     public void start()
     {
@@ -38,7 +40,7 @@ public class PrisonGUI implements ActionListener {
         frame.setSize(1000, 800);
         frame.setLayout(new BorderLayout());
         JPanel mainpanel = new JPanel();
-        mainpanel.setLayout(new GridLayout(2,5));
+        mainpanel.setLayout(new GridLayout(2,(anzahl/2)));
         frame.add(mainpanel,BorderLayout.CENTER);
        
         JMenuBar menubar = new JMenuBar();
@@ -50,7 +52,7 @@ public class PrisonGUI implements ActionListener {
         menubar.add(menu);
         frame.add(menubar,BorderLayout.NORTH);
 
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < anzahl; i++) {
 
             JPanel panel = new JPanel() {
                 @Override
@@ -59,7 +61,8 @@ public class PrisonGUI implements ActionListener {
                     super.paintComponent(g);
                     g2d.setColor(Color.darkGray);
                     g2d.setStroke(new BasicStroke(5.0f));
-                    g2d.drawRect(10, 30, 180, 280);
+                    
+                    g2d.drawRect(10, 30, this.getWidth()-20, this.getHeight()-100);
                 }
             };
             panel.setLayout(new BorderLayout());
@@ -95,7 +98,17 @@ public class PrisonGUI implements ActionListener {
                 for(int i = 0; i < list.size(); i++)
                 {
                     int zelleNR = list.get(i).getCellID();
-                    
+
+                    for(int j = 0; j < panelFeld.size(); i++)
+                    {
+                        if(("Zelle"+zelleNR)==panelFeld.get(i).getName())
+                        {
+                            JButton btn = new JButton();
+                            btn.setText("g"+(i+1));
+                            
+                            buttonFeld.add(btn);
+                        }
+                    }
                 }
             } catch (IOException ex) {
                 Logger.getLogger(PrisonGUI.class.getName()).log(Level.SEVERE, null, ex);
