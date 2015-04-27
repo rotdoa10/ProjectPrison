@@ -28,17 +28,20 @@ import javax.swing.border.TitledBorder;
 public class PrisonGUI implements ActionListener {
     
     LinkedList<JPanel> panelFeld = new LinkedList<JPanel>();
+    LinkedList<JButton> buttonFeld = new LinkedList<JButton>();
+    private int anzahl = 10;
+    private JFrame frame;
     
     public void start()
     {
-        JFrame frame = new JFrame();
+        frame = new JFrame();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         //frame.setLocationRelativeTo(null);
         frame.setVisible(true);
         frame.setSize(1000, 800);
         frame.setLayout(new BorderLayout());
         JPanel mainpanel = new JPanel();
-        mainpanel.setLayout(new GridLayout(2,5));
+        mainpanel.setLayout(new GridLayout(2,(anzahl/2)));
         frame.add(mainpanel,BorderLayout.CENTER);
        
         JMenuBar menubar = new JMenuBar();
@@ -50,7 +53,7 @@ public class PrisonGUI implements ActionListener {
         menubar.add(menu);
         frame.add(menubar,BorderLayout.NORTH);
 
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < anzahl; i++) {
 
             JPanel panel = new JPanel() {
                 @Override
@@ -59,7 +62,8 @@ public class PrisonGUI implements ActionListener {
                     super.paintComponent(g);
                     g2d.setColor(Color.darkGray);
                     g2d.setStroke(new BasicStroke(5.0f));
-                    g2d.drawRect(10, 30, 180, 280);
+                    
+                    g2d.drawRect(10, 18, this.getWidth()-20, this.getHeight()-100);
                 }
             };
             panel.setLayout(new BorderLayout());
@@ -95,7 +99,23 @@ public class PrisonGUI implements ActionListener {
                 for(int i = 0; i < list.size(); i++)
                 {
                     int zelleNR = list.get(i).getCellID();
-                    
+                    System.out.println("NR: "+zelleNR);
+
+                    for(int j = 0; j < panelFeld.size(); j++)
+                    {
+                        if(("Zelle"+zelleNR).equals(panelFeld.get(j).getName()))
+                        {
+                            System.out.println("hallo");
+                            JButton btn = new JButton();
+                            btn.setText(list.get(i).getNachname());
+                            
+                            btn.setBounds(5, 15, panelFeld.get(j).getWidth()-30, panelFeld.get(j).getHeight()-110);
+                            panelFeld.get(j).add(btn,BorderLayout.NORTH);
+                            buttonFeld.add(btn);
+                            frame.validate();
+                            frame.repaint();
+                        }
+                    }
                 }
             } catch (IOException ex) {
                 Logger.getLogger(PrisonGUI.class.getName()).log(Level.SEVERE, null, ex);
