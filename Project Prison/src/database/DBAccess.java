@@ -22,7 +22,7 @@ public class DBAccess {
     private Connection con;
     private PreparedStatement PreStmt = null;
 
-    public DBAccess() throws IOException, FileNotFoundException, ClassNotFoundException, SQLException {
+    public DBAccess() throws Exception {
         db = DataBase.getInstance();
         con = db.getCon();
     }
@@ -79,6 +79,31 @@ public class DBAccess {
         Prisoner pr = new Prisoner(ID, vorname, nachname, gebDate, inDate, outDate, pID, cellID);
 
         return pr;
+    }
+    
+    public boolean checkLogin(String username, String password) throws Exception
+    {
+        boolean check = false;
+        
+        Statement stat = db.getStatement();
+
+        String sqlString = "SELECT username, password"
+                        + "FROM guard;";
+
+        ResultSet rs = stat.executeQuery(sqlString);
+        rs.next();
+        
+        while(!rs.isLast())
+        {
+            if(username.equals(rs.getString("username"))&&password.equals(rs.getString("password")))
+            {
+                check = true;
+                return check;
+            }
+            rs.next();
+        }
+        
+        return check;
     }
 
     public void addPrisoner(String vorname, String nachname, Date gebDate, Date inDate, Date outDate, int priority) throws Exception {

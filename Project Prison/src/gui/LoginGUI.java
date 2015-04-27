@@ -1,13 +1,21 @@
 package gui;
 
+import database.DBAccess;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author
  */
-public class beginn extends javax.swing.JFrame {
+public class LoginGUI extends javax.swing.JFrame {
 
-    public beginn() {
+    DBAccess dba;
+
+    public LoginGUI() throws Exception {
         initComponents();
+        dba = new DBAccess();
     }
 
     @SuppressWarnings("unchecked")
@@ -35,12 +43,6 @@ public class beginn extends javax.swing.JFrame {
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel2.setText("Username:");
         jPanel1.add(jLabel2);
-
-        txfUsername.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txfUsernameActionPerformed(evt);
-            }
-        });
         jPanel1.add(txfUsername);
 
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -55,7 +57,7 @@ public class beginn extends javax.swing.JFrame {
         btnWeiter.setText("Weiter");
         btnWeiter.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnWeiterActionPerformed(evt);
+                onWeiter(evt);
             }
         });
         jPanel2.add(btnWeiter, java.awt.BorderLayout.CENTER);
@@ -65,16 +67,28 @@ public class beginn extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txfUsernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txfUsernameActionPerformed
+    private void onWeiter(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_onWeiter
 
-    }//GEN-LAST:event_txfUsernameActionPerformed
+        try {
 
-    private void btnWeiterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnWeiterActionPerformed
+            String user = txfUsername.getText();
+            char[] pw = fieldPassword.getPassword();
 
-        PrisonGUI g = new PrisonGUI();
-        g.start();
+            boolean check = dba.checkLogin(user, pw.toString());
 
-    }//GEN-LAST:event_btnWeiterActionPerformed
+            if (check) {
+                PrisonGUI g = new PrisonGUI();
+                g.start();
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "FALSCHES PASSWORT ODER USER!!");
+            }
+
+        } catch (Exception ex) {
+            Logger.getLogger(LoginGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+
+    }//GEN-LAST:event_onWeiter
 
     public static void main(String args[]) {
 
@@ -90,20 +104,25 @@ public class beginn extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(beginn.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LoginGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(beginn.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LoginGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(beginn.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LoginGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(beginn.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LoginGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                new beginn().setVisible(true);
+                try {
+                    new LoginGUI().setVisible(true);
+                } catch (Exception ex) {
+                    Logger.getLogger(LoginGUI.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
