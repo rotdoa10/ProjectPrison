@@ -88,6 +88,7 @@ public class LoginGUI extends javax.swing.JFrame {
                 this.dispose();
             } else {
                 JOptionPane.showMessageDialog(rootPane, "FALSCHES PASSWORT ODER USERNAME!!");
+                fieldPassword.setText("");
             }
 
         } catch (Exception ex) {
