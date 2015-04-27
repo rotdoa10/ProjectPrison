@@ -1,11 +1,20 @@
 package gui;
 
+import beans.Prisoner;
+import database.DBAccess;
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.BorderLayout;
 import java.awt.Graphics2D;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.sql.SQLException;
+import java.util.LinkedList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JButton;
@@ -16,7 +25,7 @@ import javax.swing.JPanel;
 import javax.swing.border.TitledBorder;
 
 
-public class PrisonGUI {
+public class PrisonGUI implements ActionListener {
     
     public void start()
     {
@@ -31,7 +40,9 @@ public class PrisonGUI {
        
         JMenuBar menubar = new JMenuBar();
         JMenu menu = new JMenu("start");
-        JMenuItem item = new JMenuItem("start");
+        JMenuItem item = new JMenuItem("zur Datenbank verbinden");
+        item.addActionListener(this);
+        item.setActionCommand("actionItem");
         menu.add(item);
         menubar.add(menu);
         frame.add(menubar,BorderLayout.NORTH);
@@ -67,6 +78,25 @@ public class PrisonGUI {
 
     public static void main(String[] args) {
         PrisonGUI p = new PrisonGUI();p.start();
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if(e.getActionCommand().equals("actionItem"))
+        {
+            try {
+                DBAccess a = new DBAccess();
+                LinkedList<Prisoner> list = a.getPrisoners();
+            } catch (IOException ex) {
+                Logger.getLogger(PrisonGUI.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(PrisonGUI.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SQLException ex) {
+                Logger.getLogger(PrisonGUI.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (Exception ex) {
+                Logger.getLogger(PrisonGUI.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }
 
 }
