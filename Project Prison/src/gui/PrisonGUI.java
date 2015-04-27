@@ -27,10 +27,13 @@ import javax.swing.border.TitledBorder;
 
 public class PrisonGUI implements ActionListener {
     
+    LinkedList<JPanel> panelFeld = new LinkedList<JPanel>();
+    
     public void start()
     {
         JFrame frame = new JFrame();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        //frame.setLocationRelativeTo(null);
         frame.setVisible(true);
         frame.setSize(1000, 800);
         frame.setLayout(new BorderLayout());
@@ -68,6 +71,7 @@ public class PrisonGUI implements ActionListener {
             
             btn.setIcon(image);
             panel.add(btn,BorderLayout.SOUTH);
+            panelFeld.add(panel);
             
             mainpanel.add(panel);
             frame.validate();
@@ -77,7 +81,8 @@ public class PrisonGUI implements ActionListener {
     }
 
     public static void main(String[] args) {
-        PrisonGUI p = new PrisonGUI();p.start();
+        PrisonGUI p = new PrisonGUI();
+        p.start();
     }
 
     @Override
@@ -87,6 +92,11 @@ public class PrisonGUI implements ActionListener {
             try {
                 DBAccess a = new DBAccess();
                 LinkedList<Prisoner> list = a.getPrisoners();
+                for(int i = 0; i < list.size(); i++)
+                {
+                    int zelleNR = list.get(i).getCellID();
+                    
+                }
             } catch (IOException ex) {
                 Logger.getLogger(PrisonGUI.class.getName()).log(Level.SEVERE, null, ex);
             } catch (ClassNotFoundException ex) {
