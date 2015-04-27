@@ -9,6 +9,9 @@ import java.awt.Graphics2D;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JButton;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.border.TitledBorder;
 
@@ -21,7 +24,17 @@ public class PrisonGUI {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
         frame.setSize(1000, 800);
-        frame.setLayout(new GridLayout(2, 5));
+        frame.setLayout(new BorderLayout());
+        JPanel mainpanel = new JPanel();
+        mainpanel.setLayout(new GridLayout(2,5));
+        frame.add(mainpanel,BorderLayout.CENTER);
+       
+//        JMenuBar menubar = new JMenuBar();
+//        JMenu menuStart = new JMenu();
+//        menubar.add(menuStart);
+//        JMenuItem item = new JMenuItem("start");
+//        menuStart.add(item);
+//        frame.add(menubar);
 
         for (int i = 0; i < 10; i++) {
 
@@ -45,7 +58,7 @@ public class PrisonGUI {
             btn.setIcon(image);
             panel.add(btn,BorderLayout.SOUTH);
             
-            frame.add(panel);
+            mainpanel.add(panel);
             frame.validate();
             frame.repaint();
         }
