@@ -29,12 +29,12 @@ public class PrisonGUI {
         mainpanel.setLayout(new GridLayout(2,5));
         frame.add(mainpanel,BorderLayout.CENTER);
        
-//        JMenuBar menubar = new JMenuBar();
-//        JMenu menuStart = new JMenu();
-//        menubar.add(menuStart);
-//        JMenuItem item = new JMenuItem("start");
-//        menuStart.add(item);
-//        frame.add(menubar);
+        JMenuBar menubar = new JMenuBar();
+        JMenu menu = new JMenu("start");
+        JMenuItem item = new JMenuItem("start");
+        menu.add(item);
+        menubar.add(menu);
+        frame.add(menubar,BorderLayout.NORTH);
 
         for (int i = 0; i < 10; i++) {
 
