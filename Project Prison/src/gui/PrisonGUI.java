@@ -63,7 +63,7 @@ public class PrisonGUI implements ActionListener {
                     g2d.setColor(Color.darkGray);
                     g2d.setStroke(new BasicStroke(5.0f));
                     
-                    g2d.drawRect(10, 30, this.getWidth()-20, this.getHeight()-100);
+                    g2d.drawRect(10, 18, this.getWidth()-20, this.getHeight()-100);
                 }
             };
             panel.setLayout(new BorderLayout());
@@ -110,7 +110,7 @@ public class PrisonGUI implements ActionListener {
                             btn.setText(list.get(i).getNachname());
                             
                             btn.setBounds(5, 15, panelFeld.get(j).getWidth()-30, panelFeld.get(j).getHeight()-110);
-                            panelFeld.get(j).add(btn);
+                            panelFeld.get(j).add(btn,BorderLayout.NORTH);
                             buttonFeld.add(btn);
                             frame.validate();
                             frame.repaint();
