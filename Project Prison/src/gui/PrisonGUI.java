@@ -29,11 +29,12 @@ public class PrisonGUI implements ActionListener {
     
     LinkedList<JPanel> panelFeld = new LinkedList<JPanel>();
     LinkedList<JButton> buttonFeld = new LinkedList<JButton>();
-    private int anzahl=20;
+    private int anzahl = 10;
+    private JFrame frame;
     
     public void start()
     {
-        JFrame frame = new JFrame();
+        frame = new JFrame();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         //frame.setLocationRelativeTo(null);
         frame.setVisible(true);
@@ -98,15 +99,21 @@ public class PrisonGUI implements ActionListener {
                 for(int i = 0; i < list.size(); i++)
                 {
                     int zelleNR = list.get(i).getCellID();
+                    System.out.println("NR: "+zelleNR);
 
-                    for(int j = 0; j < panelFeld.size(); i++)
+                    for(int j = 0; j < panelFeld.size(); j++)
                     {
-                        if(("Zelle"+zelleNR)==panelFeld.get(i).getName())
+                        if(("Zelle"+zelleNR).equals(panelFeld.get(j).getName()))
                         {
+                            System.out.println("hallo");
                             JButton btn = new JButton();
-                            btn.setText("g"+(i+1));
+                            btn.setText(list.get(i).getNachname());
                             
+                            btn.setBounds(5, 15, panelFeld.get(j).getWidth()-30, panelFeld.get(j).getHeight()-110);
+                            panelFeld.get(j).add(btn);
                             buttonFeld.add(btn);
+                            frame.validate();
+                            frame.repaint();
                         }
                     }
                 }
