@@ -106,22 +106,23 @@ public class DBAccess {
         return check;
     }
 
-    public void addPrisoner(String vorname, String nachname, Date gebDate, Date inDate, Date outDate, int priority) throws Exception {
-//        Statement stat = db.getStatement();
-//        String sqlString;
-//        SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
-//
-//        sqlString = "INSERT INTO prisoner(prID, vorname, nachname, gebDate, inDate, outDate, pID, cellID) "
-//                + "VALUES(nextval('sql_pID')"
-//                + "," + vorname
-//                + "," + nachname + ", "
-//                + "TO_DATE('" + sdf.format(gebDate) + ",'dd.MM.yyyy'), "
-//                + "TO_DATE('" + sdf.format(inDate) + ",'dd.MM.yyyy'),"
-//                + "TO_DATE('" + sdf.format(gebDate) + ",'dd.MM.yyyy'),"
-//                + priority + "')";
-//
-//        ResultSet rs = stat.executeQuery(sqlString);
-//        rs = stat.executeQuery(sqlString);
+    public void addPrisoner(String vorname, String nachname, Date gebDate, Date inDate, Date outDate, int priority, int cellID) throws Exception {
+        Statement stat = db.getStatement();
+        String sqlString;
+        SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
+
+        sqlString = "INSERT INTO prisoner(prID, vorname, nachname, gebDate, inDate, outDate, pID, cellID) "
+                + "VALUES(nextval('sql_pID')"
+                + "," + vorname
+                + "," + nachname 
+                + ", TO_DATE('" + sdf.format(gebDate) + ",'dd.MM.yyyy')"
+                + ", TO_DATE('" + sdf.format(inDate) + ",'dd.MM.yyyy')"
+                + ", TO_DATE('" + sdf.format(gebDate) + ",'dd.MM.yyyy')"
+                + "," + priority 
+                + "," + cellID + ")";
+
+        ResultSet rs = stat.executeQuery(sqlString);
+        rs = stat.executeQuery(sqlString);
     }
 
     public LinkedList<Prisoner> getPrisonersinCell(int CID) throws Exception {
