@@ -124,17 +124,40 @@ public class DBAccess {
 //        rs = stat.executeQuery(sqlString);
     }
 
-    public LinkedList<Prisoner> getPrisonersinCell(int CID) {
-        LinkedList<Prisoner> pList = new LinkedList<>();
+    public LinkedList<Prisoner> getPrisonersinCell(int CID) throws Exception {
+        LinkedList<Prisoner> list = new LinkedList<>();
+        Statement stat = db.getStatement();
 
-        return pList;
+        String sqlString = "SELECT prID, vorname, nachname, gebDate, inDate, outDate, pID, cellID "
+                + "FROM prisoner "
+                + "WHERE cellID="+ CID + ";";
+
+        ResultSet rs = stat.executeQuery(sqlString);
+        rs.next();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+
+        do {
+            int ID = Integer.parseInt(rs.getString("prID"));
+            String vorname = rs.getString("vorname");
+            String nachname = rs.getString("nachname");
+            Date gebDate = sdf.parse(rs.getString("gebDate"));
+            Date inDate = sdf.parse(rs.getString("inDate"));
+            Date outDate = sdf.parse(rs.getString("outDate"));
+            int pID = Integer.parseInt(rs.getString("pID"));
+            int cellID = Integer.parseInt(rs.getString("cellID"));
+
+            Prisoner pr = new Prisoner(ID, vorname, nachname, gebDate, inDate, outDate, pID, cellID);
+            list.add(pr);
+        } while (!rs.isLast());
+
+        return list;
     }
 
     public static void main(String[] args) throws IOException, FileNotFoundException, ClassNotFoundException, SQLException, Exception {
        
         DBAccess dba = new DBAccess();
         
-        LinkedList<Prisoner> l = dba.getPrisoners();
+        LinkedList<Prisoner> l = dba.getPrisonersinCell(2);
         
         for (int i = 0; i < l.size(); i++) 
         {
