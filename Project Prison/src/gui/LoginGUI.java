@@ -16,6 +16,7 @@ public class LoginGUI extends javax.swing.JFrame {
     public LoginGUI() throws Exception {
         initComponents();
         dba = new DBAccess();
+        this.setLocationRelativeTo(null);
     }
 
     @SuppressWarnings("unchecked")
@@ -73,12 +74,18 @@ public class LoginGUI extends javax.swing.JFrame {
 
             String user = txfUsername.getText();
             char[] pw = fieldPassword.getPassword();
+            String pwStr = "";
+            
+            for (int i = 0; i < pw.length; i++) {
+                pwStr+=pw[i];
+            }
 
-            boolean check = dba.checkLogin(user, pw.toString());
+            boolean check = dba.checkLogin(user, pwStr);
 
             if (check) {
                 PrisonGUI g = new PrisonGUI();
                 g.start();
+                
             } else {
                 JOptionPane.showMessageDialog(rootPane, "FALSCHES PASSWORT ODER USER!!");
             }

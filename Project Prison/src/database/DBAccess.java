@@ -87,7 +87,7 @@ public class DBAccess {
         
         Statement stat = db.getStatement();
 
-        String sqlString = "SELECT username, password"
+        String sqlString = "SELECT username, passwort "
                         + "FROM guard;";
 
         ResultSet rs = stat.executeQuery(sqlString);
@@ -95,7 +95,7 @@ public class DBAccess {
         
         while(!rs.isLast())
         {
-            if(username.equals(rs.getString("username"))&&password.equals(rs.getString("password")))
+            if(username.equals(rs.getString("username"))&&password.equals(rs.getString("passwort")))
             {
                 check = true;
                 return check;
