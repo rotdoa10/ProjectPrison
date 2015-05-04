@@ -50,10 +50,17 @@ public class PrisonGUI implements ActionListener {
        
         JMenuBar menubar = new JMenuBar();
         JMenu menu = new JMenu("start");
+        
         JMenuItem item = new JMenuItem("zur Datenbank verbinden");
         item.addActionListener(this);
         item.setActionCommand("actionItem");
+        
+        JMenuItem itemAdd = new JMenuItem("add Prisoner");
+        itemAdd.addActionListener(this);
+        itemAdd.setActionCommand("addItem");
+        
         menu.add(item);
+        menu.add(itemAdd);
         menubar.add(menu);
         frame.add(menubar,BorderLayout.NORTH);
 
@@ -109,10 +116,9 @@ public class PrisonGUI implements ActionListener {
                     {
                         if(("Zelle"+zelleNR).equals(panelFeld.get(j).getName()))
                         {
-                            System.out.println("hallo");
                             JButton btn = new JButton();
                             btn.setText(list.get(i).getNachname());
-//                            Graphics2D g = (Graphics2D) lab.getGraphics();
+//                            Graphics2D g = (Graphics2D) btn.getGraphics();
 //                            g.drawOval(10, 10, 10, 10);
 //                                          
                             btn.setBounds(5, 15, panelFeld.get(j).getWidth()-30, panelFeld.get(j).getHeight()-110);
@@ -156,6 +162,10 @@ public class PrisonGUI implements ActionListener {
             } catch (Exception ex) {
                 Logger.getLogger(PrisonGUI.class.getName()).log(Level.SEVERE, null, ex);
             }
+        }
+        else if(e.getActionCommand().equals("addItem"))
+        {
+            
         }
     }
 
