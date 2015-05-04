@@ -115,9 +115,9 @@ public class DBAccess {
                 + "VALUES(nextval('sql_pID')"
                 + ",'" + vorname + "'"
                 + ",'" + nachname +"'"
-                + ", TO_DATE('" + sdf.format(gebDate) + "','dd.MM.yyyy')"
-                + ", TO_DATE('" + sdf.format(inDate) + "','dd.MM.yyyy')"
-                + ", TO_DATE('" + sdf.format(gebDate) + "','dd.MM.yyyy')"
+                + ", TO_DATE('" + sdf.format(gebDate) + "','dd.mm.yyyy')"
+                + ", TO_DATE('" + sdf.format(inDate) + "','dd.mm.yyyy')"
+                + ", TO_DATE('" + sdf.format(gebDate) + "','dd.mm.yyyy')"
                 + "," + priority 
                 + "," + cellID + ")";
         
