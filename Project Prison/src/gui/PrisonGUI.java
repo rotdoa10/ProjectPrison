@@ -10,14 +10,18 @@ import java.awt.BorderLayout;
 import java.awt.Graphics2D;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
@@ -108,8 +112,34 @@ public class PrisonGUI implements ActionListener {
                             System.out.println("hallo");
                             JButton btn = new JButton();
                             btn.setText(list.get(i).getNachname());
-                            
+//                            Graphics2D g = (Graphics2D) lab.getGraphics();
+//                            g.drawOval(10, 10, 10, 10);
+//                                          
                             btn.setBounds(5, 15, panelFeld.get(j).getWidth()-30, panelFeld.get(j).getHeight()-110);
+                            btn.addMouseListener(new MouseListener() {
+
+                                @Override
+                                public void mouseClicked(MouseEvent e) 
+                                {
+                                    //new PrisonerDialog(list.get(i));
+                                }
+
+                                @Override
+                                public void mousePressed(MouseEvent e) {
+                                                               }
+
+                                @Override
+                                public void mouseReleased(MouseEvent e) {
+                                                                  }
+
+                                @Override
+                                public void mouseEntered(MouseEvent e) {
+                                                                   }
+
+                                @Override
+                                public void mouseExited(MouseEvent e) {
+                                                                    }
+                            });
                             panelFeld.get(j).add(btn,BorderLayout.NORTH);
                             buttonFeld.add(btn);
                             frame.validate();
