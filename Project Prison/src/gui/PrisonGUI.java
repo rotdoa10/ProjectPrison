@@ -17,11 +17,9 @@ import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JButton;
-import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
@@ -33,7 +31,7 @@ public class PrisonGUI implements ActionListener {
     
     LinkedList<JPanel> panelFeld = new LinkedList<JPanel>();
     LinkedList<JButton> buttonFeld = new LinkedList<JButton>();
-    private int anzahl = 10;
+    private int anzahl = 20;
     private JFrame frame;
     
     public void start()
