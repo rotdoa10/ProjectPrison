@@ -113,14 +113,15 @@ public class DBAccess {
 
         sqlString = "INSERT INTO prisoner(prID, vorname, nachname, gebDate, inDate, outDate, pID, cellID) "
                 + "VALUES(nextval('sql_pID')"
-                + "," + vorname
-                + "," + nachname 
-                + ", TO_DATE('" + sdf.format(gebDate) + ",'dd.MM.yyyy')"
-                + ", TO_DATE('" + sdf.format(inDate) + ",'dd.MM.yyyy')"
-                + ", TO_DATE('" + sdf.format(gebDate) + ",'dd.MM.yyyy')"
+                + ",'" + vorname + "'"
+                + ",'" + nachname +"'"
+                + ", TO_DATE('" + sdf.format(gebDate) + "','dd.MM.yyyy')"
+                + ", TO_DATE('" + sdf.format(inDate) + "','dd.MM.yyyy')"
+                + ", TO_DATE('" + sdf.format(gebDate) + "','dd.MM.yyyy')"
                 + "," + priority 
                 + "," + cellID + ")";
-
+        
+        System.out.println(sqlString);
         ResultSet rs = stat.executeQuery(sqlString);
         rs = stat.executeQuery(sqlString);
     }
@@ -157,13 +158,10 @@ public class DBAccess {
     public static void main(String[] args) throws IOException, FileNotFoundException, ClassNotFoundException, SQLException, Exception {
        
         DBAccess dba = new DBAccess();
+        SimpleDateFormat sdf = new SimpleDateFormat("DD.MM.yyyy");
+        Date gebDate = sdf.parse("03.06.1996");
+        Date outDate = sdf.parse("15.05.2050");
         
-        LinkedList<Prisoner> l = dba.getPrisonersinCell(2);
-        
-        for (int i = 0; i < l.size(); i++) 
-        {
-            System.out.println(l.get(i).toString());
-        }
-        
+        dba.addPrisoner("Dominik", "Roth", gebDate, new Date(), outDate, 2, 5);
     }
 }
