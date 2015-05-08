@@ -1,5 +1,12 @@
 package gui;
 
+import database.DBAccess;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 
 /**
  *
@@ -7,11 +14,9 @@ package gui;
  */
 public class AddPrisonerDialog extends javax.swing.JDialog {
 
-    public AddPrisonerDialog(java.awt.Frame parent, boolean modal) {
+    public AddPrisonerDialog(java.awt.Frame parent, boolean modal) throws ParseException, Exception {
         super(parent, modal);
         initComponents();      
-        
-        
         
         
     }
@@ -37,11 +42,15 @@ public class AddPrisonerDialog extends javax.swing.JDialog {
         txfEnt = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         txfZelle = new javax.swing.JTextField();
+        txfP = new javax.swing.JLabel();
+        txfPr = new javax.swing.JTextField();
+        btnOK = new javax.swing.JButton();
+        btnCancel = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jPanel1.setLayout(new java.awt.GridLayout(6, 2));
+        jPanel1.setLayout(new java.awt.GridLayout(8, 2));
 
         jLabel2.setText("Vorname:");
         jPanel1.add(jLabel2);
@@ -67,6 +76,26 @@ public class AddPrisonerDialog extends javax.swing.JDialog {
         jPanel1.add(jLabel7);
         jPanel1.add(txfZelle);
 
+        txfP.setText("Priorität:");
+        jPanel1.add(txfP);
+        jPanel1.add(txfPr);
+
+        btnOK.setText("ok");
+        btnOK.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnOKActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnOK);
+
+        btnCancel.setText("cancel");
+        btnCancel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnCancel);
+
         getContentPane().add(jPanel1, java.awt.BorderLayout.CENTER);
 
         jLabel1.setFont(new java.awt.Font("Lucida Handwriting", 1, 18)); // NOI18N
@@ -76,6 +105,44 @@ public class AddPrisonerDialog extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOKActionPerformed
+        
+        // ok - Button
+        
+        try {
+            SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
+            String vorname = this.txfVorname.getText();
+            String nachname = this.txfNachname.getText();
+            String geb = this.txfGeb.getText();
+            Date dGeb = sdf.parse(geb);
+            String in = this.txfIn.getText();
+            Date dIn = sdf.parse(in);
+            String ent = this.txfEnt.getText();
+            Date dEnt = sdf.parse(ent);
+            int zelle = Integer.parseInt(this.txfZelle.getText());
+            int pri = Integer.parseInt(this.txfP.getText());
+            
+            if(vorname != null && nachname != null && geb != null && in != null && ent != null && this.txfZelle.getText() != null && this.txfP.getText() != null)
+            {
+                DBAccess db = new DBAccess(); 
+                db.addPrisoner(vorname, nachname, dGeb, dIn, dEnt, pri, zelle);
+            }
+        } catch (ParseException ex) {
+            Logger.getLogger(AddPrisonerDialog.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            Logger.getLogger(AddPrisonerDialog.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }//GEN-LAST:event_btnOKActionPerformed
+
+    private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
+
+        // cancel - Button
+        
+        this.dispose();
+
+    }//GEN-LAST:event_btnCancelActionPerformed
 
     public static void main(String args[]) {
 
@@ -105,19 +172,25 @@ public class AddPrisonerDialog extends javax.swing.JDialog {
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                AddPrisonerDialog dialog = new AddPrisonerDialog(new javax.swing.JFrame(), true);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    @Override
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
+                try {
+                    AddPrisonerDialog dialog = new AddPrisonerDialog(new javax.swing.JFrame(), true);
+                    dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+                        @Override
+                        public void windowClosing(java.awt.event.WindowEvent e) {
+                            System.exit(0);
+                        }
+                    });
+                    dialog.setVisible(true);
+                } catch (Exception ex) {
+                    Logger.getLogger(AddPrisonerDialog.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCancel;
+    private javax.swing.JButton btnOK;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -130,6 +203,8 @@ public class AddPrisonerDialog extends javax.swing.JDialog {
     private javax.swing.JTextField txfGeb;
     private javax.swing.JTextField txfIn;
     private javax.swing.JTextField txfNachname;
+    private javax.swing.JLabel txfP;
+    private javax.swing.JTextField txfPr;
     private javax.swing.JTextField txfVorname;
     private javax.swing.JTextField txfZelle;
     // End of variables declaration//GEN-END:variables

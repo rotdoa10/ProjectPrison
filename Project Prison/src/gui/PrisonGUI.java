@@ -34,6 +34,8 @@ public class PrisonGUI implements ActionListener {
     LinkedList<JButton> buttonFeld = new LinkedList<JButton>();
     private int anzahl = 10;
     private JFrame frame;
+    private LinkedList<Prisoner> list = new LinkedList<Prisoner>();
+    private int index=0;
     
     public void start()
     {
@@ -105,28 +107,26 @@ public class PrisonGUI implements ActionListener {
         {
             try {
                 DBAccess a = new DBAccess();
-                LinkedList<Prisoner> list = a.getPrisoners();
+                list = a.getPrisoners();
                 for(int i = 0; i < list.size(); i++)
                 {
                     int zelleNR = list.get(i).getCellID();
                     System.out.println("NR: "+zelleNR);
 
-                    for(int j = 0; j < panelFeld.size(); j++)
+                    for(index = 0; index < panelFeld.size(); index++)
                     {
-                        if(("Zelle"+zelleNR).equals(panelFeld.get(j).getName()))
+                        if(("Zelle"+zelleNR).equals(panelFeld.get(index).getName()))
                         {
                             JButton btn = new JButton();
-                            btn.setText(list.get(i).getNachname());
-//                            Graphics2D g = (Graphics2D) btn.getGraphics();
-//                            g.drawOval(10, 10, 10, 10);
-//                                          
-                            btn.setBounds(5, 15, panelFeld.get(j).getWidth()-30, panelFeld.get(j).getHeight()-110);
+                            btn.setText(list.get(index).getNachname());
+                                         
+                            btn.setBounds(5, 15, panelFeld.get(index).getWidth()-30, panelFeld.get(index).getHeight()-110);
                             btn.addMouseListener(new MouseListener() {
 
                                 @Override
                                 public void mouseClicked(MouseEvent e) 
                                 {
-                                    AddPrisonerDialog d = new AddPrisonerDialog();
+                                    JDialog d = new PrisonerDialog(list.get(index));
                                     d.setVisible(true);
                                 }
 
@@ -146,7 +146,7 @@ public class PrisonGUI implements ActionListener {
                                 public void mouseExited(MouseEvent e) {
                                                                     }
                             });
-                            panelFeld.get(j).add(btn,BorderLayout.NORTH);
+                            panelFeld.get(index).add(btn,BorderLayout.NORTH);
                             buttonFeld.add(btn);
                             frame.validate();
                             frame.repaint();
@@ -165,8 +165,12 @@ public class PrisonGUI implements ActionListener {
         }
         else if(e.getActionCommand().equals("addItem"))
         {
-            JDialog d = new AddPrisonerDialog(frame, true);
-            d.setVisible(true);
+            try {
+                JDialog d = new AddPrisonerDialog(frame, true);
+                d.setVisible(true);
+            } catch (Exception ex) {
+                Logger.getLogger(PrisonGUI.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }
 
