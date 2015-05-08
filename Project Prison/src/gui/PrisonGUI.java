@@ -20,6 +20,7 @@ import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JButton;
+import javax.swing.JDialog;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
@@ -31,7 +32,7 @@ public class PrisonGUI implements ActionListener {
     
     LinkedList<JPanel> panelFeld = new LinkedList<JPanel>();
     LinkedList<JButton> buttonFeld = new LinkedList<JButton>();
-    private int anzahl = 20;
+    private int anzahl = 10;
     private JFrame frame;
     
     public void start()
@@ -125,7 +126,8 @@ public class PrisonGUI implements ActionListener {
                                 @Override
                                 public void mouseClicked(MouseEvent e) 
                                 {
-                                    //new PrisonerDialog(list.get(i));
+                                    AddPrisonerDialog d = new AddPrisonerDialog();
+                                    d.setVisible(true);
                                 }
 
                                 @Override
@@ -163,7 +165,8 @@ public class PrisonGUI implements ActionListener {
         }
         else if(e.getActionCommand().equals("addItem"))
         {
-            
+            JDialog d = new AddPrisonerDialog(frame, true);
+            d.setVisible(true);
         }
     }
 

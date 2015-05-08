@@ -18,6 +18,7 @@
     <AuxValue name="FormSettings_listenerGenerationStyle" type="java.lang.Integer" value="0"/>
     <AuxValue name="FormSettings_variablesLocal" type="java.lang.Boolean" value="false"/>
     <AuxValue name="FormSettings_variablesModifier" type="java.lang.Integer" value="2"/>
+    <AuxValue name="designerSize" type="java.awt.Dimension" value="-84,-19,0,5,115,114,0,18,106,97,118,97,46,97,119,116,46,68,105,109,101,110,115,105,111,110,65,-114,-39,-41,-84,95,68,20,2,0,2,73,0,6,104,101,105,103,104,116,73,0,5,119,105,100,116,104,120,112,0,0,1,44,0,0,1,-112"/>
   </AuxValues>
 
   <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout"/>
@@ -39,54 +40,42 @@
             <Property name="text" type="java.lang.String" value="Vorname:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="jTextField1">
+        <Component class="javax.swing.JTextField" name="txfVorname">
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel3">
           <Properties>
             <Property name="text" type="java.lang.String" value="Nachname:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="jTextField2">
+        <Component class="javax.swing.JTextField" name="txfNachname">
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel4">
           <Properties>
             <Property name="text" type="java.lang.String" value="Geburtsdatum:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="txfgeb">
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txfgebActionPerformed"/>
-          </Events>
+        <Component class="javax.swing.JTextField" name="txfGeb">
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel5">
           <Properties>
             <Property name="text" type="java.lang.String" value="Inhaftierungsdatum:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="jTextField4">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="jTextField4"/>
-          </Properties>
+        <Component class="javax.swing.JTextField" name="txfIn">
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel6">
           <Properties>
             <Property name="text" type="java.lang.String" value="Entlassungsdatum:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="jTextField5">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="jTextField5"/>
-          </Properties>
+        <Component class="javax.swing.JTextField" name="txfEnt">
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel7">
           <Properties>
             <Property name="text" type="java.lang.String" value="Zelle:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="jTextField6">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="jTextField6"/>
-          </Properties>
+        <Component class="javax.swing.JTextField" name="txfZelle">
         </Component>
       </SubComponents>
     </Container>

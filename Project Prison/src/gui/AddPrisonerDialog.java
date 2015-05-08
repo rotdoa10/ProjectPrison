@@ -1,15 +1,5 @@
 package gui;
 
-import java.awt.Component;
-import java.awt.Frame;
-import java.awt.PopupMenu;
-import java.awt.event.ActionListener;
-import javax.swing.JDialog;
-import org.jdatepicker.DateModel;
-import org.jdatepicker.JDatePicker;
-import org.jdatepicker.impl.JDatePanelImpl;
-import org.jdatepicker.impl.JDatePickerImpl;
-import org.jdatepicker.impl.UtilDateModel;
 
 /**
  *
@@ -19,28 +9,10 @@ public class AddPrisonerDialog extends javax.swing.JDialog {
 
     public AddPrisonerDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
-        initComponents();
-        // Create the DatePicker.
-//DatePicker datePicker = new DatePicker();
-//
-//// Add some action (in Java 8 lambda syntax style).
-//datePicker.setOnAction(event -> {
-//    LocalDate date = datePicker.getValue();
-//    System.out.println("Selected date: " + date);
-//});
-//
-//// Add the DatePicker to the Stage.
-//StackPane root = new StackPane();
-//root.getChildren().add(datePicker);
-//stage.setScene(new Scene(root, 500, 650));
-//stage.show();
-//        JDialog dlg = new JDialog(new Frame(), true);
-//    DatePicker dp = new DatePicker();
-//    dp.setHideOnSelect(false);
-//    dlg.getContentPane().add(dp);
-//    dlg.pack();
-//    dlg.show();
-//    System.out.println(dp.getDate().toString());
+        initComponents();      
+    }
+
+    AddPrisonerDialog() {
         
     }
 
@@ -50,17 +22,17 @@ public class AddPrisonerDialog extends javax.swing.JDialog {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txfVorname = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        txfNachname = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        txfgeb = new javax.swing.JTextField();
+        txfGeb = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
+        txfIn = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
+        txfEnt = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        jTextField6 = new javax.swing.JTextField();
+        txfZelle = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -69,39 +41,27 @@ public class AddPrisonerDialog extends javax.swing.JDialog {
 
         jLabel2.setText("Vorname:");
         jPanel1.add(jLabel2);
-        jPanel1.add(jTextField1);
+        jPanel1.add(txfVorname);
 
         jLabel3.setText("Nachname:");
         jPanel1.add(jLabel3);
-        jPanel1.add(jTextField2);
+        jPanel1.add(txfNachname);
 
         jLabel4.setText("Geburtsdatum:");
         jPanel1.add(jLabel4);
-
-        txfgeb.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txfgebActionPerformed(evt);
-            }
-        });
-        jPanel1.add(txfgeb);
+        jPanel1.add(txfGeb);
 
         jLabel5.setText("Inhaftierungsdatum:");
         jPanel1.add(jLabel5);
-
-        jTextField4.setText("jTextField4");
-        jPanel1.add(jTextField4);
+        jPanel1.add(txfIn);
 
         jLabel6.setText("Entlassungsdatum:");
         jPanel1.add(jLabel6);
-
-        jTextField5.setText("jTextField5");
-        jPanel1.add(jTextField5);
+        jPanel1.add(txfEnt);
 
         jLabel7.setText("Zelle:");
         jPanel1.add(jLabel7);
-
-        jTextField6.setText("jTextField6");
-        jPanel1.add(jTextField6);
+        jPanel1.add(txfZelle);
 
         getContentPane().add(jPanel1, java.awt.BorderLayout.CENTER);
 
@@ -112,10 +72,6 @@ public class AddPrisonerDialog extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void txfgebActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txfgebActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txfgebActionPerformed
 
     public static void main(String args[]) {
 
@@ -143,6 +99,7 @@ public class AddPrisonerDialog extends javax.swing.JDialog {
 
 
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 AddPrisonerDialog dialog = new AddPrisonerDialog(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
@@ -165,11 +122,11 @@ public class AddPrisonerDialog extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField txfgeb;
+    private javax.swing.JTextField txfEnt;
+    private javax.swing.JTextField txfGeb;
+    private javax.swing.JTextField txfIn;
+    private javax.swing.JTextField txfNachname;
+    private javax.swing.JTextField txfVorname;
+    private javax.swing.JTextField txfZelle;
     // End of variables declaration//GEN-END:variables
 }
