@@ -8,11 +8,6 @@ package database;
 import beans.Prisoner;
 import java.util.Date;
 import java.util.LinkedList;
-import static org.hamcrest.CoreMatchers.equalTo;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 

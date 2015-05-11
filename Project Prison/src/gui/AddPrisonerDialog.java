@@ -6,6 +6,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 
 /**
@@ -42,7 +43,7 @@ public class AddPrisonerDialog extends javax.swing.JDialog {
         txfEnt = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         txfZelle = new javax.swing.JTextField();
-        txfP = new javax.swing.JLabel();
+        labelP = new javax.swing.JLabel();
         txfPr = new javax.swing.JTextField();
         btnOK = new javax.swing.JButton();
         btnCancel = new javax.swing.JButton();
@@ -76,8 +77,8 @@ public class AddPrisonerDialog extends javax.swing.JDialog {
         jPanel1.add(jLabel7);
         jPanel1.add(txfZelle);
 
-        txfP.setText("Priorität:");
-        jPanel1.add(txfP);
+        labelP.setText("Priorität:");
+        jPanel1.add(labelP);
         jPanel1.add(txfPr);
 
         btnOK.setText("ok");
@@ -107,10 +108,11 @@ public class AddPrisonerDialog extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOKActionPerformed
-        
+    
         // ok - Button
         
-        try {
+        try {           
+
             SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
             String vorname = this.txfVorname.getText();
             String nachname = this.txfNachname.getText();
@@ -125,15 +127,25 @@ public class AddPrisonerDialog extends javax.swing.JDialog {
             
             if(vorname != null && nachname != null && geb != null && in != null && ent != null && this.txfZelle.getText() != null && this.txfPr.getText() != null)
             {
-                DBAccess db = new DBAccess(); 
-                db.addPrisoner(vorname, nachname, dGeb, dIn, dEnt, pri, zelle);
+                try {
+                    DBAccess db = new DBAccess();
+                    db.addPrisoner(vorname, nachname, dGeb, dIn, dEnt, pri, zelle);
+                } catch (ParseException ex) {
+                    Logger.getLogger(AddPrisonerDialog.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (Exception ex) {
+                    Logger.getLogger(AddPrisonerDialog.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
-            this.dispose();
+            else
+            {
+                JOptionPane.showMessageDialog(null,"Falsche Eingabe!!!!");
+            }
+             
+            dispose();
         } catch (ParseException ex) {
             Logger.getLogger(AddPrisonerDialog.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (Exception ex) {
-            Logger.getLogger(AddPrisonerDialog.class.getName()).log(Level.SEVERE, null, ex);
         }
+        dispose();
         
     }//GEN-LAST:event_btnOKActionPerformed
 
@@ -141,7 +153,7 @@ public class AddPrisonerDialog extends javax.swing.JDialog {
 
         // cancel - Button
         
-        this.dispose();
+        dispose();
 
     }//GEN-LAST:event_btnCancelActionPerformed
 
@@ -200,11 +212,11 @@ public class AddPrisonerDialog extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel labelP;
     private javax.swing.JTextField txfEnt;
     private javax.swing.JTextField txfGeb;
     private javax.swing.JTextField txfIn;
     private javax.swing.JTextField txfNachname;
-    private javax.swing.JLabel txfP;
     private javax.swing.JTextField txfPr;
     private javax.swing.JTextField txfVorname;
     private javax.swing.JTextField txfZelle;

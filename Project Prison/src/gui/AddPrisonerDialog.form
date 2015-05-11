@@ -77,7 +77,7 @@
         </Component>
         <Component class="javax.swing.JTextField" name="txfZelle">
         </Component>
-        <Component class="javax.swing.JLabel" name="txfP">
+        <Component class="javax.swing.JLabel" name="labelP">
           <Properties>
             <Property name="text" type="java.lang.String" value="Priorit&#xe4;t:"/>
           </Properties>

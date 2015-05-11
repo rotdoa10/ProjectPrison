@@ -172,6 +172,9 @@ public class PrisonGUI implements ActionListener {
             try {
                 JDialog d = new AddPrisonerDialog(frame, true);
                 d.setVisible(true);
+                DBAccess a = new DBAccess();
+                list = a.getPrisoners();
+                frame.repaint();
             } catch (Exception ex) {
                 Logger.getLogger(PrisonGUI.class.getName()).log(Level.SEVERE, null, ex);
             }
