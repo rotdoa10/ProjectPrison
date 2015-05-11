@@ -35,7 +35,7 @@ public class PrisonGUI implements ActionListener {
     private int anzahl = 10;
     private JFrame frame;
     private LinkedList<Prisoner> list = new LinkedList<Prisoner>();
-    private int index=0;
+    private int index = 0;
     private int i = 0;
     
     public void start(String username)
@@ -67,7 +67,7 @@ public class PrisonGUI implements ActionListener {
         menubar.add(menu);
         frame.add(menubar,BorderLayout.NORTH);
 
-        for (int i = 0; i < anzahl; i++) {
+        for (int k = 0; k < anzahl; k++) {
 
             JPanel panel = new JPanel() {
                 @Override
@@ -81,8 +81,8 @@ public class PrisonGUI implements ActionListener {
                 }
             };
             panel.setLayout(new BorderLayout());
-            panel.setName("Zelle" + (i + 1));
-            panel.setBorder(new TitledBorder("Zelle" + (i + 1)));
+            panel.setName("Zelle" + (k + 1));
+            panel.setBorder(new TitledBorder("Zelle" + (k + 1)));
             
             JButton btn = new JButton();
             ImageIcon image = new ImageIcon(getClass().getResource("/pics/tuer.jpg"));
@@ -109,6 +109,7 @@ public class PrisonGUI implements ActionListener {
         if(e.getActionCommand().equals("actionItem"))
         {
             try {
+                System.out.println("hallo");
                 DBAccess a = new DBAccess();
                 list = a.getPrisoners();
                 for(i = 0; i < list.size(); i++)
