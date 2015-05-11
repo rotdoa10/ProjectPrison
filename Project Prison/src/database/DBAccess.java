@@ -119,7 +119,7 @@ public class DBAccess {
 
         ResultSet rs = stat.executeQuery(sqlString);
         rs = stat.executeQuery(sqlString);
-        rs.next();
+        //rs.next();
     }
 
     public LinkedList<Prisoner> getPrisonersinCell(int CID) throws Exception {
@@ -195,8 +195,8 @@ public class DBAccess {
 
     }
 
-//    public static void main(String[] args) throws IOException, FileNotFoundException, ClassNotFoundException, SQLException, Exception {
+    public static void main(String[] args) throws IOException, FileNotFoundException, ClassNotFoundException, SQLException, Exception {
 //        DBAccess dba = new DBAccess();
 //       
-//    }
+    }
 }

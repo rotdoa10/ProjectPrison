@@ -53,14 +53,14 @@ public final class DataBase {
         if (cc != null && con != null) {
             return cc.getStatement();
         }
-        throw new Exception("not connected to DB booksdb");
+        throw new Exception("not connected to DB prisondb");
     }
 
     public void releaseStatement(Statement stat) throws Exception {
         if (cc != null && con != null) {
             cc.releaseStatement(stat);
         } else {
-            throw new Exception("not connected to DB booksdb");
+            throw new Exception("not connected to DB prisondb");
         }
     }
 

@@ -123,7 +123,7 @@ public class AddPrisonerDialog extends javax.swing.JDialog {
             int zelle = Integer.parseInt(this.txfZelle.getText());
             int pri = Integer.parseInt(this.txfPr.getText());
             
-            if(vorname != null && nachname != null && geb != null && in != null && ent != null && this.txfZelle.getText() != null && this.txfP.getText() != null)
+            if(vorname != null && nachname != null && geb != null && in != null && ent != null && this.txfZelle.getText() != null && this.txfPr.getText() != null)
             {
                 DBAccess db = new DBAccess(); 
                 db.addPrisoner(vorname, nachname, dGeb, dIn, dEnt, pri, zelle);
