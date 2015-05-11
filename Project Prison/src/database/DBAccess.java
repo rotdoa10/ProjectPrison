@@ -11,6 +11,8 @@ import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.LinkedList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -119,7 +121,19 @@ public class DBAccess {
 
         ResultSet rs = stat.executeQuery(sqlString);
         rs = stat.executeQuery(sqlString);
-        //rs.next();
+    }
+    
+        public void removePrisoner(int ID) throws Exception {
+        Statement stat = db.getStatement();
+
+        String sqlString = "DELETE FROM prisoner "
+                + "WHERE prID = " + ID;
+
+        try {
+            stat.execute(sqlString);
+        } catch (SQLException ex) {
+            Logger.getLogger(DBAccess.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     public LinkedList<Prisoner> getPrisonersinCell(int CID) throws Exception {
