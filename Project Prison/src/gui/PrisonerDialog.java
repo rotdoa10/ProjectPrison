@@ -20,7 +20,7 @@ public class PrisonerDialog extends javax.swing.JDialog {
     }
 
     PrisonerDialog(Prisoner p) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
     }
 
     @SuppressWarnings("unchecked")

@@ -37,8 +37,9 @@ public class PrisonGUI implements ActionListener {
     private LinkedList<Prisoner> list = new LinkedList<Prisoner>();
     private int index=0;
     
-    public void start()
+    public void start(String username)
     {
+        frame.setTitle("Angemeldet als "+username);
         frame = new JFrame();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         //frame.setLocationRelativeTo(null);
@@ -97,8 +98,7 @@ public class PrisonGUI implements ActionListener {
     }
 
     public static void main(String[] args) {
-        PrisonGUI p = new PrisonGUI();
-        p.start();
+
     }
 
     @Override
@@ -118,7 +118,7 @@ public class PrisonGUI implements ActionListener {
                         if(("Zelle"+zelleNR).equals(panelFeld.get(index).getName()))
                         {
                             JButton btn = new JButton();
-                            btn.setText(list.get(index).getNachname());
+                            btn.setText(list.get(i).getNachname());
                                          
                             btn.setBounds(5, 15, panelFeld.get(index).getWidth()-30, panelFeld.get(index).getHeight()-110);
                             btn.addMouseListener(new MouseListener() {

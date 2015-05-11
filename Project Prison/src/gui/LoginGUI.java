@@ -84,7 +84,7 @@ public class LoginGUI extends javax.swing.JFrame {
 
             if (check) {
                 PrisonGUI g = new PrisonGUI();
-                g.start();
+                g.start(user);
                 this.dispose();
             } else {
                 JOptionPane.showMessageDialog(rootPane, "FALSCHES PASSWORT ODER USERNAME!!");

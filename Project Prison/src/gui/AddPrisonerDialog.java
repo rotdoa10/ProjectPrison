@@ -121,13 +121,14 @@ public class AddPrisonerDialog extends javax.swing.JDialog {
             String ent = this.txfEnt.getText();
             Date dEnt = sdf.parse(ent);
             int zelle = Integer.parseInt(this.txfZelle.getText());
-            int pri = Integer.parseInt(this.txfP.getText());
+            int pri = Integer.parseInt(this.txfPr.getText());
             
             if(vorname != null && nachname != null && geb != null && in != null && ent != null && this.txfZelle.getText() != null && this.txfP.getText() != null)
             {
                 DBAccess db = new DBAccess(); 
                 db.addPrisoner(vorname, nachname, dGeb, dIn, dEnt, pri, zelle);
             }
+            this.dispose();
         } catch (ParseException ex) {
             Logger.getLogger(AddPrisonerDialog.class.getName()).log(Level.SEVERE, null, ex);
         } catch (Exception ex) {

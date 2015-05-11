@@ -119,6 +119,7 @@ public class DBAccess {
 
         ResultSet rs = stat.executeQuery(sqlString);
         rs = stat.executeQuery(sqlString);
+        rs.next();
     }
 
     public LinkedList<Prisoner> getPrisonersinCell(int CID) throws Exception {
