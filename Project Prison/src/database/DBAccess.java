@@ -52,7 +52,7 @@ public class DBAccess {
 
             Prisoner pr = new Prisoner(ID, vorname, nachname, gebDate, inDate, outDate, pID, cellID);
             list.add(pr);
-        } while (!rs.isLast());
+        } while (rs.next());
 
         return list;
     }
@@ -123,7 +123,7 @@ public class DBAccess {
         rs = stat.executeQuery(sqlString);
     }
     
-        public void removePrisoner(int ID) throws Exception {
+    public void removePrisoner(int ID) throws Exception {
         Statement stat = db.getStatement();
 
         String sqlString = "DELETE FROM prisoner "
@@ -209,8 +209,8 @@ public class DBAccess {
 
     }
 
-    public static void main(String[] args) throws IOException, FileNotFoundException, ClassNotFoundException, SQLException, Exception {
-//        DBAccess dba = new DBAccess();
-//       
-    }
+   public static void main(String[] args) throws IOException, FileNotFoundException, ClassNotFoundException, SQLException, Exception {
+//        DBAccess dba = new DBAccess();               
+//
+   }
 }
