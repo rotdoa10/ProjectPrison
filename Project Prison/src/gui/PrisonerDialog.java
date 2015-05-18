@@ -19,9 +19,7 @@ public class PrisonerDialog extends javax.swing.JDialog {
         
     }
 
-    PrisonerDialog(Prisoner p) {
-        
-    }
+    
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -72,6 +70,7 @@ public class PrisonerDialog extends javax.swing.JDialog {
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 PrisonerDialog dialog = new PrisonerDialog(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
