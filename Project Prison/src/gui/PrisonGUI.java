@@ -27,45 +27,51 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.border.TitledBorder;
 
-
 public class PrisonGUI implements ActionListener {
-    
+
     LinkedList<JPanel> panelFeld = new LinkedList<JPanel>();
+    LinkedList<JPanel> zweitesPanelFeld = new LinkedList<JPanel>();
     LinkedList<JButton> buttonFeld = new LinkedList<JButton>();
     private int anzahl = 10;
     private JFrame frame;
     private LinkedList<Prisoner> list = new LinkedList<Prisoner>();
     private int index = 0;
     private int i = 0;
-    
-    public void start(String username)
-    {
+
+    public void start(String username) {
         frame = new JFrame();
-        frame.setTitle("Angemeldet als "+username);
+        frame.setTitle("Angemeldet als " + username);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         //frame.setLocationRelativeTo(null);
         frame.setVisible(true);
         frame.setSize(1000, 800);
         frame.setLayout(new BorderLayout());
         JPanel mainpanel = new JPanel();
-        mainpanel.setLayout(new GridLayout(2,(anzahl/2)));
-        frame.add(mainpanel,BorderLayout.CENTER);
-       
+        mainpanel.setLayout(new GridLayout(2, (anzahl / 2)));
+        frame.add(mainpanel, BorderLayout.CENTER);
+
         JMenuBar menubar = new JMenuBar();
         JMenu menu = new JMenu("start");
-        
+        JMenu menuA = new JMenu("aktualisieren");
+
         JMenuItem item = new JMenuItem("zur Datenbank verbinden");
         item.addActionListener(this);
         item.setActionCommand("actionItem");
-        
+
         JMenuItem itemAdd = new JMenuItem("add Prisoner");
         itemAdd.addActionListener(this);
         itemAdd.setActionCommand("addItem");
         
+        JMenuItem itemAktuali = new JMenuItem("aktualisieren");
+        itemAktuali.addActionListener(this);
+        itemAktuali.setActionCommand("aktualisierenAction");
+
         menu.add(item);
         menu.add(itemAdd);
+        menuA.add(itemAktuali);
         menubar.add(menu);
-        frame.add(menubar,BorderLayout.NORTH);
+        menubar.add(menuA);
+        frame.add(menubar, BorderLayout.NORTH);
 
         for (int k = 0; k < anzahl; k++) {
 
@@ -76,81 +82,78 @@ public class PrisonGUI implements ActionListener {
                     super.paintComponent(g);
                     g2d.setColor(Color.darkGray);
                     g2d.setStroke(new BasicStroke(5.0f));
-                    
-                    g2d.drawRect(10, 18, this.getWidth()-20, this.getHeight()-100);
+
+                    g2d.drawRect(10, 18, this.getWidth() - 20, this.getHeight() - 100);
                 }
             };
             panel.setLayout(new BorderLayout());
             panel.setName("Zelle" + (k + 1));
             panel.setBorder(new TitledBorder("Zelle" + (k + 1)));
-            
+
             JButton btn = new JButton();
             ImageIcon image = new ImageIcon(getClass().getResource("/pics/tuer.jpg"));
-            
+
             btn.setIcon(image);
-            panel.add(btn,BorderLayout.SOUTH);
+            panel.add(btn, BorderLayout.SOUTH);
             panelFeld.add(panel);
-            
+
             mainpanel.add(panel);
             frame.validate();
             frame.repaint();
         }
-    
+
     }
 
-    public static void main(String[] args) 
-    {  
+    public static void main(String[] args) {
         PrisonGUI g = new PrisonGUI();
         g.start("aed");
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if(e.getActionCommand().equals("actionItem"))
-        {
+        if (e.getActionCommand().equals("actionItem")) {
             try {
                 System.out.println("hallo");
                 DBAccess a = new DBAccess();
                 list = a.getPrisoners();
-                for(i = 0; i < list.size(); i++)
-                {
+                for (i = 0; i < list.size(); i++) {
                     int zelleNR = list.get(i).getCellID();
-                    System.out.println("NR: "+zelleNR);
+                    int prio = list.get(index).getpID();
+                    System.out.println("NR: " + zelleNR);
 
-                    for(index = 0; index < panelFeld.size(); index++)
-                    {
-                        if(("Zelle"+zelleNR).equals(panelFeld.get(index).getName()))
-                        {
+                    for (index = 0; index < panelFeld.size(); index++) {
+                        panelFeld.get(index).add(zweitesPanelFeld.get(index), BorderLayout.CENTER);
+                        zweitesPanelFeld.get(index).setLayout(new GridLayout());
+                        if (("Zelle" + zelleNR).equals(panelFeld.get(index).getName())) {
                             JButton btn = new JButton();
                             btn.setText(list.get(i).getNachname());
-                                         
-                            btn.setBounds(5, 15, panelFeld.get(index).getWidth()-30, panelFeld.get(index).getHeight()-110);
+
+                            btn.setBounds(5, 15, panelFeld.get(index).getWidth() - 30, panelFeld.get(index).getHeight() - 110);
                             btn.addMouseListener(new MouseListener() {
 
                                 @Override
-                                public void mouseClicked(MouseEvent e) 
-                                {
+                                public void mouseClicked(MouseEvent e) {
                                     JDialog d = new PrisonerDialog(list.get(i));
                                     d.setVisible(true);
                                 }
 
                                 @Override
                                 public void mousePressed(MouseEvent e) {
-                                                               }
+                                }
 
                                 @Override
                                 public void mouseReleased(MouseEvent e) {
-                                                                  }
+                                }
 
                                 @Override
                                 public void mouseEntered(MouseEvent e) {
-                                                                   }
+                                }
 
                                 @Override
                                 public void mouseExited(MouseEvent e) {
-                                                                    }
+                                }
                             });
-                            panelFeld.get(index).add(btn,BorderLayout.NORTH);
+                            panelFeld.get(index).add(btn, BorderLayout.NORTH);
                             buttonFeld.add(btn);
                             frame.validate();
                             frame.repaint();
@@ -166,15 +169,69 @@ public class PrisonGUI implements ActionListener {
             } catch (Exception ex) {
                 Logger.getLogger(PrisonGUI.class.getName()).log(Level.SEVERE, null, ex);
             }
-        }
-        else if(e.getActionCommand().equals("addItem"))
-        {
+        } else if (e.getActionCommand().equals("addItem")) {
             try {
                 JDialog d = new AddPrisonerDialog(frame, true);
                 d.setVisible(true);
                 DBAccess a = new DBAccess();
                 list = a.getPrisoners();
-                frame.repaint();
+ 
+            } catch (Exception ex) {
+                Logger.getLogger(PrisonGUI.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else if(e.getActionCommand().equals("aktualisierenAction"))
+        {
+            try {
+                System.out.println("hallo");
+                DBAccess a = new DBAccess();
+                list = a.getPrisoners();
+                for (i = 0; i < list.size(); i++) {
+                    int zelleNR = list.get(i).getCellID();
+                    System.out.println("NR: " + zelleNR);
+
+                    for (index = 0; index < panelFeld.size(); index++) {
+                        if (("Zelle" + zelleNR).equals(panelFeld.get(index).getName())) {
+                            JButton btn = new JButton();
+                            btn.setText(list.get(i).getNachname());
+
+                            btn.setBounds(5, 15, panelFeld.get(index).getWidth() - 30, panelFeld.get(index).getHeight() - 110);
+                            btn.addMouseListener(new MouseListener() {
+
+                                @Override
+                                public void mouseClicked(MouseEvent e) {
+                                    JDialog d = new PrisonerDialog(list.get(i));
+                                    d.setVisible(true);
+                                }
+
+                                @Override
+                                public void mousePressed(MouseEvent e) {
+                                }
+
+                                @Override
+                                public void mouseReleased(MouseEvent e) {
+                                }
+
+                                @Override
+                                public void mouseEntered(MouseEvent e) {
+                                }
+
+                                @Override
+                                public void mouseExited(MouseEvent e) {
+                                }
+                            });
+                            panelFeld.get(index).add(btn, BorderLayout.NORTH);
+                            buttonFeld.add(btn);
+                            frame.validate();
+                            frame.repaint();
+                        }
+                    }
+                }
+            } catch (IOException ex) {
+                Logger.getLogger(PrisonGUI.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(PrisonGUI.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SQLException ex) {
+                Logger.getLogger(PrisonGUI.class.getName()).log(Level.SEVERE, null, ex);
             } catch (Exception ex) {
                 Logger.getLogger(PrisonGUI.class.getName()).log(Level.SEVERE, null, ex);
             }
