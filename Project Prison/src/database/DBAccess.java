@@ -227,9 +227,22 @@ public class DBAccess {
         
         return cellList;
     }
+    
+    public int getAuthortiy(String username) throws Exception
+    {        
+        Statement stat = db.getStatement();
+
+        String sqlString = "SELECT aid "
+                + "FROM guard "
+                + "WHERE username = '" + username+"';";
+
+        ResultSet rs = stat.executeQuery(sqlString);
+        rs.next();
+        return rs.getInt("aid");
+    }
 
    public static void main(String[] args) throws IOException, FileNotFoundException, ClassNotFoundException, SQLException, Exception {
-//        DBAccess dba = new DBAccess();               
-//
+//        DBAccess dba = new DBAccess();   
+//               
    }
 }
