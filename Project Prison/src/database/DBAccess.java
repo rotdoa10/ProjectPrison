@@ -208,6 +208,25 @@ public class DBAccess {
         }
 
     }
+    
+    public LinkedList<String> getCells() throws Exception
+    {
+        LinkedList<String> cellList = new LinkedList<>();
+         Statement stat = db.getStatement();
+
+        String sqlString = "SELECT bez "
+                + "FROM cell";
+
+        ResultSet rs = stat.executeQuery(sqlString);
+        rs.next();        
+
+        do {
+            cellList.add(rs.getString("bez"));
+            rs.next();
+        } while (!rs.isLast());
+        
+        return cellList;
+    }
 
    public static void main(String[] args) throws IOException, FileNotFoundException, ClassNotFoundException, SQLException, Exception {
 //        DBAccess dba = new DBAccess();               
