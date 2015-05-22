@@ -87,12 +87,20 @@ public class PrisonGUI implements ActionListener {
                     g2d.setColor(Color.darkGray);
                     g2d.setStroke(new BasicStroke(5.0f));
 
-                    g2d.drawRect(10, 18, this.getWidth() - 20, this.getHeight() - 100);
+                    g2d.drawRect(10, 18, this.getWidth() - 20, this.getHeight() - 50);
                 }
             };
             panel.setLayout(new BorderLayout());
             panel.setName("Zelle" + (k + 1));
             panel.setBorder(new TitledBorder("Zelle" + (k + 1)));
+            JPanel pan = new JPanel();
+            pan.setSize(50, 50);
+            pan.setName("pan"+(k+1));
+            pan.setLayout(new GridLayout(2,1));
+            
+            this.zweitesPanelFeld.add(pan);
+            
+            panel.add(pan);
             panelFeld.add(panel);
 
             mainpanel.add(panel);
@@ -126,7 +134,6 @@ public class PrisonGUI implements ActionListener {
 
                     for (index = 0; index < panelFeld.size(); index++) {
 
-                        //zweitesPanelFeld.get(index).setLayout(new GridLayout());
                         if (("Zelle" + zelleNR).equals(panelFeld.get(index).getName())) {
                             JButton btn = new JButton();
                             btn.setText(list.get(i).getNachname());
@@ -137,12 +144,13 @@ public class PrisonGUI implements ActionListener {
                                 @Override
                                 public void mouseClicked(MouseEvent e) {
                                     try {
-                                        JDialog d = new PrisonerDialog(list.get(i), a.getAuthortiy(user));
+                                        JDialog d = new PrisonerDialog(this,true,list.get(i), a.getAuthortiy(user));
                                         d.setVisible(true);
                                     } catch (Exception ex) {
                                         Logger.getLogger(PrisonGUI.class.getName()).log(Level.SEVERE, null, ex);
                                     }
                                 }
+                                
 
                                 @Override
                                 public void mousePressed(MouseEvent e) {
@@ -160,7 +168,7 @@ public class PrisonGUI implements ActionListener {
                                 public void mouseExited(MouseEvent e) {
                                 }
                             });
-                            panelFeld.get(index).add(btn, BorderLayout.NORTH);
+                            zweitesPanelFeld.get(index).add(btn);
 
                             buttonFeld.add(btn);
                             frame.validate();
