@@ -32,6 +32,7 @@ public class PrisonGUI implements ActionListener {
     LinkedList<JPanel> panelFeld = new LinkedList<JPanel>();
     LinkedList<JPanel> zweitesPanelFeld = new LinkedList<JPanel>();
     LinkedList<JButton> buttonFeld = new LinkedList<JButton>();
+    LinkedList<JButton> iconList = new LinkedList<JButton>();
     private int anzahl = 10;
     private JFrame frame;
     private LinkedList<Prisoner> list = new LinkedList<Prisoner>();
@@ -105,9 +106,12 @@ public class PrisonGUI implements ActionListener {
 
             mainpanel.add(panel);
             JButton btn = new JButton();
+            btn.setActionCommand("doorAction");
+            btn.setName("doorbtn"+(k+1));
             ImageIcon image = new ImageIcon(getClass().getResource("/pics/tuer.jpg"));
 
             btn.setIcon(image);
+            iconList.add(btn);
             panel.add(btn,BorderLayout.SOUTH);
 
         }
@@ -144,7 +148,8 @@ public class PrisonGUI implements ActionListener {
                                 @Override
                                 public void mouseClicked(MouseEvent e) {
                                     try {
-                                        JDialog d = new PrisonerDialog(this,true,list.get(i), a.getAuthortiy(user));
+                                        System.out.println(i);
+                                        JDialog d = new PrisonerDialog(frame,true,list.get(i-1), a.getAuthortiy(user));
                                         d.setVisible(true);
                                     } catch (Exception ex) {
                                         Logger.getLogger(PrisonGUI.class.getName()).log(Level.SEVERE, null, ex);
@@ -216,7 +221,7 @@ public class PrisonGUI implements ActionListener {
                                 @Override
                                 public void mouseClicked(MouseEvent e) {
                                     try {
-                                        JDialog d = new PrisonerDialog(list.get(i), a.getAuthortiy(user));
+                                        JDialog d = new PrisonerDialog(frame,true,list.get(i), a.getAuthortiy(user));
                                         d.setVisible(true);
                                     } catch (Exception ex) {
                                         Logger.getLogger(PrisonGUI.class.getName()).log(Level.SEVERE, null, ex);
@@ -254,6 +259,16 @@ public class PrisonGUI implements ActionListener {
                 Logger.getLogger(PrisonGUI.class.getName()).log(Level.SEVERE, null, ex);
             } catch (Exception ex) {
                 Logger.getLogger(PrisonGUI.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else if(e.getActionCommand().equals("doorAction"))
+        {
+            for (int j = 0; j < iconList.size(); j++) 
+            {
+                if(iconList.get(j).getName().equals("doorbtn"+(j+1)))
+                {
+                    //JDialog d = new DoorDialog(frame,true,list.get(i));
+                    //d.setVisible(true);
+                }
             }
         }
     }
