@@ -222,6 +222,7 @@ public class PrisonGUI implements ActionListener {
                 if (iconList.get(j).getName().equals("doorbtn" + (j + 1))) {
                     //JDialog d = new DoorDialog(frame,true,list.get(i));
                     //d.setVisible(true);
+                    
                 }
             }
         }
