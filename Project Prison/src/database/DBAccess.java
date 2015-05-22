@@ -119,8 +119,7 @@ public class DBAccess {
                 + "," + priority
                 + "," + cellID + ")";
 
-        ResultSet rs = stat.executeQuery(sqlString);
-        rs = stat.executeQuery(sqlString);
+        stat.executeQuery(sqlString);
     }
     
     public void removePrisoner(int ID) throws Exception {
@@ -135,7 +134,19 @@ public class DBAccess {
             Logger.getLogger(DBAccess.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+  
+    public void updatePrisoner(int ID, Date outdate, int priority, int cellid) throws Exception
+    {
+        Statement stat = db.getStatement();
+        SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
 
+        String sqlString = "UPDATE prisoner "
+                + "SET outdate=TO_DATE('" + sdf.format(outdate) + "','dd.mm.yyyy'), pid="+priority+", cellid="+cellid+" "
+                + "WHERE prid="+ID;
+
+            stat.execute(sqlString);
+
+    }
     public LinkedList<Prisoner> getPrisonersinCell(int CID) throws Exception {
         LinkedList<Prisoner> list = new LinkedList<>();
         Statement stat = db.getStatement();
@@ -214,14 +225,14 @@ public class DBAccess {
         LinkedList<String> cellList = new LinkedList<>();
          Statement stat = db.getStatement();
 
-        String sqlString = "SELECT bez "
+        String sqlString = "SELECT cellid "
                 + "FROM cell";
 
         ResultSet rs = stat.executeQuery(sqlString);
         rs.next();        
 
         do {
-            cellList.add(rs.getString("bez"));
+            cellList.add(rs.getString("cellid"));
             rs.next();
         } while (!rs.isLast());
         
@@ -240,9 +251,9 @@ public class DBAccess {
         rs.next();
         return rs.getInt("aid");
     }
-
+    
    public static void main(String[] args) throws IOException, FileNotFoundException, ClassNotFoundException, SQLException, Exception {
 //        DBAccess dba = new DBAccess();   
-//               
+//        
    }
 }
