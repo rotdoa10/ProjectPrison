@@ -96,23 +96,22 @@ public class PrisonGUI implements ActionListener {
             panel.setBorder(new TitledBorder("Zelle" + (k + 1)));
             JPanel pan = new JPanel();
             pan.setSize(50, 50);
-            pan.setName("pan"+(k+1));
-            pan.setLayout(new GridLayout(2,1));
-            
+            pan.setName("pan" + (k + 1));
+            pan.setLayout(new GridLayout(2, 1));
+
             this.zweitesPanelFeld.add(pan);
-            
+
             panel.add(pan);
             panelFeld.add(panel);
 
             mainpanel.add(panel);
             JButton btn = new JButton();
             btn.setActionCommand("doorAction");
-            btn.setName("doorbtn"+(k+1));
+            btn.setName("doorbtn" + (k + 1));
             ImageIcon image = new ImageIcon(getClass().getResource("/pics/tuer.jpg"));
-
             btn.setIcon(image);
             iconList.add(btn);
-            panel.add(btn,BorderLayout.SOUTH);
+            panel.add(btn, BorderLayout.SOUTH);
 
         }
         frame.validate();
@@ -128,53 +127,23 @@ public class PrisonGUI implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand().equals("actionItem")) {
             try {
-                System.out.println("hallo");
+
                 a = new DBAccess();
                 list = a.getPrisoners();
-                for (i = 0; i < list.size(); i++) {
-                    int zelleNR = list.get(i).getCellID();
+                for (index = 0; index < panelFeld.size(); index++) {
+                    for (i = 0; i < list.size(); i++) {
 
-                    System.out.println("NR: " + zelleNR);
-
-                    for (index = 0; index < panelFeld.size(); index++) {
+                        int zelleNR = list.get(i).getCellID();
 
                         if (("Zelle" + zelleNR).equals(panelFeld.get(index).getName())) {
                             JButton btn = new JButton();
                             btn.setText(list.get(i).getNachname());
-
                             btn.setBounds(5, 15, panelFeld.get(index).getWidth() - 30, panelFeld.get(index).getHeight() - 110);
-                            btn.addMouseListener(new MouseListener() {
-
-                                @Override
-                                public void mouseClicked(MouseEvent e) {
-                                    try {
-                                        System.out.println(i);
-                                        JDialog d = new PrisonerDialog(frame,true,list.get(i-1), a.getAuthortiy(user));
-                                        d.setVisible(true);
-                                    } catch (Exception ex) {
-                                        Logger.getLogger(PrisonGUI.class.getName()).log(Level.SEVERE, null, ex);
-                                    }
-                                }
-                                
-
-                                @Override
-                                public void mousePressed(MouseEvent e) {
-                                }
-
-                                @Override
-                                public void mouseReleased(MouseEvent e) {
-                                }
-
-                                @Override
-                                public void mouseEntered(MouseEvent e) {
-                                }
-
-                                @Override
-                                public void mouseExited(MouseEvent e) {
-                                }
-                            });
+                            btn.addActionListener(this);
+                            btn.setActionCommand("prisonerbtnAction");
+                            System.out.println("btn" + (i + 1));
+                            btn.setName("prisonerbtn" + (i + 1));
                             zweitesPanelFeld.get(index).add(btn);
-
                             buttonFeld.add(btn);
                             frame.validate();
                             frame.repaint();
@@ -221,7 +190,7 @@ public class PrisonGUI implements ActionListener {
                                 @Override
                                 public void mouseClicked(MouseEvent e) {
                                     try {
-                                        JDialog d = new PrisonerDialog(frame,true,list.get(i), a.getAuthortiy(user));
+                                        JDialog d = new PrisonerDialog(frame, true, list.get(i), a.getAuthortiy(user));
                                         d.setVisible(true);
                                     } catch (Exception ex) {
                                         Logger.getLogger(PrisonGUI.class.getName()).log(Level.SEVERE, null, ex);
@@ -260,15 +229,35 @@ public class PrisonGUI implements ActionListener {
             } catch (Exception ex) {
                 Logger.getLogger(PrisonGUI.class.getName()).log(Level.SEVERE, null, ex);
             }
-        } else if(e.getActionCommand().equals("doorAction"))
-        {
-            for (int j = 0; j < iconList.size(); j++) 
-            {
-                if(iconList.get(j).getName().equals("doorbtn"+(j+1)))
-                {
+        } else if (e.getActionCommand().equals("doorAction")) {
+            for (int j = 0; j < iconList.size(); j++) {
+                if (iconList.get(j).getName().equals("doorbtn" + (j + 1))) {
                     //JDialog d = new DoorDialog(frame,true,list.get(i));
                     //d.setVisible(true);
                 }
+            }
+        } else if (e.getActionCommand().equals("prisonerbtnAction")) {
+            try {
+                list = a.getPrisoners();
+                for (int j = 0; j < list.size(); j++) {
+                    System.out.println(list.get(j).getNachname());
+                }
+
+                for (int j = 0; j < buttonFeld.size(); j++) {
+                    if (buttonFeld.get(j).getName().equals("prisonerbtn" + (j + 1))) {
+                        try {
+                            System.out.println("prisonerbtn" + (j + 1));
+                            JDialog d = new PrisonerDialog(frame, true, list.get(j), a.getAuthortiy(user));
+                            d.setVisible(true);
+                        } catch (Exception ex) {
+                            Logger.getLogger(PrisonGUI.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                        break;
+                    }
+
+                }
+            } catch (Exception ex) {
+                Logger.getLogger(PrisonGUI.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }
