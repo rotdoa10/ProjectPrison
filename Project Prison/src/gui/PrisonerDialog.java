@@ -7,6 +7,7 @@ package gui;
 
 import beans.Prisoner;
 import database.DBAccess;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.LinkedList;
@@ -19,14 +20,13 @@ import java.util.logging.Logger;
  */
 public class PrisonerDialog extends javax.swing.JDialog {
 
-    DBAccess dba;
+    DBAccess dba= new DBAccess();
+    Prisoner pt;
     public PrisonerDialog(java.awt.Frame parent, boolean modal, Prisoner p, int priority) throws Exception {
         super(parent, modal);
         
-        initComponents();
-        dba = new DBAccess();
-
-        
+        initComponents();    
+        pt = p;
         LinkedList<String> l = dba.getCells();
         for (int i = 0; i < l.size(); i++) {
             cbCellNr.addItem(l.get(i));            
@@ -38,6 +38,9 @@ public class PrisonerDialog extends javax.swing.JDialog {
         lbGebDat.setText(sdf.format(p.getGebDate()));
         lbInDat.setText(sdf.format(p.getInDate()));
         tfOutDat.setText(sdf.format(p.getOutDate()));
+        
+        cbPriority.setSelectedIndex(pt.getpID()-1);
+        cbCellNr.setSelectedIndex(pt.getCellID()-1);
         
         if(priority==1)
         {
@@ -122,11 +125,17 @@ public class PrisonerDialog extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void onCancel(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_onCancel
-        this.dispose();
+        this.dispose();       
     }//GEN-LAST:event_onCancel
 
     private void onOK(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_onOK
+        SimpleDateFormat sdf = new SimpleDateFormat("DD.MM.YYYY");
         
+        try {
+            dba.updatePrisoner(pt.getId(), sdf.parse(tfOutDat.getText()) , (int) cbPriority.getSelectedItem(), (int) cbCellNr.getSelectedItem());
+        } catch (Exception ex) {
+            Logger.getLogger(PrisonerDialog.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
         this.dispose();
     }//GEN-LAST:event_onOK
