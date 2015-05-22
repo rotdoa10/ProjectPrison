@@ -37,8 +37,11 @@ public class PrisonGUI implements ActionListener {
     private LinkedList<Prisoner> list = new LinkedList<Prisoner>();
     private int index = 0;
     private int i = 0;
+    private DBAccess a;
+    private String user;
 
     public void start(String username) {
+        user = username;
         frame = new JFrame();
         frame.setTitle("Angemeldet als " + username);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -48,6 +51,7 @@ public class PrisonGUI implements ActionListener {
         frame.setLayout(new BorderLayout());
         JPanel mainpanel = new JPanel();
         mainpanel.setLayout(new GridLayout(2, (anzahl / 2)));
+
         frame.add(mainpanel, BorderLayout.CENTER);
 
         JMenuBar menubar = new JMenuBar();
@@ -61,7 +65,7 @@ public class PrisonGUI implements ActionListener {
         JMenuItem itemAdd = new JMenuItem("add Prisoner");
         itemAdd.addActionListener(this);
         itemAdd.setActionCommand("addItem");
-        
+
         JMenuItem itemAktuali = new JMenuItem("aktualisieren");
         itemAktuali.addActionListener(this);
         itemAktuali.setActionCommand("aktualisierenAction");
@@ -89,19 +93,18 @@ public class PrisonGUI implements ActionListener {
             panel.setLayout(new BorderLayout());
             panel.setName("Zelle" + (k + 1));
             panel.setBorder(new TitledBorder("Zelle" + (k + 1)));
+            panelFeld.add(panel);
 
+            mainpanel.add(panel);
             JButton btn = new JButton();
             ImageIcon image = new ImageIcon(getClass().getResource("/pics/tuer.jpg"));
 
             btn.setIcon(image);
-            panel.add(btn, BorderLayout.SOUTH);
-            panelFeld.add(panel);
+            panel.add(btn,BorderLayout.SOUTH);
 
-            mainpanel.add(panel);
-            frame.validate();
-            frame.repaint();
         }
-
+        frame.validate();
+        frame.repaint();
     }
 
     public static void main(String[] args) {
@@ -114,16 +117,16 @@ public class PrisonGUI implements ActionListener {
         if (e.getActionCommand().equals("actionItem")) {
             try {
                 System.out.println("hallo");
-                DBAccess a = new DBAccess();
+                a = new DBAccess();
                 list = a.getPrisoners();
                 for (i = 0; i < list.size(); i++) {
                     int zelleNR = list.get(i).getCellID();
-                    int prio = list.get(index).getpID();
+
                     System.out.println("NR: " + zelleNR);
 
                     for (index = 0; index < panelFeld.size(); index++) {
-                        panelFeld.get(index).add(zweitesPanelFeld.get(index), BorderLayout.CENTER);
-                        zweitesPanelFeld.get(index).setLayout(new GridLayout());
+
+                        //zweitesPanelFeld.get(index).setLayout(new GridLayout());
                         if (("Zelle" + zelleNR).equals(panelFeld.get(index).getName())) {
                             JButton btn = new JButton();
                             btn.setText(list.get(i).getNachname());
@@ -133,8 +136,12 @@ public class PrisonGUI implements ActionListener {
 
                                 @Override
                                 public void mouseClicked(MouseEvent e) {
-                                    JDialog d = new PrisonerDialog(list.get(i));
-                                    d.setVisible(true);
+                                    try {
+                                        JDialog d = new PrisonerDialog(list.get(i), a.getAuthortiy(user));
+                                        d.setVisible(true);
+                                    } catch (Exception ex) {
+                                        Logger.getLogger(PrisonGUI.class.getName()).log(Level.SEVERE, null, ex);
+                                    }
                                 }
 
                                 @Override
@@ -154,6 +161,7 @@ public class PrisonGUI implements ActionListener {
                                 }
                             });
                             panelFeld.get(index).add(btn, BorderLayout.NORTH);
+
                             buttonFeld.add(btn);
                             frame.validate();
                             frame.repaint();
@@ -173,17 +181,17 @@ public class PrisonGUI implements ActionListener {
             try {
                 JDialog d = new AddPrisonerDialog(frame, true);
                 d.setVisible(true);
-                DBAccess a = new DBAccess();
+
+                a = new DBAccess();
                 list = a.getPrisoners();
- 
+
             } catch (Exception ex) {
                 Logger.getLogger(PrisonGUI.class.getName()).log(Level.SEVERE, null, ex);
             }
-        } else if(e.getActionCommand().equals("aktualisierenAction"))
-        {
+        } else if (e.getActionCommand().equals("aktualisierenAction")) {
             try {
                 System.out.println("hallo");
-                DBAccess a = new DBAccess();
+
                 list = a.getPrisoners();
                 for (i = 0; i < list.size(); i++) {
                     int zelleNR = list.get(i).getCellID();
@@ -199,8 +207,12 @@ public class PrisonGUI implements ActionListener {
 
                                 @Override
                                 public void mouseClicked(MouseEvent e) {
-                                    JDialog d = new PrisonerDialog(list.get(i));
-                                    d.setVisible(true);
+                                    try {
+                                        JDialog d = new PrisonerDialog(list.get(i), a.getAuthortiy(user));
+                                        d.setVisible(true);
+                                    } catch (Exception ex) {
+                                        Logger.getLogger(PrisonGUI.class.getName()).log(Level.SEVERE, null, ex);
+                                    }
                                 }
 
                                 @Override
