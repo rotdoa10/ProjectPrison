@@ -47,7 +47,6 @@ public class PrisonGUI implements ActionListener {
         frame = new JFrame();
         frame.setTitle("Angemeldet als " + username);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        //frame.setLocationRelativeTo(null);
         frame.setVisible(true);
         frame.setSize(1000, 800);
         frame.setLayout(new BorderLayout());
@@ -88,7 +87,6 @@ public class PrisonGUI implements ActionListener {
                     super.paintComponent(g);
                     g2d.setColor(Color.darkGray);
                     g2d.setStroke(new BasicStroke(5.0f));
-
                     g2d.drawRect(10, 18, this.getWidth() - 20, this.getHeight() - 50);
                 }
             };
@@ -113,7 +111,6 @@ public class PrisonGUI implements ActionListener {
             btn.setIcon(image);
             iconList.add(btn);
             panel.add(btn, BorderLayout.SOUTH);
-
         }
         frame.validate();
         frame.repaint();
@@ -194,7 +191,6 @@ public class PrisonGUI implements ActionListener {
                         JDialog d = new PrisonerDialog(frame, true, p, a.getAuthortiy(user));
                         d.setVisible(true);
                         break;
-
                     } catch (Exception ex) {
                         Logger.getLogger(PrisonGUI.class.getName()).log(Level.SEVERE, null, ex);
                     }
