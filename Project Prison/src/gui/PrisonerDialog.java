@@ -132,7 +132,7 @@ public class PrisonerDialog extends javax.swing.JDialog {
         SimpleDateFormat sdf = new SimpleDateFormat("DD.MM.YYYY");
         
         try {
-            dba.updatePrisoner(pt.getId(), sdf.parse(tfOutDat.getText()) , (int) cbPriority.getSelectedItem(), (int) cbCellNr.getSelectedItem());
+            dba.updatePrisoner(pt.getId(), sdf.parse(tfOutDat.getText()) , Integer.parseInt((String) cbPriority.getSelectedItem()), Integer.parseInt((String)  cbCellNr.getSelectedItem()));
         } catch (Exception ex) {
             Logger.getLogger(PrisonerDialog.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -172,7 +172,8 @@ public class PrisonerDialog extends javax.swing.JDialog {
             @Override
             public void run() {
                 try {
-                    Prisoner pr = new Prisoner(3, "Test", "Testson", new Date(), new Date(), new Date(), 2, 6);
+                    //Prisoner pr = new Prisoner(3, "Test", "Testson", new Date(), new Date(), new Date(), 2, 6);
+                    Prisoner pr = null;
                     PrisonerDialog dialog = new PrisonerDialog(new javax.swing.JFrame(), true, pr, 1);
                     dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                         @Override
