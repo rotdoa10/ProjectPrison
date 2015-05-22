@@ -10,8 +10,6 @@ import java.awt.BorderLayout;
 import java.awt.Graphics2D;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.LinkedList;
@@ -172,15 +170,7 @@ public class PrisonGUI implements ActionListener {
                 Logger.getLogger(PrisonGUI.class.getName()).log(Level.SEVERE, null, ex);
             }
         } else if (e.getActionCommand().equals("aktualisierenAction")) {
-            try {
-                list = a.getPrisoners();
-
-//                for(i = 0; i < zweitesPanelFeld.size(); i++)
-//                {
-//                    for(int )
-//                    zweitesPanelFeld.get(i).remove();
-//                    
-//                }
+            try {  
                 for (index = 0; index < panelFeld.size(); index++) {
                     for (i = 0; i < list.size(); i++) {
 
@@ -201,12 +191,6 @@ public class PrisonGUI implements ActionListener {
                         }
                     }
                 }
-            } catch (IOException ex) {
-                Logger.getLogger(PrisonGUI.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (ClassNotFoundException ex) {
-                Logger.getLogger(PrisonGUI.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (SQLException ex) {
-                Logger.getLogger(PrisonGUI.class.getName()).log(Level.SEVERE, null, ex);
             } catch (Exception ex) {
                 Logger.getLogger(PrisonGUI.class.getName()).log(Level.SEVERE, null, ex);
             }
