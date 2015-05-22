@@ -88,18 +88,17 @@ public class DBAccess {
         Statement stat = db.getStatement();
 
         String sqlString = "SELECT username, passwort "
-                + "FROM guard;";
+                + "FROM guard "
+                + "WHERE username='"+username+"';";
 
         ResultSet rs = stat.executeQuery(sqlString);
         rs.next();
 
-        while (!rs.isLast()) {
-            if (username.equals(rs.getString("username")) && password.equals(rs.getString("passwort"))) {
+        if (password.equals(rs.getString("passwort"))) {
                 check = true;
                 return check;
-            }
-            rs.next();
-        }
+            }            
+        
 
         return check;
     }
@@ -252,8 +251,6 @@ public class DBAccess {
         return rs.getInt("aid");
     }
     
-   public static void main(String[] args) throws IOException, FileNotFoundException, ClassNotFoundException, SQLException, Exception {
-//        DBAccess dba = new DBAccess();   
-//        
+   public static void main(String[] args) throws IOException, FileNotFoundException, ClassNotFoundException, SQLException, Exception {        
    }
 }
