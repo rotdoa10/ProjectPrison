@@ -8,6 +8,7 @@ package gui;
 import beans.Prisoner;
 import database.DBAccess;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -19,7 +20,7 @@ import java.util.logging.Logger;
 public class PrisonerDialog extends javax.swing.JDialog {
 
     DBAccess dba;
-    public PrisonerDialog(java.awt.Frame parent, boolean modal) throws Exception {
+    public PrisonerDialog(java.awt.Frame parent, boolean modal, Prisoner p, int priority) throws Exception {
         super(parent, modal);
         
         initComponents();
@@ -30,24 +31,25 @@ public class PrisonerDialog extends javax.swing.JDialog {
         for (int i = 0; i < l.size(); i++) {
             cbCellNr.addItem(l.get(i));            
         }
-
-    }
-
-    public PrisonerDialog(Prisoner p, int priority) 
-    {
-        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-YYYY");
+        
+        SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.YYYY");
         
         lbName.setText(p.getNachname() + ", " + p.getVorname());
         lbGebDat.setText(sdf.format(p.getGebDate()));
         lbInDat.setText(sdf.format(p.getInDate()));
-        lbOutDat.setText(sdf.format(p.getOutDate()));
+        tfOutDat.setText(sdf.format(p.getOutDate()));
         
         if(priority==1)
         {
+            tfOutDat.setEditable(false);
+            cbCellNr.setEditable(false);
+            cbPriority.setEditable(false);
             btOK.setEnabled(false);
+            
         }
+
     }
-    
+ 
     
     
 
@@ -62,9 +64,9 @@ public class PrisonerDialog extends javax.swing.JDialog {
         jLabel5 = new javax.swing.JLabel();
         lbInDat = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        lbOutDat = new javax.swing.JLabel();
+        tfOutDat = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox();
+        cbPriority = new javax.swing.JComboBox();
         jLabel8 = new javax.swing.JLabel();
         cbCellNr = new javax.swing.JComboBox();
         btOK = new javax.swing.JButton();
@@ -87,13 +89,13 @@ public class PrisonerDialog extends javax.swing.JDialog {
 
         jLabel2.setText("Entlassungsdatum:");
         getContentPane().add(jLabel2);
-        getContentPane().add(lbOutDat);
+        getContentPane().add(tfOutDat);
 
         jLabel7.setText("Priorität:");
         getContentPane().add(jLabel7);
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1", "2", "3", "4", "5" }));
-        getContentPane().add(jComboBox1);
+        cbPriority.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1", "2", "3", "4", "5" }));
+        getContentPane().add(cbPriority);
 
         jLabel8.setText("Zelle:");
         getContentPane().add(jLabel8);
@@ -101,13 +103,33 @@ public class PrisonerDialog extends javax.swing.JDialog {
         getContentPane().add(cbCellNr);
 
         btOK.setText("OK");
+        btOK.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                onOK(evt);
+            }
+        });
         getContentPane().add(btOK);
 
         btCancel.setText("Abbruch");
+        btCancel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                onCancel(evt);
+            }
+        });
         getContentPane().add(btCancel);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void onCancel(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_onCancel
+        this.dispose();
+    }//GEN-LAST:event_onCancel
+
+    private void onOK(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_onOK
+        
+        
+        this.dispose();
+    }//GEN-LAST:event_onOK
 
     /**
      * @param args the command line arguments
@@ -141,7 +163,8 @@ public class PrisonerDialog extends javax.swing.JDialog {
             @Override
             public void run() {
                 try {
-                    PrisonerDialog dialog = new PrisonerDialog(new javax.swing.JFrame(), true);
+                    Prisoner pr = new Prisoner(3, "Test", "Testson", new Date(), new Date(), new Date(), 2, 6);
+                    PrisonerDialog dialog = new PrisonerDialog(new javax.swing.JFrame(), true, pr, 1);
                     dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                         @Override
                         public void windowClosing(java.awt.event.WindowEvent e) {
@@ -160,7 +183,7 @@ public class PrisonerDialog extends javax.swing.JDialog {
     private javax.swing.JButton btCancel;
     private javax.swing.JButton btOK;
     private javax.swing.JComboBox cbCellNr;
-    private javax.swing.JComboBox jComboBox1;
+    private javax.swing.JComboBox cbPriority;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -170,6 +193,6 @@ public class PrisonerDialog extends javax.swing.JDialog {
     private javax.swing.JLabel lbGebDat;
     private javax.swing.JLabel lbInDat;
     private javax.swing.JLabel lbName;
-    private javax.swing.JLabel lbOutDat;
+    private javax.swing.JTextField tfOutDat;
     // End of variables declaration//GEN-END:variables
 }
