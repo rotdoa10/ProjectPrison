@@ -50,7 +50,7 @@ public class PrisonGUI implements ActionListener {
         frame.setSize(1000, 800);
         frame.setLayout(new BorderLayout());
         JPanel mainpanel = new JPanel();
-        mainpanel.setLayout(new GridLayout(4, (anzahl)));
+        mainpanel.setLayout(new GridLayout(2, (anzahl / 2)));
 
         frame.add(mainpanel, BorderLayout.CENTER);
 
@@ -79,64 +79,29 @@ public class PrisonGUI implements ActionListener {
 
         for (int k = 0; k < anzahl; k++) {
 
-            if (k <= anzahl / 2) {
+            JPanel panel = new JPanel() {
+                @Override
+                public void paintComponent(Graphics g) {
+                    Graphics2D g2d = (Graphics2D) g;
+                    super.paintComponent(g);
+                    g2d.setColor(Color.darkGray);
+                    g2d.setStroke(new BasicStroke(5.0f));
 
-                JPanel panel = new JPanel() {
-                    @Override
-                    public void paintComponent(Graphics g) {
-                        Graphics2D g2d = (Graphics2D) g;
-                        super.paintComponent(g);
-                        g2d.setColor(Color.darkGray);
-                        g2d.setStroke(new BasicStroke(5.0f));
-
-                        g2d.drawRect(10, 18, this.getWidth() - 20, this.getHeight() - 100);
-                    }
-                };
-                panel.setLayout(new BorderLayout());
-                panel.setName("Zelle" + (k + 1));
-                panel.setBorder(new TitledBorder("Zelle" + (k + 1)));
-                panelFeld.add(panel);
-
-                mainpanel.add(panel);
-
-            }
-            if (k <= anzahl / 2) {
-
-                JPanel panel = new JPanel() {
-                    @Override
-                    public void paintComponent(Graphics g) {
-                        Graphics2D g2d = (Graphics2D) g;
-                        super.paintComponent(g);
-                        g2d.setColor(Color.darkGray);
-                        g2d.setStroke(new BasicStroke(5.0f));
-
-                        g2d.drawRect(10, 18, this.getWidth() - 20, this.getHeight() - 100);
-                    }
-                };
-                panel.setLayout(new BorderLayout());
-                panel.setName("Zelle" + (k + 1));
-                panel.setBorder(new TitledBorder("Zelle" + (k + 1)));
-                panelFeld.add(panel);
-
-                mainpanel.add(panel);
-
-            } else if (k == anzahl / 2) {
-                for (; k < anzahl / 2; k++) {
-                    JButton btn = new JButton();
-                    ImageIcon image = new ImageIcon(getClass().getResource("/pics/tuer.jpg"));
-
-                    btn.setIcon(image);
-                    mainpanel.add(btn);
+                    g2d.drawRect(10, 18, this.getWidth() - 20, this.getHeight() - 100);
                 }
-            } else if (k == anzahl) {
-                for (; k < anzahl / 2; k++) {
-                    JButton btn = new JButton();
-                    ImageIcon image = new ImageIcon(getClass().getResource("/pics/tuer.jpg"));
+            };
+            panel.setLayout(new BorderLayout());
+            panel.setName("Zelle" + (k + 1));
+            panel.setBorder(new TitledBorder("Zelle" + (k + 1)));
+            panelFeld.add(panel);
 
-                    btn.setIcon(image);
-                    mainpanel.add(btn);
-                }
-            }
+            mainpanel.add(panel);
+            JButton btn = new JButton();
+            ImageIcon image = new ImageIcon(getClass().getResource("/pics/tuer.jpg"));
+
+            btn.setIcon(image);
+            panel.add(btn,BorderLayout.SOUTH);
+
         }
         frame.validate();
         frame.repaint();
