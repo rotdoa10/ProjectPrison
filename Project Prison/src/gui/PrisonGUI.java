@@ -27,18 +27,20 @@ import javax.swing.border.TitledBorder;
 
 public class PrisonGUI implements ActionListener {
 
-    LinkedList<JPanel> panelFeld = new LinkedList<JPanel>();
-    LinkedList<JPanel> zweitesPanelFeld = new LinkedList<JPanel>();
-    LinkedList<JButton> buttonFeld = new LinkedList<JButton>();
-    LinkedList<JButton> iconList = new LinkedList<JButton>();
+    private LinkedList<Prisoner> list = new LinkedList<Prisoner>();
+    private LinkedList<JPanel> panelFeld = new LinkedList<JPanel>();
+    private LinkedList<JPanel> zweitesPanelFeld = new LinkedList<JPanel>();
+    private LinkedList<JButton> buttonFeld = new LinkedList<JButton>();
+    private LinkedList<JButton> iconList = new LinkedList<JButton>();
+
     private int anzahl = 10;
     private JFrame frame;
-    private LinkedList<Prisoner> list = new LinkedList<Prisoner>();
     private int index = 0;
     private int i = 0;
     private DBAccess a;
     private String user;
     private JPanel mainpanel;
+    private JMenu menuA;
 
     public void start(String username) {
         user = username;
@@ -56,7 +58,8 @@ public class PrisonGUI implements ActionListener {
 
         JMenuBar menubar = new JMenuBar();
         JMenu menu = new JMenu("start");
-        JMenu menuA = new JMenu("aktualisieren");
+        menuA = new JMenu("aktualisieren");
+        menuA.setVisible(false);
 
         JMenuItem item = new JMenuItem("zur Datenbank verbinden");
         item.addActionListener(this);
@@ -68,7 +71,7 @@ public class PrisonGUI implements ActionListener {
 
         JMenuItem itemAktuali = new JMenuItem("aktualisieren");
         itemAktuali.addActionListener(this);
-        itemAktuali.setActionCommand("aktualisierenAction");
+        itemAktuali.setActionCommand("actionItem");
 
         menu.add(item);
         menu.add(itemAdd);
@@ -127,6 +130,13 @@ public class PrisonGUI implements ActionListener {
         if (e.getActionCommand().equals("actionItem")) {
             try {
 
+                menuA.setVisible(true);
+                
+                for (int j = 0; j < zweitesPanelFeld.size(); j++) {
+                    zweitesPanelFeld.get(j).removeAll();
+                }
+                
+                
                 a = new DBAccess();
                 list = a.getPrisoners();
                 for (index = 0; index < panelFeld.size(); index++) {
@@ -170,7 +180,13 @@ public class PrisonGUI implements ActionListener {
                 Logger.getLogger(PrisonGUI.class.getName()).log(Level.SEVERE, null, ex);
             }
         } else if (e.getActionCommand().equals("aktualisierenAction")) {
-            try {  
+            
+            
+            
+            try {
+
+                a = new DBAccess();
+                list = a.getPrisoners();
                 for (index = 0; index < panelFeld.size(); index++) {
                     for (i = 0; i < list.size(); i++) {
 
@@ -181,9 +197,9 @@ public class PrisonGUI implements ActionListener {
                             btn.setText(list.get(i).getNachname() + " " + list.get(i).getVorname());
                             btn.setBounds(5, 15, panelFeld.get(index).getWidth() - 30, panelFeld.get(index).getHeight() - 110);
                             btn.addActionListener(this);
-                            btn.setActionCommand("prisonerbtnAction");
+                            btn.setActionCommand(list.get(i).getNachname() + " " + list.get(i).getVorname());
                             System.out.println("btn" + (i + 1));
-                            btn.setName("prisonerbtn" + (i + 1));
+                            btn.setName(list.get(i).getNachname() + " " + list.get(i).getVorname());
                             zweitesPanelFeld.get(index).add(btn);
                             buttonFeld.add(btn);
                             frame.validate();
@@ -191,9 +207,16 @@ public class PrisonGUI implements ActionListener {
                         }
                     }
                 }
+            } catch (IOException ex) {
+                Logger.getLogger(PrisonGUI.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(PrisonGUI.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SQLException ex) {
+                Logger.getLogger(PrisonGUI.class.getName()).log(Level.SEVERE, null, ex);
             } catch (Exception ex) {
                 Logger.getLogger(PrisonGUI.class.getName()).log(Level.SEVERE, null, ex);
             }
+        
         } else if (e.getActionCommand().equals("doorAction")) {
             for (int j = 0; j < iconList.size(); j++) {
                 if (iconList.get(j).getName().equals("doorbtn" + (j + 1))) {
@@ -203,12 +226,8 @@ public class PrisonGUI implements ActionListener {
             }
         }
 
-        for(Prisoner p : list)
-        {
-            if (e.getActionCommand().equals(p.getNachname()+" "+p.getVorname())) {
-
-            
-                                    
+        for (Prisoner p : list) {
+            if (e.getActionCommand().equals(p.getNachname() + " " + p.getVorname())) {
                 try {
                     JDialog d = new PrisonerDialog(frame, true, p, a.getAuthortiy(user));
                     d.setVisible(true);
@@ -218,9 +237,8 @@ public class PrisonGUI implements ActionListener {
                     Logger.getLogger(PrisonGUI.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
-            
+
         }
     }
-
 
 }
