@@ -4,6 +4,7 @@ import database.DBAccess;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.LinkedList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -42,7 +43,7 @@ public class AddPrisonerDialog extends javax.swing.JDialog {
         jLabel6 = new javax.swing.JLabel();
         txfEnt = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        txfZelle = new javax.swing.JTextField();
+        zelleBox = new javax.swing.JComboBox();
         labelP = new javax.swing.JLabel();
         txfPr = new javax.swing.JTextField();
         btnOK = new javax.swing.JButton();
@@ -75,7 +76,8 @@ public class AddPrisonerDialog extends javax.swing.JDialog {
 
         jLabel7.setText("Zelle:");
         jPanel1.add(jLabel7);
-        jPanel1.add(txfZelle);
+
+        jPanel1.add(zelleBox);
 
         labelP.setText("Priorität:");
         jPanel1.add(labelP);
@@ -111,7 +113,16 @@ public class AddPrisonerDialog extends javax.swing.JDialog {
     
         // ok - Button
         
-        try {           
+        try {    
+            
+            DBAccess db = new DBAccess();
+            LinkedList<String> cells = db.getCells();
+            
+            for (int i = 0; i < cells.size(); i++) 
+            {
+                System.out.println(cells.get(i));
+                this.zelleBox.addItem(cells.get(i));
+            }
 
             SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
             String vorname = this.txfVorname.getText();
@@ -122,13 +133,13 @@ public class AddPrisonerDialog extends javax.swing.JDialog {
             Date dIn = sdf.parse(in);
             String ent = this.txfEnt.getText();
             Date dEnt = sdf.parse(ent);
-            int zelle = Integer.parseInt(this.txfZelle.getText());
+            int zelle = Integer.parseInt((String) this.zelleBox.getSelectedItem());
             int pri = Integer.parseInt(this.txfPr.getText());
             
-            if(vorname != null && nachname != null && geb != null && in != null && ent != null && this.txfZelle.getText() != null && this.txfPr.getText() != null)
+            if(vorname != null && nachname != null && geb != null && in != null && ent != null && this.txfPr.getText() != null)
             {
                 try {
-                    DBAccess db = new DBAccess();
+               
                     db.addPrisoner(vorname, nachname, dGeb, dIn, dEnt, pri, zelle);
                 } catch (ParseException ex) {
                     Logger.getLogger(AddPrisonerDialog.class.getName()).log(Level.SEVERE, null, ex);
@@ -143,6 +154,8 @@ public class AddPrisonerDialog extends javax.swing.JDialog {
              
             dispose();
         } catch (ParseException ex) {
+            Logger.getLogger(AddPrisonerDialog.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
             Logger.getLogger(AddPrisonerDialog.class.getName()).log(Level.SEVERE, null, ex);
         }
         dispose();
@@ -219,6 +232,6 @@ public class AddPrisonerDialog extends javax.swing.JDialog {
     private javax.swing.JTextField txfNachname;
     private javax.swing.JTextField txfPr;
     private javax.swing.JTextField txfVorname;
-    private javax.swing.JTextField txfZelle;
+    private javax.swing.JComboBox zelleBox;
     // End of variables declaration//GEN-END:variables
 }

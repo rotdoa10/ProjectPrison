@@ -75,7 +75,12 @@
             <Property name="text" type="java.lang.String" value="Zelle:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="txfZelle">
+        <Component class="javax.swing.JComboBox" name="zelleBox">
+          <Properties>
+            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+              <StringArray count="0"/>
+            </Property>
+          </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="labelP">
           <Properties>

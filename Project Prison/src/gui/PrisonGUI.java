@@ -42,7 +42,7 @@ public class PrisonGUI implements ActionListener {
     private JPanel mainpanel;
     private JMenu menuA;
 
-    public void start(String username) {
+    public void start(String username) throws Exception {
         user = username;
         frame = new JFrame();
         frame.setTitle("Angemeldet als " + username);
@@ -53,7 +53,7 @@ public class PrisonGUI implements ActionListener {
         frame.setLayout(new BorderLayout());
         mainpanel = new JPanel();
         mainpanel.setLayout(new GridLayout(2, (anzahl / 2)));
-
+        a = new DBAccess();
         frame.add(mainpanel, BorderLayout.CENTER);
 
         JMenuBar menubar = new JMenuBar();
@@ -71,8 +71,7 @@ public class PrisonGUI implements ActionListener {
 
         JMenuItem itemAktuali = new JMenuItem("aktualisieren");
         itemAktuali.addActionListener(this);
-        itemAktuali.setActionCommand("actionItem");
-
+        itemAktuali.setActionCommand("aktualisierenAction");
         menu.add(item);
         menu.add(itemAdd);
         menuA.add(itemAktuali);
@@ -121,50 +120,48 @@ public class PrisonGUI implements ActionListener {
     }
 
     public static void main(String[] args) {
-        PrisonGUI g = new PrisonGUI();
-        g.start("aed");
+        try {
+            PrisonGUI g = new PrisonGUI();
+            g.start("aed");
+        } catch (Exception ex) {
+            Logger.getLogger(PrisonGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void aktualisieren() throws Exception {
+        menuA.setVisible(true);
+        for (int j = 0; j < zweitesPanelFeld.size(); j++) {
+            zweitesPanelFeld.get(j).removeAll();
+        }
+
+        list = a.getPrisoners();
+        for (index = 0; index < panelFeld.size(); index++) {
+            for (i = 0; i < list.size(); i++) {
+
+                int zelleNR = list.get(i).getCellID();
+
+                if (("Zelle" + zelleNR).equals(panelFeld.get(index).getName())) {
+                    JButton btn = new JButton();
+                    btn.setText(list.get(i).getNachname() + " " + list.get(i).getVorname());
+                    btn.setBounds(5, 15, panelFeld.get(index).getWidth() - 30, panelFeld.get(index).getHeight() - 110);
+                    btn.addActionListener(this);
+                    btn.setActionCommand(list.get(i).getNachname() + " " + list.get(i).getVorname());
+                    System.out.println("btn" + (i + 1));
+                    btn.setName(list.get(i).getNachname() + " " + list.get(i).getVorname());
+                    zweitesPanelFeld.get(index).add(btn);
+                    buttonFeld.add(btn);
+                    frame.validate();
+                    frame.repaint();
+                }
+            }
+        }
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand().equals("actionItem")) {
             try {
-
-                menuA.setVisible(true);
-                
-                for (int j = 0; j < zweitesPanelFeld.size(); j++) {
-                    zweitesPanelFeld.get(j).removeAll();
-                }
-                
-                
-                a = new DBAccess();
-                list = a.getPrisoners();
-                for (index = 0; index < panelFeld.size(); index++) {
-                    for (i = 0; i < list.size(); i++) {
-
-                        int zelleNR = list.get(i).getCellID();
-
-                        if (("Zelle" + zelleNR).equals(panelFeld.get(index).getName())) {
-                            JButton btn = new JButton();
-                            btn.setText(list.get(i).getNachname() + " " + list.get(i).getVorname());
-                            btn.setBounds(5, 15, panelFeld.get(index).getWidth() - 30, panelFeld.get(index).getHeight() - 110);
-                            btn.addActionListener(this);
-                            btn.setActionCommand(list.get(i).getNachname() + " " + list.get(i).getVorname());
-                            System.out.println("btn" + (i + 1));
-                            btn.setName(list.get(i).getNachname() + " " + list.get(i).getVorname());
-                            zweitesPanelFeld.get(index).add(btn);
-                            buttonFeld.add(btn);
-                            frame.validate();
-                            frame.repaint();
-                        }
-                    }
-                }
-            } catch (IOException ex) {
-                Logger.getLogger(PrisonGUI.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (ClassNotFoundException ex) {
-                Logger.getLogger(PrisonGUI.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (SQLException ex) {
-                Logger.getLogger(PrisonGUI.class.getName()).log(Level.SEVERE, null, ex);
+                aktualisieren();
             } catch (Exception ex) {
                 Logger.getLogger(PrisonGUI.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -172,73 +169,40 @@ public class PrisonGUI implements ActionListener {
             try {
                 JDialog d = new AddPrisonerDialog(frame, true);
                 d.setVisible(true);
-
-                a = new DBAccess();
-                list = a.getPrisoners();
-
             } catch (Exception ex) {
                 Logger.getLogger(PrisonGUI.class.getName()).log(Level.SEVERE, null, ex);
             }
-        } else if (e.getActionCommand().equals("aktualisierenAction")) {
-            
-            
-            
-            try {
-
-                a = new DBAccess();
-                list = a.getPrisoners();
-                for (index = 0; index < panelFeld.size(); index++) {
-                    for (i = 0; i < list.size(); i++) {
-
-                        int zelleNR = list.get(i).getCellID();
-
-                        if (("Zelle" + zelleNR).equals(panelFeld.get(index).getName())) {
-                            JButton btn = new JButton();
-                            btn.setText(list.get(i).getNachname() + " " + list.get(i).getVorname());
-                            btn.setBounds(5, 15, panelFeld.get(index).getWidth() - 30, panelFeld.get(index).getHeight() - 110);
-                            btn.addActionListener(this);
-                            btn.setActionCommand(list.get(i).getNachname() + " " + list.get(i).getVorname());
-                            System.out.println("btn" + (i + 1));
-                            btn.setName(list.get(i).getNachname() + " " + list.get(i).getVorname());
-                            zweitesPanelFeld.get(index).add(btn);
-                            buttonFeld.add(btn);
-                            frame.validate();
-                            frame.repaint();
-                        }
-                    }
-                }
-            } catch (IOException ex) {
-                Logger.getLogger(PrisonGUI.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (ClassNotFoundException ex) {
-                Logger.getLogger(PrisonGUI.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (SQLException ex) {
-                Logger.getLogger(PrisonGUI.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (Exception ex) {
-                Logger.getLogger(PrisonGUI.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        
         } else if (e.getActionCommand().equals("doorAction")) {
             for (int j = 0; j < iconList.size(); j++) {
                 if (iconList.get(j).getName().equals("doorbtn" + (j + 1))) {
-                    //JDialog d = new DoorDialog(frame,true,list.get(i));
-                    //d.setVisible(true);
-                    
+                    JDialog d = new DoorDialog(frame,true);
+                    d.setVisible(true);
                 }
+            }
+        }else if (e.getActionCommand().equals("aktualisierenAction")) {
+            try {
+                aktualisieren();
+            } catch (Exception ex) {
+                Logger.getLogger(PrisonGUI.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
 
         for (Prisoner p : list) {
-            if (e.getActionCommand().equals(p.getNachname() + " " + p.getVorname())) {
-                try {
-                    JDialog d = new PrisonerDialog(frame, true, p, a.getAuthortiy(user));
-                    d.setVisible(true);
-                    break;
+            try {
+                if (e.getActionCommand().equals(p.getNachname() + " " + p.getVorname())) {
+                    try {
+                        JDialog d = new PrisonerDialog(frame, true, p, a.getAuthortiy(user));
+                        d.setVisible(true);
+                        break;
 
-                } catch (Exception ex) {
-                    Logger.getLogger(PrisonGUI.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (Exception ex) {
+                        Logger.getLogger(PrisonGUI.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                 }
+                aktualisieren();
+            } catch (Exception ex) {
+                Logger.getLogger(PrisonGUI.class.getName()).log(Level.SEVERE, null, ex);
             }
-
         }
     }
 
