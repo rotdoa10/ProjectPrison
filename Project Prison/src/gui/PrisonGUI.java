@@ -91,8 +91,8 @@ public class PrisonGUI implements ActionListener {
                 }
             };
             panel.setLayout(new BorderLayout());
-            panel.setName("Zelle" + (k + 1));
-            panel.setBorder(new TitledBorder("Zelle" + (k + 1)));
+            panel.setName("Zelle " + (k + 1));
+            panel.setBorder(new TitledBorder("Zelle " + (k + 1)));
             JPanel pan = new JPanel();
             pan.setSize(50, 50);
             pan.setName("pan" + (k + 1));
@@ -107,8 +107,8 @@ public class PrisonGUI implements ActionListener {
             ImageIcon image = new ImageIcon(getClass().getResource("/pics/tuer.jpg"));
             btn.setIcon(image);
             btn.addActionListener(this);
-            btn.setName("doorbtn" + (k + 1));
-            btn.setActionCommand("doorbtn" + (k + 1));
+            btn.setName("doorbtn " + (k + 1));
+            btn.setActionCommand("doorbtn " + (k + 1));
             iconList.add(btn);
             panel.add(btn, BorderLayout.SOUTH);
         }
@@ -137,7 +137,7 @@ public class PrisonGUI implements ActionListener {
 
                 int zelleNR = list.get(i).getCellID();
 
-                if (("Zelle" + zelleNR).equals(panelFeld.get(index).getName())) {
+                if (("Zelle " + zelleNR).equals(panelFeld.get(index).getName())) {
                     JButton btn = new JButton();
                     btn.setText(list.get(i).getNachname() + " " + list.get(i).getVorname());
                     btn.setBounds(5, 15, panelFeld.get(index).getWidth() - 30, panelFeld.get(index).getHeight() - 110);
@@ -179,7 +179,6 @@ public class PrisonGUI implements ActionListener {
         for (JButton b : iconList) {
             System.out.println(b.getName());
             if (e.getActionCommand().equals(b.getName())) {
-                System.out.println("hallo");
                 JDialog d = new DoorDialog(frame, true, b.getName());
                 d.setVisible(true);
             }

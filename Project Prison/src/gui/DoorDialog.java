@@ -1,22 +1,44 @@
 package gui;
 
+import beans.Prisoner;
+import database.DBAccess;
+import java.util.LinkedList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author patzineubi
  */
 public class DoorDialog extends javax.swing.JDialog {
 
+    private DBAccess a;
+    private LinkedList<Prisoner> list = new LinkedList<Prisoner>();
+    
     public DoorDialog(java.awt.Frame parent, boolean modal, String btnName) {
         super(parent, modal);
-        initComponents();
-	// EditorKit erzeugen
-	javax.swing.text.html.HTMLEditorKit eKit = new javax.swing.text.html.HTMLEditorKit();
-        pane.setEditable(false);
-	// EditorKit setzen
-	pane.setEditorKit(eKit);
+        try {
+            initComponents();
+            // EditorKit erzeugen
+            javax.swing.text.html.HTMLEditorKit eKit = new javax.swing.text.html.HTMLEditorKit();
+            pane.setEditable(false);
+            // EditorKit setzen
+            pane.setEditorKit(eKit);
+            
+            a = new DBAccess();
+            String[]split = btnName.split(" ");
+            list = a.getPrisonersinCell(Integer.parseInt(split[1]));
+            
+            for (int i = 0; i < list.size(); i++) 
+            {
+                // Text setzen
+                pane.setText("<HTML><BODY><b>"+list.get(i).getNachname()+"</b> <b>"+list.get(i).getVorname()+"</b></BODY></HTML>");
 
-	// Text setzen
-	pane.setText("<HTML><BODY><b>ein Html-Text</b><br> zum Testen </BODY></HTML>");
+            }
+            
+        } catch (Exception ex) {
+            Logger.getLogger(DoorDialog.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -25,6 +47,9 @@ public class DoorDialog extends javax.swing.JDialog {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         pane = new javax.swing.JEditorPane();
+        jPanel1 = new javax.swing.JPanel();
+        okbtn = new javax.swing.JButton();
+        exitBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -32,8 +57,30 @@ public class DoorDialog extends javax.swing.JDialog {
 
         getContentPane().add(jScrollPane1, java.awt.BorderLayout.CENTER);
 
+        jPanel1.setLayout(new java.awt.GridLayout());
+
+        okbtn.setText("ok");
+        okbtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                okbtnActionPerformed(evt);
+            }
+        });
+        jPanel1.add(okbtn);
+
+        exitBtn.setText("exit");
+        jPanel1.add(exitBtn);
+
+        getContentPane().add(jPanel1, java.awt.BorderLayout.SOUTH);
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void okbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okbtnActionPerformed
+
+        // okBtn
+        
+
+    }//GEN-LAST:event_okbtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -78,7 +125,10 @@ public class DoorDialog extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton exitBtn;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton okbtn;
     private javax.swing.JEditorPane pane;
     // End of variables declaration//GEN-END:variables
 }

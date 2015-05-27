@@ -44,7 +44,7 @@ public class Prisoner
     }
 
     public String getVorname() {
-        return vorname;
+        return this.vorname;
     }
 
     public void setVorname(String vorname) {
@@ -52,7 +52,7 @@ public class Prisoner
     }
 
     public String getNachname() {
-        return nachname;
+        return this.nachname;
     }
 
     public void setNachname(String nachname) {
@@ -60,7 +60,7 @@ public class Prisoner
     }
 
     public Date getGebDate() {
-        return gebDate;
+        return this.gebDate;
     }
 
     public void setGebDate(Date gebDate) {
@@ -68,7 +68,7 @@ public class Prisoner
     }
 
     public Date getInDate() {
-        return inDate;
+        return this.inDate;
     }
 
     public void setInDate(Date inDate) {
@@ -76,7 +76,7 @@ public class Prisoner
     }
 
     public Date getOutDate() {
-        return outDate;
+        return this.outDate;
     }
 
     public void setOutDate(Date outDate) {
@@ -84,7 +84,7 @@ public class Prisoner
     }
 
     public int getpID() {
-        return pID;
+        return this.pID;
     }
 
     public void setpID(int pID) {
@@ -92,16 +92,11 @@ public class Prisoner
     }
 
     public int getCellID() {
-        return cellID;
+        return this.cellID;
     }
 
     public void setCellID(int cellID) {
         this.cellID = cellID;
     }
-
-    
-
-    
-    
-    
+ 
 }
