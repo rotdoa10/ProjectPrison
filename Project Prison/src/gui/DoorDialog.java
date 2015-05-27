@@ -29,13 +29,19 @@ public class DoorDialog extends javax.swing.JDialog {
             a = new DBAccess();
             String[]split = btnName.split(" ");
             list = a.getPrisonersinCell(Integer.parseInt(split[1]));
+            System.out.println(list.size());
+            
+            String text="<html><body><table>";
 
             for (int i = 0; i < list.size(); i++) 
             {
-                // Text setzen
-                pane.setText("<HTML><BODY><h1>"+(i+1)+". Prisoner:</h1><h3>Name: "+list.get(i).getNachname()+" "+list.get(i).getVorname()+"</h3></br></br></BODY></HTML>");
-
+                text+="<tr><td>"+(i+1)+". Prisoner:</td></tr><tr><td><h3>Name: </h3></td><td>"+list.get(i).getNachname()+" "+list.get(i).getVorname()+"</td></tr>";
+                text+="<tr><td><h3>Geburtsdatum:</h3></td><td>"+list.get(i).getGebDate()+"</td></tr>";
+                text+="<tr><td><h3>Inhaftierung:</h3></td><td>"+list.get(i).getInDate()+"</td></tr>";
+                text+="<tr><td><h3>Entlassung:</h3></td><td>"+list.get(i).getOutDate()+"</td></tr>";
             }
+            text+="</table></body></html>";
+            pane.setText(text);
             
         } catch (Exception ex) {
             Logger.getLogger(DoorDialog.class.getName()).log(Level.SEVERE, null, ex);

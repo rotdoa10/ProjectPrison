@@ -10,8 +10,6 @@ import java.awt.BorderLayout;
 import java.awt.Graphics2D;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
-import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -40,7 +38,7 @@ public class PrisonGUI implements ActionListener {
     private DBAccess a;
     private String user;
     private JPanel mainpanel;
-    private JMenu menuA;
+    //private JMenu menuA;
 
     public void start(String username) throws Exception {
         user = username;
@@ -57,8 +55,8 @@ public class PrisonGUI implements ActionListener {
 
         JMenuBar menubar = new JMenuBar();
         JMenu menu = new JMenu("start");
-        menuA = new JMenu("aktualisieren");
-        menuA.setVisible(false);
+//        menuA = new JMenu("aktualisieren");
+//        menuA.setVisible(false);
 
         JMenuItem item = new JMenuItem("zur Datenbank verbinden");
         item.addActionListener(this);
@@ -68,14 +66,14 @@ public class PrisonGUI implements ActionListener {
         itemAdd.addActionListener(this);
         itemAdd.setActionCommand("addItem");
 
-        JMenuItem itemAktuali = new JMenuItem("aktualisieren");
-        itemAktuali.addActionListener(this);
-        itemAktuali.setActionCommand("aktualisierenAction");
+//        JMenuItem itemAktuali = new JMenuItem("aktualisieren");
+//        itemAktuali.addActionListener(this);
+//        itemAktuali.setActionCommand("aktualisierenAction");
         menu.add(item);
         menu.add(itemAdd);
-        menuA.add(itemAktuali);
+//        menuA.add(itemAktuali);
         menubar.add(menu);
-        menubar.add(menuA);
+//        menubar.add(menuA);
         frame.add(menubar, BorderLayout.NORTH);
 
         for (int k = 0; k < anzahl; k++) {
@@ -126,7 +124,7 @@ public class PrisonGUI implements ActionListener {
     }
 
     public void aktualisieren() throws Exception {
-        menuA.setVisible(true);
+//        menuA.setVisible(true);
         for (int j = 0; j < zweitesPanelFeld.size(); j++) {
             zweitesPanelFeld.get(j).removeAll();
         }
@@ -177,7 +175,6 @@ public class PrisonGUI implements ActionListener {
         }
         
         for (JButton b : iconList) {
-            System.out.println(b.getName());
             if (e.getActionCommand().equals(b.getName())) {
                 JDialog d = new DoorDialog(frame, true, b.getName());
                 d.setVisible(true);
@@ -190,7 +187,6 @@ public class PrisonGUI implements ActionListener {
                     try {
                         JDialog d = new PrisonerDialog(frame, true, p, a.getAuthortiy(user));
                         d.setVisible(true);
-                        break;
                     } catch (Exception ex) {
                         Logger.getLogger(PrisonGUI.class.getName()).log(Level.SEVERE, null, ex);
                     }
