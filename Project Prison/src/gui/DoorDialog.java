@@ -17,22 +17,23 @@ public class DoorDialog extends javax.swing.JDialog {
     
     public DoorDialog(java.awt.Frame parent, boolean modal, String btnName) {
         super(parent, modal);
+        
         try {
             initComponents();
             // EditorKit erzeugen
             javax.swing.text.html.HTMLEditorKit eKit = new javax.swing.text.html.HTMLEditorKit();
-            pane.setEditable(false);
+            
             // EditorKit setzen
             pane.setEditorKit(eKit);
             
             a = new DBAccess();
             String[]split = btnName.split(" ");
             list = a.getPrisonersinCell(Integer.parseInt(split[1]));
-            
+
             for (int i = 0; i < list.size(); i++) 
             {
                 // Text setzen
-                pane.setText("<HTML><BODY><b>"+list.get(i).getNachname()+"</b> <b>"+list.get(i).getVorname()+"</b></BODY></HTML>");
+                pane.setText("<HTML><BODY><h1>"+(i+1)+". Prisoner:</h1><h3>Name: "+list.get(i).getNachname()+" "+list.get(i).getVorname()+"</h3></br></br></BODY></HTML>");
 
             }
             
@@ -48,26 +49,25 @@ public class DoorDialog extends javax.swing.JDialog {
         jScrollPane1 = new javax.swing.JScrollPane();
         pane = new javax.swing.JEditorPane();
         jPanel1 = new javax.swing.JPanel();
-        okbtn = new javax.swing.JButton();
         exitBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
+        pane.setEditable(false);
+        pane.setBorder(javax.swing.BorderFactory.createTitledBorder("Gefangene: "));
+        pane.setBounds(new java.awt.Rectangle(0, 0, 200, 800));
         jScrollPane1.setViewportView(pane);
 
         getContentPane().add(jScrollPane1, java.awt.BorderLayout.CENTER);
 
         jPanel1.setLayout(new java.awt.GridLayout());
 
-        okbtn.setText("ok");
-        okbtn.addActionListener(new java.awt.event.ActionListener() {
+        exitBtn.setText("exit");
+        exitBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                okbtnActionPerformed(evt);
+                exitBtnActionPerformed(evt);
             }
         });
-        jPanel1.add(okbtn);
-
-        exitBtn.setText("exit");
         jPanel1.add(exitBtn);
 
         getContentPane().add(jPanel1, java.awt.BorderLayout.SOUTH);
@@ -75,12 +75,12 @@ public class DoorDialog extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void okbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okbtnActionPerformed
+    private void exitBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitBtnActionPerformed
 
-        // okBtn
-        
+        // exit-Button
+        this.dispose();
 
-    }//GEN-LAST:event_okbtnActionPerformed
+    }//GEN-LAST:event_exitBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -128,7 +128,6 @@ public class DoorDialog extends javax.swing.JDialog {
     private javax.swing.JButton exitBtn;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JButton okbtn;
     private javax.swing.JEditorPane pane;
     // End of variables declaration//GEN-END:variables
 }
