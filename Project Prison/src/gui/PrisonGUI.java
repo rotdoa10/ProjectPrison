@@ -99,16 +99,16 @@ public class PrisonGUI implements ActionListener {
             pan.setLayout(new GridLayout(2, 1));
 
             this.zweitesPanelFeld.add(pan);
-
             panel.add(pan);
             panelFeld.add(panel);
-
             mainpanel.add(panel);
+            
             JButton btn = new JButton();
-            btn.setActionCommand("doorAction");
-            btn.setName("doorbtn" + (k + 1));
             ImageIcon image = new ImageIcon(getClass().getResource("/pics/tuer.jpg"));
             btn.setIcon(image);
+            btn.addActionListener(this);
+            btn.setName("doorbtn" + (k + 1));
+            btn.setActionCommand("doorbtn" + (k + 1));
             iconList.add(btn);
             panel.add(btn, BorderLayout.SOUTH);
         }
@@ -143,7 +143,6 @@ public class PrisonGUI implements ActionListener {
                     btn.setBounds(5, 15, panelFeld.get(index).getWidth() - 30, panelFeld.get(index).getHeight() - 110);
                     btn.addActionListener(this);
                     btn.setActionCommand(list.get(i).getNachname() + " " + list.get(i).getVorname());
-                    System.out.println("btn" + (i + 1));
                     btn.setName(list.get(i).getNachname() + " " + list.get(i).getVorname());
                     zweitesPanelFeld.get(index).add(btn);
                     buttonFeld.add(btn);
@@ -169,18 +168,20 @@ public class PrisonGUI implements ActionListener {
             } catch (Exception ex) {
                 Logger.getLogger(PrisonGUI.class.getName()).log(Level.SEVERE, null, ex);
             }
-        } else if (e.getActionCommand().equals("doorAction")) {
-            for (int j = 0; j < iconList.size(); j++) {
-                if (iconList.get(j).getName().equals("doorbtn" + (j + 1))) {
-                    JDialog d = new DoorDialog(frame,true);
-                    d.setVisible(true);
-                }
-            }
-        }else if (e.getActionCommand().equals("aktualisierenAction")) {
+        } else if (e.getActionCommand().equals("aktualisierenAction")) {
             try {
                 aktualisieren();
             } catch (Exception ex) {
                 Logger.getLogger(PrisonGUI.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        
+        for (JButton b : iconList) {
+            System.out.println(b.getName());
+            if (e.getActionCommand().equals(b.getName())) {
+                System.out.println("hallo");
+                JDialog d = new DoorDialog(frame, true, b.getName());
+                d.setVisible(true);
             }
         }
 

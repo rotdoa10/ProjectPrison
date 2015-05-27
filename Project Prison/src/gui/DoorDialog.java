@@ -6,7 +6,7 @@ package gui;
  */
 public class DoorDialog extends javax.swing.JDialog {
 
-    public DoorDialog(java.awt.Frame parent, boolean modal) {
+    public DoorDialog(java.awt.Frame parent, boolean modal, String btnName) {
         super(parent, modal);
         initComponents();
 	// EditorKit erzeugen
@@ -63,8 +63,9 @@ public class DoorDialog extends javax.swing.JDialog {
         //</editor-fold>
 
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
-                DoorDialog dialog = new DoorDialog(new javax.swing.JFrame(), true);
+                DoorDialog dialog = new DoorDialog(new javax.swing.JFrame(), true, "");
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
