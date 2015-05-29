@@ -79,7 +79,7 @@ public class Prisoner
         return this.outDate;
     }
 
-    public void setOutDate(Date outDate) {
+    public void setOutDate(Date outDate) {        
         this.outDate = outDate;
     }
 

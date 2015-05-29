@@ -23,6 +23,10 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.border.TitledBorder;
 
+/**
+ *
+ * @author patzineubi
+ */
 public class PrisonGUI implements ActionListener {
 
     private LinkedList<Prisoner> list = new LinkedList<Prisoner>();
@@ -38,12 +42,11 @@ public class PrisonGUI implements ActionListener {
     private DBAccess a;
     private String user;
     private JPanel mainpanel;
-    //private JMenu menuA;
 
     public void start(String username) throws Exception {
         user = username;
         frame = new JFrame();
-        frame.setTitle("Angemeldet als " + username);
+        frame.setTitle("angemeldet als: " + username);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
         frame.setSize(1000, 800);
@@ -55,8 +58,7 @@ public class PrisonGUI implements ActionListener {
 
         JMenuBar menubar = new JMenuBar();
         JMenu menu = new JMenu("start");
-//        menuA = new JMenu("aktualisieren");
-//        menuA.setVisible(false);
+        JMenu menuAusloggen = new JMenu("ausloggen");
 
         JMenuItem item = new JMenuItem("zur Datenbank verbinden");
         item.addActionListener(this);
@@ -66,14 +68,16 @@ public class PrisonGUI implements ActionListener {
         itemAdd.addActionListener(this);
         itemAdd.setActionCommand("addItem");
 
-//        JMenuItem itemAktuali = new JMenuItem("aktualisieren");
-//        itemAktuali.addActionListener(this);
-//        itemAktuali.setActionCommand("aktualisierenAction");
+        JMenuItem itemAusloggen = new JMenuItem("ausloggen");
+        itemAusloggen.addActionListener(this);
+        itemAusloggen.setActionCommand("ausloggenAction");
+
         menu.add(item);
         menu.add(itemAdd);
-//        menuA.add(itemAktuali);
+        menuAusloggen.add(itemAusloggen);
         menubar.add(menu);
-//        menubar.add(menuA);
+        menubar.add(menuAusloggen);
+
         frame.add(menubar, BorderLayout.NORTH);
 
         for (int k = 0; k < anzahl; k++) {
@@ -100,7 +104,7 @@ public class PrisonGUI implements ActionListener {
             panel.add(pan);
             panelFeld.add(panel);
             mainpanel.add(panel);
-            
+
             JButton btn = new JButton();
             ImageIcon image = new ImageIcon(getClass().getResource("/pics/tuer.jpg"));
             btn.setIcon(image);
@@ -117,14 +121,13 @@ public class PrisonGUI implements ActionListener {
     public static void main(String[] args) {
         try {
             PrisonGUI g = new PrisonGUI();
-            g.start("aed");
+            g.start("prison");
         } catch (Exception ex) {
             Logger.getLogger(PrisonGUI.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
     public void aktualisieren() throws Exception {
-//        menuA.setVisible(true);
         for (int j = 0; j < zweitesPanelFeld.size(); j++) {
             zweitesPanelFeld.get(j).removeAll();
         }
@@ -166,14 +169,16 @@ public class PrisonGUI implements ActionListener {
             } catch (Exception ex) {
                 Logger.getLogger(PrisonGUI.class.getName()).log(Level.SEVERE, null, ex);
             }
-        } else if (e.getActionCommand().equals("aktualisierenAction")) {
+        } else if (e.getActionCommand().equals("ausloggenAction")) {
             try {
-                aktualisieren();
+                frame.dispose();
+                LoginGUI l = new LoginGUI();
+                l.show();
             } catch (Exception ex) {
                 Logger.getLogger(PrisonGUI.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        
+
         for (JButton b : iconList) {
             if (e.getActionCommand().equals(b.getName())) {
                 JDialog d = new DoorDialog(frame, true, b.getName());
@@ -197,5 +202,4 @@ public class PrisonGUI implements ActionListener {
             }
         }
     }
-
 }
