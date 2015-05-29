@@ -1,6 +1,7 @@
 package gui;
 
 import database.DBAccess;
+import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -70,29 +71,33 @@ public class LoginGUI extends javax.swing.JFrame {
 
     private void onWeiter(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_onWeiter
 
-        try {
+        if (txfUsername.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(rootPane, "Invalid input!");
+        }  
+        else {
+            try {
+                String user = txfUsername.getText();
+                char[] pw = fieldPassword.getPassword();
+                String pwStr = "";
 
-            String user = txfUsername.getText();
-            char[] pw = fieldPassword.getPassword();
-            String pwStr = "";
-            
-            for (int i = 0; i < pw.length; i++) {
-                pwStr+=pw[i];
+                for (int i = 0; i < pw.length; i++) {
+                    pwStr += pw[i];
+                }
+
+                boolean check = dba.checkLogin(user, pwStr);
+
+                if (check) {
+                    PrisonGUI g = new PrisonGUI();
+                    g.start(user);
+                    this.dispose();
+                } else {
+                    JOptionPane.showMessageDialog(rootPane, "FALSCHES PASSWORT ODER USERNAME!!");
+                    fieldPassword.setText("");
+                }
+
+            } catch (Exception ex) {
+                Logger.getLogger(LoginGUI.class.getName()).log(Level.SEVERE, null, ex);
             }
-
-            boolean check = dba.checkLogin(user, pwStr);
-
-            if (check) {
-                PrisonGUI g = new PrisonGUI();
-                g.start(user);
-                this.dispose();
-            } else {
-                JOptionPane.showMessageDialog(rootPane, "FALSCHES PASSWORT ODER USERNAME!!");
-                fieldPassword.setText("");
-            }
-
-        } catch (Exception ex) {
-            Logger.getLogger(LoginGUI.class.getName()).log(Level.SEVERE, null, ex);
         }
 
 
@@ -131,7 +136,7 @@ public class LoginGUI extends javax.swing.JFrame {
                 } catch (Exception ex) {
                     Logger.getLogger(LoginGUI.class.getName()).log(Level.SEVERE, null, ex);
                 }
-            }
+            }            
         });
     }
 
