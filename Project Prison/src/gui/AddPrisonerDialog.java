@@ -9,22 +9,21 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
-
 /**
  *
  * @author patzineubi
  */
 public class AddPrisonerDialog extends javax.swing.JDialog {
 
+    private DBAccess a;
+    private LinkedList<String> list = new LinkedList<String>();
+
     public AddPrisonerDialog(java.awt.Frame parent, boolean modal) throws ParseException, Exception {
         super(parent, modal);
-        initComponents();      
-        
-        
-    }
+        initComponents();
+        a = new DBAccess();
+        list = a.getCells();
 
-    AddPrisonerDialog() {
-        
     }
 
     @SuppressWarnings("unchecked")
@@ -79,7 +78,7 @@ public class AddPrisonerDialog extends javax.swing.JDialog {
 
         jPanel1.add(zelleBox);
 
-        labelP.setText("Priorität:");
+        labelP.setText("Priorität (1-5:");
         jPanel1.add(labelP);
         jPanel1.add(txfPr);
 
@@ -110,18 +109,13 @@ public class AddPrisonerDialog extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOKActionPerformed
-    
+
         // ok - Button
-        
-        try {    
-            
-            DBAccess db = new DBAccess();
-            LinkedList<String> cells = db.getCells();
-            
-            for (int i = 0; i < cells.size(); i++) 
-            {
-                System.out.println(cells.get(i));
-                this.zelleBox.addItem(cells.get(i));
+        try {
+
+            LinkedList<String> l = a.getCells();
+            for (int i = 0; i < l.size(); i++) {
+                zelleBox.addItem(l.get(i));
             }
 
             SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
@@ -135,23 +129,21 @@ public class AddPrisonerDialog extends javax.swing.JDialog {
             Date dEnt = sdf.parse(ent);
             int zelle = Integer.parseInt((String) this.zelleBox.getSelectedItem());
             int pri = Integer.parseInt(this.txfPr.getText());
-            
-            if(vorname != null && nachname != null && geb != null && in != null && ent != null && this.txfPr.getText() != null)
+
+            if (vorname != null || nachname != null || geb != null || in != null || ent != null || this.txfPr.getText() != null) 
             {
                 try {
-               
-                    db.addPrisoner(vorname, nachname, dGeb, dIn, dEnt, pri, zelle);
+
+                    a.addPrisoner(vorname, nachname, dGeb, dIn, dEnt, pri, zelle);
                 } catch (ParseException ex) {
                     Logger.getLogger(AddPrisonerDialog.class.getName()).log(Level.SEVERE, null, ex);
                 } catch (Exception ex) {
                     Logger.getLogger(AddPrisonerDialog.class.getName()).log(Level.SEVERE, null, ex);
                 }
+            } else {
+                JOptionPane.showMessageDialog(null, "Falsche Eingabe!!!!");
             }
-            else
-            {
-                JOptionPane.showMessageDialog(null,"Falsche Eingabe!!!!");
-            }
-             
+
             dispose();
         } catch (ParseException ex) {
             Logger.getLogger(AddPrisonerDialog.class.getName()).log(Level.SEVERE, null, ex);
@@ -159,13 +151,12 @@ public class AddPrisonerDialog extends javax.swing.JDialog {
             Logger.getLogger(AddPrisonerDialog.class.getName()).log(Level.SEVERE, null, ex);
         }
         dispose();
-        
+
     }//GEN-LAST:event_btnOKActionPerformed
 
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
 
         // cancel - Button
-        
         dispose();
 
     }//GEN-LAST:event_btnCancelActionPerformed
@@ -193,7 +184,6 @@ public class AddPrisonerDialog extends javax.swing.JDialog {
             java.util.logging.Logger.getLogger(AddPrisonerDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
 
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
