@@ -155,10 +155,11 @@ public class DBAccess {
                 + "WHERE cellID=" + CID + ";";
 
         ResultSet rs = stat.executeQuery(sqlString);
-        rs.next();
+        //rs.next();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
         do {
+            rs.next();
             int ID = Integer.parseInt(rs.getString("prID"));
             String vorname = rs.getString("vorname");
             String nachname = rs.getString("nachname");
@@ -170,6 +171,7 @@ public class DBAccess {
 
             Prisoner pr = new Prisoner(ID, vorname, nachname, gebDate, inDate, outDate, pID, cellID);
             list.add(pr);
+            
         } while (!rs.isLast());
 
         return list;
@@ -251,6 +253,7 @@ public class DBAccess {
         return rs.getInt("aid");
     }
     
-   public static void main(String[] args) throws IOException, FileNotFoundException, ClassNotFoundException, SQLException, Exception {        
+   public static void main(String[] args) throws IOException, FileNotFoundException, ClassNotFoundException, SQLException, Exception {   
+       }
    }
 }
