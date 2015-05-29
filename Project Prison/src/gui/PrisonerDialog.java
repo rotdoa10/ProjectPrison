@@ -26,6 +26,7 @@ public class PrisonerDialog extends javax.swing.JDialog {
         super(parent, modal);
         
         initComponents();    
+        this.setLocationRelativeTo(parent);
         pt = p;
         LinkedList<String> l = dba.getCells();
         for (int i = 0; i < l.size(); i++) {
@@ -45,7 +46,7 @@ public class PrisonerDialog extends javax.swing.JDialog {
         if(priority==1)
         {
             tfOutDat.setEditable(false);
-            cbCellNr.setEditable(false);
+            cbCellNr.setEditable(false);           
             cbPriority.setEditable(false);
             btOK.setEnabled(false);
             
