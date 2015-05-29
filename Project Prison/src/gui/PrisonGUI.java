@@ -23,6 +23,10 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.border.TitledBorder;
 
+/**
+ *
+ * @author patzineubi
+ */
 public class PrisonGUI implements ActionListener {
 
     private LinkedList<Prisoner> list = new LinkedList<Prisoner>();
@@ -42,7 +46,7 @@ public class PrisonGUI implements ActionListener {
     public void start(String username) throws Exception {
         user = username;
         frame = new JFrame();
-        frame.setTitle("Angemeldet als " + username);
+        frame.setTitle("angemeldet als: " + username);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
         frame.setSize(1000, 800);
@@ -67,13 +71,13 @@ public class PrisonGUI implements ActionListener {
         JMenuItem itemAusloggen = new JMenuItem("ausloggen");
         itemAusloggen.addActionListener(this);
         itemAusloggen.setActionCommand("ausloggenAction");
-        
+
         menu.add(item);
         menu.add(itemAdd);
         menuAusloggen.add(itemAusloggen);
         menubar.add(menu);
         menubar.add(menuAusloggen);
-        
+
         frame.add(menubar, BorderLayout.NORTH);
 
         for (int k = 0; k < anzahl; k++) {
@@ -100,7 +104,7 @@ public class PrisonGUI implements ActionListener {
             panel.add(pan);
             panelFeld.add(panel);
             mainpanel.add(panel);
-            
+
             JButton btn = new JButton();
             ImageIcon image = new ImageIcon(getClass().getResource("/pics/tuer.jpg"));
             btn.setIcon(image);
@@ -117,7 +121,7 @@ public class PrisonGUI implements ActionListener {
     public static void main(String[] args) {
         try {
             PrisonGUI g = new PrisonGUI();
-            g.start("aed");
+            g.start("prison");
         } catch (Exception ex) {
             Logger.getLogger(PrisonGUI.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -168,13 +172,13 @@ public class PrisonGUI implements ActionListener {
         } else if (e.getActionCommand().equals("ausloggenAction")) {
             try {
                 frame.dispose();
-                LoginGUI l = new LoginGUI();      
+                LoginGUI l = new LoginGUI();
                 l.show();
             } catch (Exception ex) {
                 Logger.getLogger(PrisonGUI.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        
+
         for (JButton b : iconList) {
             if (e.getActionCommand().equals(b.getName())) {
                 JDialog d = new DoorDialog(frame, true, b.getName());
@@ -198,5 +202,4 @@ public class PrisonGUI implements ActionListener {
             }
         }
     }
-
 }
