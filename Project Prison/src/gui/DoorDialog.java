@@ -21,6 +21,10 @@ public class DoorDialog extends javax.swing.JDialog {
 
         try {
             initComponents();
+            
+            this.setSize(400, 400);
+            this.setLocationRelativeTo(parent);
+            
             // EditorKit erzeugen
             javax.swing.text.html.HTMLEditorKit eKit = new javax.swing.text.html.HTMLEditorKit();
 
