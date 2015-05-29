@@ -62,7 +62,7 @@ public class DBAccess {
 
         String sqlString = "SELECT vorname, nachname, gebDate, inDate, outDate, pID, cellID "
                 + "FROM prisoner "
-                + "WHERE prID ==" + ID + ";";
+                + "WHERE prID =" + ID + ";";
 
         ResultSet rs = stat.executeQuery(sqlString);
         rs.next();

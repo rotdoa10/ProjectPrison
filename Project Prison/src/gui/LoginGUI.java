@@ -56,6 +56,8 @@ public class LoginGUI extends javax.swing.JFrame {
 
         jPanel2.setLayout(new java.awt.BorderLayout());
 
+        btnWeiter.setBackground(new java.awt.Color(255, 255, 255));
+        btnWeiter.setFont(new java.awt.Font("Serif", 0, 18)); // NOI18N
         btnWeiter.setText("Weiter");
         btnWeiter.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

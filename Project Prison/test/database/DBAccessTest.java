@@ -6,10 +6,16 @@
 package database;
 
 import beans.Prisoner;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.LinkedList;
+import org.junit.After;
+import org.junit.AfterClass;
+import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import org.postgresql.jdbc2.optional.SimpleDataSource;
 
 /**
  *
@@ -19,20 +25,7 @@ public class DBAccessTest {
     
     public DBAccessTest() {
     }
-  
-
-    /**
-     * Test of getPrisoners method, of class DBAccess.
-     * @throws java.lang.Exception
-     */
-    @Test
-    public void testGetPrisoners() throws Exception {
-        System.out.println("getPrisoners");
-        DBAccess instance = new DBAccess();
-        LinkedList<Prisoner> expResult = null;
-        LinkedList<Prisoner> result = instance.getPrisoners();
-        assertEquals(expResult, result);        
-    }
+    
 
     /**
      * Test of getPrisoner method, of class DBAccess.
@@ -41,12 +34,16 @@ public class DBAccessTest {
     @Test
     public void testGetPrisoner() throws Exception {
         System.out.println("getPrisoner");
-        int ID = 0;
-        DBAccess dba = new DBAccess();
-        Prisoner expResult = null;
-        Prisoner result = dba.getPrisoner(ID);
+        int ID = 1;
+        DBAccess instance = new DBAccess();
+        SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
+        Date d1 = sdf.parse("26.11.1996");
+        Date d2 = sdf.parse("01.03.2013");
+        Date d3 = sdf.parse("22.05.2015");
+        Prisoner p = new Prisoner(1, "Patrizia", "Neubauer", d1, d2, d3, 4, 5);
+        Prisoner expResult = p;
+        Prisoner result = instance.getPrisoner(ID);
         assertEquals(expResult, result);
-        
     }
 
     /**
@@ -55,30 +52,12 @@ public class DBAccessTest {
     @Test
     public void testCheckLogin() throws Exception {
         System.out.println("checkLogin");
-        String username = "";
-        String password = "";
+        String username = "bernd";
+        String password = "Berni3";
         DBAccess instance = new DBAccess();
-        boolean expResult = false;
+        boolean expResult = true;
         boolean result = instance.checkLogin(username, password);
         assertEquals(expResult, result);
-
-    }
-
-    /**
-     * Test of addPrisoner method, of class DBAccess.
-     */
-    @Test
-    public void testAddPrisoner() throws Exception {
-        System.out.println("addPrisoner");
-        String vorname = "Test";
-        String nachname = "Testson";
-        Date gebDate = new Date(1992, 3, 15);
-        Date inDate = new Date();
-        Date outDate = new Date(2050, 12, 11);
-        int priority = 1;
-        int cellID = 2;
-        DBAccess instance = new DBAccess();
-        instance.addPrisoner(vorname, nachname, gebDate, inDate, outDate, priority, cellID);
 
     }
 
@@ -88,10 +67,43 @@ public class DBAccessTest {
     @Test
     public void testGetPrisonersinCell() throws Exception {
         System.out.println("getPrisonersinCell");
-        int CID = 2;
+        int CID = 5;
         DBAccess instance = new DBAccess();
         LinkedList<Prisoner> expResult = null;
         LinkedList<Prisoner> result = instance.getPrisonersinCell(CID);
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+
+    /**
+     * Test of getCells method, of class DBAccess.
+     */
+    @Test
+    public void testGetCells() throws Exception {
+        System.out.println("getCells");
+        DBAccess instance = new DBAccess();
+        LinkedList<String> expResult = new LinkedList<>();        
+        for (int i = 1; i < 10; i++) 
+        {
+            expResult.add(""+i);
+        }
+        
+        LinkedList<String> result = instance.getCells();
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of getAuthortiy method, of class DBAccess.
+     */
+    @Test
+    public void testGetAuthortiy() throws Exception {
+        System.out.println("getAuthortiy");
+        String username = "heino";
+        DBAccess instance = new DBAccess();
+        int expResult = 1;
+        int result = instance.getAuthortiy(username);
         assertEquals(expResult, result);
     }
     
