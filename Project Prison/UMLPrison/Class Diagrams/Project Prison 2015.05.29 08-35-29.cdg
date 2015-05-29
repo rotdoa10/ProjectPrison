@@ -1,0 +1,340 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ClassDiagram name="Project Prison">
+  <ClassDiagramComponents>
+    <Class name="Prisoner" package="beans" visibility="public" xPosition="20.0" yPosition="20.0">
+      <Fields>
+        <Field name="id" type="int" visibility="private"/>
+        <Field name="vorname" type="String" visibility="private"/>
+        <Field name="nachname" type="String" visibility="private"/>
+        <Field name="gebDate" type="Date" visibility="private"/>
+        <Field name="inDate" type="Date" visibility="private"/>
+        <Field name="outDate" type="Date" visibility="private"/>
+        <Field name="pID" type="int" visibility="private"/>
+        <Field name="cellID" type="int" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="int" name="id"/>
+          <Argument type="String" name="vorname"/>
+          <Argument type="String" name="nachname"/>
+          <Argument type="Date" name="gebDate"/>
+          <Argument type="Date" name="inDate"/>
+          <Argument type="Date" name="outDate"/>
+          <Argument type="int" name="pID"/>
+          <Argument type="int" name="cellID"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="toString" returnType="String" visibility="public"/>
+        <Method name="getId" returnType="int" visibility="public"/>
+        <Method name="setId" returnType="void" visibility="public">
+          <Argument type="int" name="id"/>
+        </Method>
+        <Method name="getVorname" returnType="String" visibility="public"/>
+        <Method name="setVorname" returnType="void" visibility="public">
+          <Argument type="String" name="vorname"/>
+        </Method>
+        <Method name="getNachname" returnType="String" visibility="public"/>
+        <Method name="setNachname" returnType="void" visibility="public">
+          <Argument type="String" name="nachname"/>
+        </Method>
+        <Method name="getGebDate" returnType="Date" visibility="public"/>
+        <Method name="setGebDate" returnType="void" visibility="public">
+          <Argument type="Date" name="gebDate"/>
+        </Method>
+        <Method name="getInDate" returnType="Date" visibility="public"/>
+        <Method name="setInDate" returnType="void" visibility="public">
+          <Argument type="Date" name="inDate"/>
+        </Method>
+        <Method name="getOutDate" returnType="Date" visibility="public"/>
+        <Method name="setOutDate" returnType="void" visibility="public">
+          <Argument type="Date" name="outDate"/>
+        </Method>
+        <Method name="getpID" returnType="int" visibility="public"/>
+        <Method name="setpID" returnType="void" visibility="public">
+          <Argument type="int" name="pID"/>
+        </Method>
+        <Method name="getCellID" returnType="int" visibility="public"/>
+        <Method name="setCellID" returnType="void" visibility="public">
+          <Argument type="int" name="cellID"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="CachedConnection" package="database" visibility="public" xPosition="320.0" yPosition="20.0">
+      <Fields>
+        <Field name="statQueue" type="Queue&lt;Statement&gt;" visibility="private"/>
+        <Field name="con" type="Connection" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="Connection" name="con"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getStatement" returnType="Statement" visibility="public"/>
+        <Method name="releaseStatement" returnType="void" visibility="public">
+          <Argument type="Statement" name="stat"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="DataBase" package="database" visibility="public" isFinal="true" xPosition="620.0" yPosition="20.0">
+      <Fields>
+        <Field name="URL" type="String" visibility="private"/>
+        <Field name="USER" type="String" visibility="private"/>
+        <Field name="PASSWORD" type="String" visibility="private"/>
+        <Field name="DRIVER" type="String" visibility="private"/>
+        <Field name="propertyFile" type="String" visibility="private"/>
+        <Field name="con" type="Connection" visibility="private"/>
+        <Field name="cc" type="CachedConnection" visibility="private"/>
+        <Field name="INSTANCE" type="DataBase" visibility="private" isStatic="true"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="private"/>
+      </Constructors>
+      <Methods>
+        <Method name="getInstance" returnType="DataBase" visibility="public" isStatic="true"/>
+        <Method name="loadPorperties" returnType="void" visibility="private"/>
+        <Method name="getStatement" returnType="Statement" visibility="public"/>
+        <Method name="releaseStatement" returnType="void" visibility="public">
+          <Argument type="Statement" name="stat"/>
+        </Method>
+        <Method name="getCon" returnType="Connection" visibility="public"/>
+        <Method name="setCon" returnType="void" visibility="public">
+          <Argument type="Connection" name="con"/>
+        </Method>
+        <Method name="connect" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="DBAccess" package="database" visibility="public" xPosition="920.0" yPosition="20.0">
+      <Fields>
+        <Field name="db" type="DataBase" visibility="private"/>
+        <Field name="con" type="Connection" visibility="private"/>
+        <Field name="PreStmt" type="PreparedStatement" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="getPrisoners" returnType="LinkedList&lt;Prisoner&gt;" visibility="public"/>
+        <Method name="getPrisoner" returnType="Prisoner" visibility="public">
+          <Argument type="int" name="ID"/>
+        </Method>
+        <Method name="checkLogin" returnType="boolean" visibility="public">
+          <Argument type="String" name="username"/>
+          <Argument type="String" name="password"/>
+        </Method>
+        <Method name="addPrisoner" returnType="void" visibility="public">
+          <Argument type="String" name="vorname"/>
+          <Argument type="String" name="nachname"/>
+          <Argument type="Date" name="gebDate"/>
+          <Argument type="Date" name="inDate"/>
+          <Argument type="Date" name="outDate"/>
+          <Argument type="int" name="priority"/>
+          <Argument type="int" name="cellID"/>
+        </Method>
+        <Method name="removePrisoner" returnType="void" visibility="public">
+          <Argument type="int" name="ID"/>
+        </Method>
+        <Method name="updatePrisoner" returnType="void" visibility="public">
+          <Argument type="int" name="ID"/>
+          <Argument type="Date" name="outdate"/>
+          <Argument type="int" name="priority"/>
+          <Argument type="int" name="cellid"/>
+        </Method>
+        <Method name="getPrisonersinCell" returnType="LinkedList&lt;Prisoner&gt;" visibility="public">
+          <Argument type="int" name="CID"/>
+        </Method>
+        <Method name="updateCells" returnType="void" visibility="public">
+          <Argument type="int" name="cellCnt"/>
+        </Method>
+        <Method name="getCells" returnType="LinkedList&lt;String&gt;" visibility="public"/>
+        <Method name="getAuthortiy" returnType="int" visibility="public">
+          <Argument type="String" name="username"/>
+        </Method>
+        <Method name="main" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String[]" name="args"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="AddPrisonerDialog" package="gui" visibility="public" xPosition="1220.0" yPosition="20.0">
+      <Fields>
+        <Field name="btnCancel" type="javax.swing.JButton" visibility="private"/>
+        <Field name="btnOK" type="javax.swing.JButton" visibility="private"/>
+        <Field name="jLabel1" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel2" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel3" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel4" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel5" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel6" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel7" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jPanel1" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="labelP" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="txfEnt" type="javax.swing.JTextField" visibility="private"/>
+        <Field name="txfGeb" type="javax.swing.JTextField" visibility="private"/>
+        <Field name="txfIn" type="javax.swing.JTextField" visibility="private"/>
+        <Field name="txfNachname" type="javax.swing.JTextField" visibility="private"/>
+        <Field name="txfPr" type="javax.swing.JTextField" visibility="private"/>
+        <Field name="txfVorname" type="javax.swing.JTextField" visibility="private"/>
+        <Field name="zelleBox" type="javax.swing.JComboBox" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="java.awt.Frame" name="parent"/>
+          <Argument type="boolean" name="modal"/>
+        </Constructor>
+        <Constructor visibility="package"/>
+      </Constructors>
+      <Methods>
+        <Method name="initComponents" returnType="// &lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot;Generated Code&quot;&gt;//GEN-BEGIN:initComponents
+void" visibility="private"/>
+        <Method name="btnOKActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="btnCancelActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="main" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String" name="args"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="DoorDialog" package="gui" visibility="public" xPosition="1520.0" yPosition="20.0">
+      <Fields>
+        <Field name="a" type="DBAccess" visibility="private"/>
+        <Field name="list" type="LinkedList&lt;Prisoner&gt;" visibility="private"/>
+        <Field name="exitBtn" type="javax.swing.JButton" visibility="private"/>
+        <Field name="jPanel1" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="jScrollPane1" type="javax.swing.JScrollPane" visibility="private"/>
+        <Field name="pane" type="javax.swing.JEditorPane" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="java.awt.Frame" name="parent"/>
+          <Argument type="boolean" name="modal"/>
+          <Argument type="String" name="btnName"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="initComponents" returnType="// &lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot;Generated Code&quot;&gt;//GEN-BEGIN:initComponents
+void" visibility="private"/>
+        <Method name="exitBtnActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="main" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String" name="args"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="LoginGUI" package="gui" visibility="public" xPosition="1820.0" yPosition="20.0">
+      <Fields>
+        <Field name="dba" type="DBAccess" visibility="package"/>
+        <Field name="btnWeiter" type="javax.swing.JButton" visibility="private"/>
+        <Field name="fieldPassword" type="javax.swing.JPasswordField" visibility="private"/>
+        <Field name="jLabel1" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel2" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel3" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jPanel1" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="jPanel2" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="txfUsername" type="javax.swing.JTextField" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="initComponents" returnType="// &lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot;Generated Code&quot;&gt;//GEN-BEGIN:initComponents
+void" visibility="private"/>
+        <Method name="onWeiter" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="main" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String" name="args"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="PrisonerDialog" package="gui" visibility="public" xPosition="2120.0" yPosition="20.0">
+      <Fields>
+        <Field name="dba" type="DBAccess" visibility="package"/>
+        <Field name="pt" type="Prisoner" visibility="package"/>
+        <Field name="btCancel" type="javax.swing.JButton" visibility="private"/>
+        <Field name="btOK" type="javax.swing.JButton" visibility="private"/>
+        <Field name="cbCellNr" type="javax.swing.JComboBox" visibility="private"/>
+        <Field name="cbPriority" type="javax.swing.JComboBox" visibility="private"/>
+        <Field name="jLabel1" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel2" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel3" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel5" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel7" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel8" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="lbGebDat" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="lbInDat" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="lbName" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="tfOutDat" type="javax.swing.JTextField" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="java.awt.Frame" name="parent"/>
+          <Argument type="boolean" name="modal"/>
+          <Argument type="Prisoner" name="p"/>
+          <Argument type="int" name="priority"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="initComponents" returnType="// &lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot;Generated Code&quot;&gt;//GEN-BEGIN:initComponents
+void" visibility="private"/>
+        <Method name="onCancel" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="onOK" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="main" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String" name="args"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="PrisonGUI" package="gui" visibility="public" xPosition="20.0" yPosition="420.0">
+      <Fields>
+        <Field name="list" type="LinkedList&lt;Prisoner&gt;" visibility="private"/>
+        <Field name="panelFeld" type="LinkedList&lt;JPanel&gt;" visibility="private"/>
+        <Field name="zweitesPanelFeld" type="LinkedList&lt;JPanel&gt;" visibility="private"/>
+        <Field name="buttonFeld" type="LinkedList&lt;JButton&gt;" visibility="private"/>
+        <Field name="iconList" type="LinkedList&lt;JButton&gt;" visibility="private"/>
+        <Field name="anzahl" type="int" visibility="private"/>
+        <Field name="frame" type="JFrame" visibility="private"/>
+        <Field name="index" type="int" visibility="private"/>
+        <Field name="i" type="int" visibility="private"/>
+        <Field name="a" type="DBAccess" visibility="private"/>
+        <Field name="user" type="String" visibility="private"/>
+        <Field name="mainpanel" type="JPanel" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="start" returnType="void" visibility="public">
+          <Argument type="String" name="username"/>
+        </Method>
+        <Method name="main" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String[]" name="args"/>
+        </Method>
+        <Method name="aktualisieren" returnType="void" visibility="public"/>
+        <Method name="actionPerformed" returnType="void" visibility="public">
+          <Argument type="ActionEvent" name="e"/>
+        </Method>
+      </Methods>
+    </Class>
+  </ClassDiagramComponents>
+  <ClassDiagramRelations>
+    <UseRelation source="database.DataBase" target="database.DataBase" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="list" source="gui.DoorDialog" target="beans.Prisoner" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="LinkedList&lt;Prisoner&gt;"/>
+    <HasRelation name="db" source="database.DBAccess" target="database.DataBase" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="pt" source="gui.PrisonerDialog" target="beans.Prisoner" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="a" source="gui.PrisonGUI" target="database.DBAccess" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="a" source="gui.DoorDialog" target="database.DBAccess" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="dba" source="gui.LoginGUI" target="database.DBAccess" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="cc" source="database.DataBase" target="database.CachedConnection" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="INSTANCE" source="database.DataBase" target="database.DataBase" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="dba" source="gui.PrisonerDialog" target="database.DBAccess" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="database.DBAccess" target="beans.Prisoner" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="list" source="gui.PrisonGUI" target="beans.Prisoner" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="LinkedList&lt;Prisoner&gt;"/>
+  </ClassDiagramRelations>
+</ClassDiagram>

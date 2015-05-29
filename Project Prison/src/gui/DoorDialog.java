@@ -36,10 +36,10 @@ public class DoorDialog extends javax.swing.JDialog {
             list = a.getPrisonersinCell(Integer.parseInt(split[1]));
             System.out.println(list.size());
 
-            String text = "<html><body><table><tbody>";
+            String text = "<html><body><table border='1'><tbody>";
             SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
             for (int i = 0; i < list.size(); i++) {
-                text += "<tr><td>" + (i + 1) + ". Prisoner:</td></tr><tr><td><h3>Name: </h3></td><td>" + list.get(i).getNachname() + " " + list.get(i).getVorname() + "</td></tr>";
+                text += "<tr><td><h1>" + (i + 1) + ". Prisoner:</h1></td></tr><tr><td><h3>Name: </h3></td><td>" + list.get(i).getNachname() + " " + list.get(i).getVorname() + "</td></tr>";
                 text += "<tr><td><h3>Geburtsdatum: </h3></td><td>" + sdf.format(list.get(i).getGebDate()) + "</td></tr>";
                 text += "<tr><td><h3>Inhaftierung: </h3></td><td>" + sdf.format(list.get(i).getInDate()) + "</td></tr>";
                 text += "<tr><td><h3>Entlassung: </h3></td><td>" + sdf.format(list.get(i).getOutDate()) + "</td></tr>";
