@@ -2,6 +2,7 @@ package gui;
 
 import beans.Prisoner;
 import database.DBAccess;
+import java.text.SimpleDateFormat;
 import java.util.LinkedList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -32,13 +33,13 @@ public class DoorDialog extends javax.swing.JDialog {
             System.out.println(list.size());
             
             String text="<html><body><table><tbody>";
-
+            SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
             for (int i = 0; i < list.size(); i++) 
             {
                 text+="<tr><td>"+(i+1)+". Prisoner:</td></tr><tr><td><h3>Name: </h3></td><td>"+list.get(i).getNachname()+" "+list.get(i).getVorname()+"</td></tr>";
-                text+="<tr><td><h3>Geburtsdatum: </h3></td><td>"+list.get(i).getGebDate()+"</td></tr>";
-                text+="<tr><td><h3>Inhaftierung: </h3></td><td>"+list.get(i).getInDate()+"</td></tr>";
-                text+="<tr><td><h3>Entlassung: </h3></td><td>"+list.get(i).getOutDate()+"</td></tr>";
+                text+="<tr><td><h3>Geburtsdatum: </h3></td><td>"+sdf.format(list.get(i).getGebDate())+"</td></tr>";
+                text+="<tr><td><h3>Inhaftierung: </h3></td><td>"+sdf.format(list.get(i).getInDate())+"</td></tr>";
+                text+="<tr><td><h3>Entlassung: </h3></td><td>"+sdf.format(list.get(i).getOutDate())+"</td></tr>";
             }
             text+="</tbody></table></body></html>";
             pane.setText(text);
