@@ -7,6 +7,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.BorderLayout;
+import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -58,11 +59,13 @@ public class PrisonGUI implements ActionListener {
 
         JMenuBar menubar = new JMenuBar();
         JMenu menu = new JMenu("start");
+        menu.setFont(new Font("Serif", Font.BOLD, 14));
         JMenu menuAusloggen = new JMenu("ausloggen");
+        menuAusloggen.setFont(new Font("Serif", Font.ITALIC, 14));
 
         JMenuItem item = new JMenuItem("zur Datenbank verbinden");
         item.addActionListener(this);
-        item.setActionCommand("actionItem");
+        item.setActionCommand("start");
 
         JMenuItem itemAdd = new JMenuItem("add Prisoner");
         itemAdd.addActionListener(this);
@@ -104,14 +107,17 @@ public class PrisonGUI implements ActionListener {
             panel.add(pan);
             panelFeld.add(panel);
             mainpanel.add(panel);
+            mainpanel.setVisible(false);
 
             JButton btn = new JButton();
             ImageIcon image = new ImageIcon(getClass().getResource("/pics/tuer.jpg"));
             btn.setIcon(image);
             btn.addActionListener(this);
+            btn.setBackground(Color.white);
             btn.setName("doorbtn " + (k + 1));
             btn.setActionCommand("doorbtn " + (k + 1));
             iconList.add(btn);
+            
             panel.add(btn, BorderLayout.SOUTH);
         }
         frame.validate();
@@ -140,6 +146,9 @@ public class PrisonGUI implements ActionListener {
 
                 if (("Zelle " + zelleNR).equals(panelFeld.get(index).getName())) {
                     JButton btn = new JButton();
+                    btn.setBackground(Color.white);
+                    btn.setForeground(Color.black);
+                    btn.setFont(new Font("Serif", Font.BOLD, 14));
                     btn.setText(list.get(i).getNachname() + " " + list.get(i).getVorname());
                     btn.setBounds(5, 15, panelFeld.get(index).getWidth() - 30, panelFeld.get(index).getHeight() - 110);
                     btn.addActionListener(this);
@@ -156,8 +165,9 @@ public class PrisonGUI implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getActionCommand().equals("actionItem")) {
+        if (e.getActionCommand().equals("start")) {
             try {
+                mainpanel.setVisible(true);
                 aktualisieren();
             } catch (Exception ex) {
                 Logger.getLogger(PrisonGUI.class.getName()).log(Level.SEVERE, null, ex);
