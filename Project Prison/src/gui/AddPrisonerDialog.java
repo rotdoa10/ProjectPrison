@@ -117,6 +117,7 @@ public class AddPrisonerDialog extends javax.swing.JDialog {
             for (int i = 0; i < l.size(); i++) {
                 zelleBox.addItem(l.get(i));
             }
+            
 
             SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
             String vorname = this.txfVorname.getText();
