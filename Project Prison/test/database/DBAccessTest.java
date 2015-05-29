@@ -9,13 +9,8 @@ import beans.Prisoner;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.LinkedList;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import org.postgresql.jdbc2.optional.SimpleDataSource;
 
 /**
  *
@@ -69,7 +64,25 @@ public class DBAccessTest {
         System.out.println("getPrisonersinCell");
         int CID = 5;
         DBAccess instance = new DBAccess();
-        LinkedList<Prisoner> expResult = null;
+        LinkedList<Prisoner> prl= new LinkedList<>();
+        
+        SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
+        Date d1 = sdf.parse("26.11.1996");
+        Date d2 = sdf.parse("01.03.2013");
+        Date d3 = sdf.parse("22.05.2015");
+        Prisoner p1 = new Prisoner(1, "Patrizia", "Neubauer", d1, d2, d3, 4, 5);
+        
+        d1 = sdf.parse("03.01.1996");
+        d2 = sdf.parse("04.05.2015"); 
+        d3 = sdf.parse("01.01.1996");
+        Prisoner p2 = new Prisoner(2, "Dominik", "Roth", d1, d2, d3, 4, 5);
+        
+        prl.add(p1);
+        prl.add(p2);
+        
+        LinkedList<Prisoner> expResult = prl;
+        
+        
         LinkedList<Prisoner> result = instance.getPrisonersinCell(CID);
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
