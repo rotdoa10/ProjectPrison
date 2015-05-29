@@ -253,7 +253,6 @@ public class DBAccess {
         return rs.getInt("aid");
     }
     
-   public static void main(String[] args) throws IOException, FileNotFoundException, ClassNotFoundException, SQLException, Exception {   
-       }
+   public static void main(String[] args) throws IOException, FileNotFoundException, ClassNotFoundException, SQLException, Exception {          
    }
 }
