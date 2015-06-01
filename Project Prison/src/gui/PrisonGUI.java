@@ -214,7 +214,7 @@ public class PrisonGUI implements ActionListener {
                 frame.dispose();
                 LoginGUI l = new LoginGUI();
                 l.show();
-                a.disconnect();
+                a.close();
             } catch (Exception ex) {
                 Logger.getLogger(PrisonGUI.class.getName()).log(Level.SEVERE, null, ex);
             }
