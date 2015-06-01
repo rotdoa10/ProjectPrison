@@ -101,7 +101,7 @@ public class DBAccessTest {
             expResult.add(i);
         }
         
-        LinkedList<Integer> result = instance.getCells();
+        LinkedList<String> result = instance.getCells();
         assertEquals(expResult, result);
     }
 
