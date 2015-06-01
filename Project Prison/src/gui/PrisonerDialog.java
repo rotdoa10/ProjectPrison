@@ -133,7 +133,7 @@ public class PrisonerDialog extends javax.swing.JDialog {
         SimpleDateFormat sdf = new SimpleDateFormat("DD.MM.YYYY");
         
         try {
-            dba.updatePrisoner(pt.getId(), sdf.parse(tfOutDat.getText()) , Integer.parseInt((String) cbPriority.getSelectedItem()), Integer.parseInt((String)  cbCellNr.getSelectedItem()));
+            dba.updatePrisoner(pt.getId(), sdf.parse(tfOutDat.getText()) , Integer.parseInt((String) cbPriority.getSelectedItem()), Integer.parseInt((String)cbCellNr.getSelectedItem()));
         } catch (Exception ex) {
             Logger.getLogger(PrisonerDialog.class.getName()).log(Level.SEVERE, null, ex);
         }
