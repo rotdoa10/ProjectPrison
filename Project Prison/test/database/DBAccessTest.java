@@ -95,13 +95,13 @@ public class DBAccessTest {
     public void testGetCells() throws Exception {
         System.out.println("getCells");
         DBAccess instance = new DBAccess();
-        LinkedList<String> expResult = new LinkedList<>();        
+        LinkedList<Integer> expResult = new LinkedList<>();        
         for (int i = 1; i < 10; i++) 
         {
-            expResult.add(""+i);
+            expResult.add(i);
         }
         
-        LinkedList<String> result = instance.getCells();
+        LinkedList<Integer> result = instance.getCells();
         assertEquals(expResult, result);
     }
 
