@@ -37,7 +37,7 @@ public class PrisonGUI implements ActionListener {
     private LinkedList<JButton> iconList = new LinkedList<JButton>();
 
     // Anzahl der Zellen
-    private int anzahl = 10;
+    private int anzahl;
     
     private JFrame frame;
     private int index = 0;
@@ -63,6 +63,7 @@ public class PrisonGUI implements ActionListener {
         mainpanel = new JPanel();
         mainpanel.setLayout(new GridLayout(2, (anzahl / 2)));
         a = new DBAccess();
+        anzahl = a.getCells().size();
         frame.add(mainpanel, BorderLayout.CENTER);
 
         
