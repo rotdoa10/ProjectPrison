@@ -28,7 +28,7 @@ public class PrisonerDialog extends javax.swing.JDialog {
         initComponents();    
         this.setLocationRelativeTo(parent);
         pt = p;
-        LinkedList<Integer> l = dba.getCells();
+        LinkedList<String> l = dba.getCells();
         for (int i = 0; i < l.size(); i++) {
             cbCellNr.addItem(l.get(i));            
         }

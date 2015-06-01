@@ -284,9 +284,9 @@ public class DBAccess {
      * @return LinkedList<Integer>
      * @throws Exception 
      */
-    public LinkedList<Integer> getCells() throws Exception
+    public LinkedList<String> getCells() throws Exception
     {
-        LinkedList<Integer> cellList = new LinkedList<>();
+        LinkedList<String> cellList = new LinkedList<>();
          Statement stat = db.getStatement();
 
         String sqlString = "SELECT cellid "
@@ -296,7 +296,7 @@ public class DBAccess {
         rs.next();        
 
         do {
-            cellList.add(Integer.parseInt(rs.getString("cellid")));
+            cellList.add(rs.getString("cellid"));
             rs.next();
         } while (!rs.isLast());
         
