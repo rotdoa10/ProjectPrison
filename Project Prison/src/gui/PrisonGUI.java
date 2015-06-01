@@ -44,6 +44,12 @@ public class PrisonGUI implements ActionListener {
     private String user;
     private JPanel mainpanel;
 
+    /**
+     * In dieser Methode start(), wird die Benutzeroberfläche generiert. Der zuvor in der LoginGUI eingebebe
+     * Username wird übergeben.
+     * @param username
+     * @throws Exception 
+     */
     public void start(String username) throws Exception {
         user = username;
         frame = new JFrame();
@@ -124,6 +130,10 @@ public class PrisonGUI implements ActionListener {
         frame.repaint();
     }
 
+    /**
+     * Main-Methode der PrisonGUI
+     * @param args 
+     */
     public static void main(String[] args) {
         try {
             PrisonGUI g = new PrisonGUI();
@@ -133,6 +143,11 @@ public class PrisonGUI implements ActionListener {
         }
     }
 
+    /**
+     * In dieser Methode aktualisieren() wird eine Liste der Häftlinge von der
+     * DBAccess geholt und in der jeweiligen Zellen abgebildet.
+     * @throws Exception 
+     */
     public void aktualisieren() throws Exception {
         for (int j = 0; j < zweitesPanelFeld.size(); j++) {
             zweitesPanelFeld.get(j).removeAll();
@@ -163,6 +178,10 @@ public class PrisonGUI implements ActionListener {
         }
     }
 
+    /**
+     * Die verschiedenen zuvor vergebenen ActionCommands werden hier abgearbeitet.
+     * @param e 
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand().equals("start")) {
