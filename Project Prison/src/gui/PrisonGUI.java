@@ -36,7 +36,9 @@ public class PrisonGUI implements ActionListener {
     private LinkedList<JButton> buttonFeld = new LinkedList<JButton>();
     private LinkedList<JButton> iconList = new LinkedList<JButton>();
 
+    // Anzahl der Zellen
     private int anzahl = 10;
+    
     private JFrame frame;
     private int index = 0;
     private int i = 0;
@@ -63,6 +65,8 @@ public class PrisonGUI implements ActionListener {
         a = new DBAccess();
         frame.add(mainpanel, BorderLayout.CENTER);
 
+        
+        // JMenuBar mit den zugehörigen JMenus und JMenuItems erstellen.
         JMenuBar menubar = new JMenuBar();
         JMenu menu = new JMenu("start");
         menu.setFont(new Font("Serif", Font.BOLD, 14));
@@ -89,6 +93,8 @@ public class PrisonGUI implements ActionListener {
 
         frame.add(menubar, BorderLayout.NORTH);
 
+        
+        // Zellen werden gezeichnet
         for (int k = 0; k < anzahl; k++) {
 
             JPanel panel = new JPanel() {
@@ -115,6 +121,7 @@ public class PrisonGUI implements ActionListener {
             mainpanel.add(panel);
             mainpanel.setVisible(false);
 
+            // Zellentür-Buttons werden erstellt.
             JButton btn = new JButton();
             ImageIcon image = new ImageIcon(getClass().getResource("/pics/tuer.jpg"));
             btn.setIcon(image);
@@ -186,6 +193,7 @@ public class PrisonGUI implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand().equals("start")) {
             try {
+                // Sichtbarsetzen der Zellen
                 mainpanel.setVisible(true);
                 aktualisieren();
             } catch (Exception ex) {
@@ -193,6 +201,7 @@ public class PrisonGUI implements ActionListener {
             }
         } else if (e.getActionCommand().equals("addItem")) {
             try {
+                // JDialog AddPrisonerDialog wird aufgerufen, um einen neuen Prisoner hinzuzufügen.
                 JDialog d = new AddPrisonerDialog(frame, true);
                 d.setVisible(true);
             } catch (Exception ex) {
@@ -200,15 +209,18 @@ public class PrisonGUI implements ActionListener {
             }
         } else if (e.getActionCommand().equals("ausloggenAction")) {
             try {
+                // PrisonGUI wird geschlossen und ein neuer Versuch für das 
+                // Einloggen kann gemacht werden.
                 frame.dispose();
                 LoginGUI l = new LoginGUI();
                 l.show();
-                //a.close();
+                a.disconnect();
             } catch (Exception ex) {
                 Logger.getLogger(PrisonGUI.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
 
+        // Bei Klicken auf die Zellentürbuttons öffnet sich ein der DoorDialog.
         for (JButton b : iconList) {
             if (e.getActionCommand().equals(b.getName())) {
                 JDialog d = new DoorDialog(frame, true, b.getName());
@@ -216,6 +228,8 @@ public class PrisonGUI implements ActionListener {
             }
         }
 
+        // Einzelner Prisoner-Button übergibt an den PrisonerDialog seine Daten, 
+        // um sie darzustellen oder ändern zu können.
         for (Prisoner p : list) {
             try {
                 if (e.getActionCommand().equals(p.getNachname() + " " + p.getVorname())) {
