@@ -57,6 +57,7 @@ public class DBAccess {
         return list;
     }
 
+
     public Prisoner getPrisoner(int ID) throws Exception {
         Statement stat = db.getStatement();
 
@@ -146,6 +147,7 @@ public class DBAccess {
             stat.execute(sqlString);
 
     }
+    
     public LinkedList<Prisoner> getPrisonersinCell(int CID) throws Exception {
         LinkedList<Prisoner> list = new LinkedList<>();
         Statement stat = db.getStatement();
@@ -253,6 +255,38 @@ public class DBAccess {
         return rs.getInt("aid");
     }
     
-   public static void main(String[] args) throws IOException, FileNotFoundException, ClassNotFoundException, SQLException, Exception {          
-   }
+    public boolean checkPriority(int cID, int priority) throws Exception
+    {
+        boolean check = false;
+
+        Statement stat = db.getStatement();
+
+        String sqlString = "SELECT pid "
+                + "FROM prisoner "
+                + "WHERE cellid='"+cID+"';";
+
+        ResultSet rs = stat.executeQuery(sqlString);
+        rs.next();
+
+        do{
+            if(Integer.parseInt(rs.getString("pid"))==priority)
+            {
+                check = true;
+            }
+            else
+            {
+                check = false;                
+                return check;
+            }
+            rs.next();
+        }while(!rs.isLast());          
+
+        return check;
+    }
+    
+//   public static void main(String[] args) throws IOException, FileNotFoundException, ClassNotFoundException, SQLException, Exception 
+//   {          
+//       DBAccess dba = new DBAccess();
+//       System.out.println(dba.checkPriority(5, 3));
+//   }
 }
