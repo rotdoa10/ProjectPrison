@@ -16,12 +16,6 @@ public class DoorDialog extends javax.swing.JDialog {
     private DBAccess a;
     private LinkedList<Prisoner> list = new LinkedList<Prisoner>();
 
-    /**
-     * Informationen der gesamten Zelleninsasen werden in Form von HTML angezeigt.
-     * @param parent
-     * @param modal
-     * @param btnName 
-     */
     public DoorDialog(java.awt.Frame parent, boolean modal, String btnName) {
         super(parent, modal);
 
@@ -91,10 +85,6 @@ public class DoorDialog extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * ActionMethode des exit-Buttons.
-     * @param evt 
-     */
     private void exitBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitBtnActionPerformed
 
         // exit-Button
@@ -102,9 +92,6 @@ public class DoorDialog extends javax.swing.JDialog {
 
     }//GEN-LAST:event_exitBtnActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String args[]) {
 
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">

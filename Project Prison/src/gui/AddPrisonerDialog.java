@@ -16,7 +16,7 @@ import javax.swing.JOptionPane;
 public class AddPrisonerDialog extends javax.swing.JDialog {
 
     private DBAccess a;
-    private LinkedList<String> list = new LinkedList<String>();
+    private LinkedList<Integer> list = new LinkedList<Integer>();
 
     public AddPrisonerDialog(java.awt.Frame parent, boolean modal) throws ParseException, Exception {
         super(parent, modal);
