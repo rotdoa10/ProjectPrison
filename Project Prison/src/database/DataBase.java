@@ -76,4 +76,9 @@ public final class DataBase {
         con = DriverManager.getConnection(URL, USER, PASSWORD);
         cc = new CachedConnection(con);
     }
+    
+    public void disconnect() throws SQLException
+    {
+       con.close();
+    }
 }

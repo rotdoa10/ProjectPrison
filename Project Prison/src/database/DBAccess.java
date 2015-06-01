@@ -29,6 +29,11 @@ public class DBAccess {
         con = db.getCon();
     }
 
+    /**
+     * Liest alle Häftlinge, die in der PrisonDB in der prisoner Tabelle stehen aus.
+     * @return LinkedList<Person>
+     * @throws Exception 
+     */   
     public LinkedList<Prisoner> getPrisoners() throws Exception {
         LinkedList<Prisoner> list = new LinkedList<>();
         Statement stat = db.getStatement();
@@ -57,7 +62,13 @@ public class DBAccess {
         return list;
     }
 
-
+    /**
+     * Gibt einen einzelnen Prisoner aus der Prisoner Tabelle aus, mit der gegebenen ID
+     * 
+     * @param PrisonerID
+     * @return Prisoner
+     * @throws Exception 
+     */
     public Prisoner getPrisoner(int ID) throws Exception {
         Statement stat = db.getStatement();
 
@@ -83,6 +94,14 @@ public class DBAccess {
         return pr;
     }
 
+    /**
+     * Überprüft ob der Login name und passwort richtig sind
+     *
+     * @param username
+     * @param password
+     * @return boolean
+     * @throws Exception 
+     */
     public boolean checkLogin(String username, String password) throws Exception {
         boolean check = false;
 
@@ -104,6 +123,18 @@ public class DBAccess {
         return check;
     }
 
+    /**
+     * Fügt einen neuen Häftling zur Datenbank hinzu.
+     * 
+     * @param vorname
+     * @param nachname
+     * @param gebDate
+     * @param inDate
+     * @param outDate
+     * @param priority
+     * @param cellID
+     * @throws Exception 
+     */
     public void addPrisoner(String vorname, String nachname, Date gebDate, Date inDate, Date outDate, int priority, int cellID) throws Exception {
         Statement stat = db.getStatement();
         String sqlString;
@@ -122,6 +153,11 @@ public class DBAccess {
         stat.executeQuery(sqlString);
     }
     
+    /**
+     * Entfernt den prisoner, dessen ID angegeben wird
+     * @param ID
+     * @throws Exception 
+     */
     public void removePrisoner(int ID) throws Exception {
         Statement stat = db.getStatement();
 
@@ -135,6 +171,15 @@ public class DBAccess {
         }
     }
   
+    /**
+     * Aktuallisiert die Daten des Häftlinges. Nur das Entlassungsdatum, die Priority oder die Zelle kann geändert werden.
+     * 
+     * @param ID
+     * @param outdate
+     * @param priority
+     * @param cellid
+     * @throws Exception 
+     */
     public void updatePrisoner(int ID, Date outdate, int priority, int cellid) throws Exception
     {
         Statement stat = db.getStatement();
@@ -148,6 +193,13 @@ public class DBAccess {
 
     }
     
+    /**
+     * Gibt die Häftlinge in der gegebenen Zelle zurück.
+     * 
+     * @param CID
+     * @return LinkedList<Prisoner>
+     * @throws Exception 
+     */
     public LinkedList<Prisoner> getPrisonersinCell(int CID) throws Exception {
         LinkedList<Prisoner> list = new LinkedList<>();
         Statement stat = db.getStatement();
@@ -179,6 +231,12 @@ public class DBAccess {
         return list;
     }
 
+    /**
+     * Ändert die anzahl an Zellen in der Datenbank.
+     * 
+     * @param cellCnt
+     * @throws Exception 
+     */
     public void updateCells(int cellCnt) throws Exception {
         Statement stat = db.getStatement();
         String sqlString;
@@ -223,9 +281,14 @@ public class DBAccess {
 
     }
     
-    public LinkedList<String> getCells() throws Exception
+    /**
+     * Gibt die Nummer der einzelnen Zellen zurück.
+     * @return LinkedList<Integer>
+     * @throws Exception 
+     */
+    public LinkedList<Integer> getCells() throws Exception
     {
-        LinkedList<String> cellList = new LinkedList<>();
+        LinkedList<Integer> cellList = new LinkedList<>();
          Statement stat = db.getStatement();
 
         String sqlString = "SELECT cellid "
@@ -235,13 +298,20 @@ public class DBAccess {
         rs.next();        
 
         do {
-            cellList.add(rs.getString("cellid"));
+            cellList.add(Integer.parseInt(rs.getString("cellid")));
             rs.next();
         } while (!rs.isLast());
         
         return cellList;
     }
     
+    /**
+     * Gibt die berechtigung eines Users zurück.
+     * 
+     * @param username
+     * @return int
+     * @throws Exception 
+     */
     public int getAuthortiy(String username) throws Exception
     {        
         Statement stat = db.getStatement();
@@ -255,6 +325,13 @@ public class DBAccess {
         return rs.getInt("aid");
     }
     
+    /**
+     * Überprüft ob in der gegebenen Zelle nur Personen mit der Gleichen Priorität sind.
+     * @param cID
+     * @param priority
+     * @return boolean
+     * @throws Exception 
+     */
     public boolean checkPriority(int cID, int priority) throws Exception
     {
         boolean check = false;
@@ -284,9 +361,12 @@ public class DBAccess {
         return check;
     }
     
-//   public static void main(String[] args) throws IOException, FileNotFoundException, ClassNotFoundException, SQLException, Exception 
-//   {          
-//       DBAccess dba = new DBAccess();
-//       System.out.println(dba.checkPriority(5, 3));
-//   }
+    /**
+     * Schließt die verbindung zur Datenbank
+     * @throws SQLException 
+     */
+    public void close() throws SQLException
+    {        
+       db.disconnect();
+    }
 }
