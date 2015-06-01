@@ -23,7 +23,9 @@ public class AddPrisonerDialog extends javax.swing.JDialog {
         initComponents();
         a = new DBAccess();
         list = a.getCells();
-
+            for (int i = 0; i < list.size(); i++) {
+                zelleBox.addItem(list.get(i));
+            }
     }
 
     @SuppressWarnings("unchecked")
@@ -78,7 +80,7 @@ public class AddPrisonerDialog extends javax.swing.JDialog {
 
         jPanel1.add(zelleBox);
 
-        labelP.setText("Priorität (1-5:");
+        labelP.setText("Priorität (1-5):");
         jPanel1.add(labelP);
         jPanel1.add(txfPr);
 
@@ -112,13 +114,6 @@ public class AddPrisonerDialog extends javax.swing.JDialog {
 
         // ok - Button
         try {
-
-            LinkedList<String> l = a.getCells();
-            for (int i = 0; i < l.size(); i++) {
-                zelleBox.addItem(l.get(i));
-            }
-            
-
             SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
             String vorname = this.txfVorname.getText();
             String nachname = this.txfNachname.getText();
