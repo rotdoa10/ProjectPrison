@@ -31,11 +31,14 @@ public class DoorDialog extends javax.swing.JDialog {
             // EditorKit setzen
             pane.setEditorKit(eKit);
 
+            // Zugriff zur Datenbank
             a = new DBAccess();
+            
             String[] split = btnName.split(" ");
             list = a.getPrisonersinCell(Integer.parseInt(split[1]));
             System.out.println(list.size());
 
+            // Text wir in HTML auf der TextPane ausgegeben.
             String text = "<html><body><table border='1'><tbody>";
             SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
             for (int i = 0; i < list.size(); i++) {

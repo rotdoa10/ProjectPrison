@@ -112,7 +112,7 @@ public class AddPrisonerDialog extends javax.swing.JDialog {
 
     private void btnOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOKActionPerformed
 
-        // ok - Button
+        // Ein neuer Prisoner wird zur Datenbank hinzugefügt.
         try {
             SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
             String vorname = this.txfVorname.getText();

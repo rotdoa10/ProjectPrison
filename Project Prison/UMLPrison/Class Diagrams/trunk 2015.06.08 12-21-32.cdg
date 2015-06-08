@@ -1,0 +1,1111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ClassDiagram name="trunk">
+  <ClassDiagramComponents>
+    <Class name="Arbeitsschritt" package="bl" visibility="public" xPosition="20.0" yPosition="20.0">
+      <Fields>
+        <Field name="arbeitsschrittid" type="int" visibility="private"/>
+        <Field name="projectid" type="int" visibility="private"/>
+        <Field name="progressid" type="int" visibility="private"/>
+        <Field name="bezeichnung" type="String" visibility="private"/>
+        <Field name="text" type="String" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="int" name="arbeitsschrittid"/>
+          <Argument type="int" name="projectid"/>
+          <Argument type="int" name="progressid"/>
+          <Argument type="String" name="bezeichnung"/>
+          <Argument type="String" name="text"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getArbeitsschrittid" returnType="int" visibility="public"/>
+        <Method name="setArbeitsschrittid" returnType="void" visibility="public">
+          <Argument type="int" name="arbeitsschrittid"/>
+        </Method>
+        <Method name="getProjectid" returnType="int" visibility="public"/>
+        <Method name="setProjectid" returnType="void" visibility="public">
+          <Argument type="int" name="projectid"/>
+        </Method>
+        <Method name="getProgressid" returnType="int" visibility="public"/>
+        <Method name="setProgressid" returnType="void" visibility="public">
+          <Argument type="int" name="progressid"/>
+        </Method>
+        <Method name="getBezeichnung" returnType="String" visibility="public"/>
+        <Method name="setBezeichnung" returnType="void" visibility="public">
+          <Argument type="String" name="bezeichnung"/>
+        </Method>
+        <Method name="getText" returnType="String" visibility="public"/>
+        <Method name="setText" returnType="void" visibility="public">
+          <Argument type="String" name="text"/>
+        </Method>
+        <Method name="toString" returnType="String" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Mitarbeiter" package="bl" visibility="public" xPosition="603.0" yPosition="20.0">
+      <Fields>
+        <Field name="id" type="int" visibility="package"/>
+        <Field name="vorname" type="String" visibility="package"/>
+        <Field name="nachname" type="String" visibility="package"/>
+        <Field name="gebdatum" type="Date" visibility="package"/>
+        <Field name="passwort" type="String" visibility="package"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="int" name="id"/>
+          <Argument type="String" name="vorname"/>
+          <Argument type="String" name="nachname"/>
+          <Argument type="Date" name="gebdatum"/>
+          <Argument type="String" name="passwort"/>
+        </Constructor>
+        <Constructor visibility="public">
+          <Argument type="String" name="vorname"/>
+          <Argument type="String" name="nachname"/>
+          <Argument type="Date" name="gebdatum"/>
+          <Argument type="String" name="passwort"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getId" returnType="int" visibility="public"/>
+        <Method name="getVorname" returnType="String" visibility="public"/>
+        <Method name="setVorname" returnType="void" visibility="public">
+          <Argument type="String" name="vorname"/>
+        </Method>
+        <Method name="getNachname" returnType="String" visibility="public"/>
+        <Method name="setNachname" returnType="void" visibility="public">
+          <Argument type="String" name="nachname"/>
+        </Method>
+        <Method name="getGebdatum" returnType="Date" visibility="public"/>
+        <Method name="setGebdatum" returnType="void" visibility="public">
+          <Argument type="Date" name="gebdatum"/>
+        </Method>
+        <Method name="getPasswort" returnType="String" visibility="public"/>
+        <Method name="setPasswort" returnType="void" visibility="public">
+          <Argument type="String" name="passwort"/>
+        </Method>
+        <Method name="setid" returnType="void" visibility="public">
+          <Argument type="int" name="i"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="MitarbeiterTableModel" package="bl" visibility="public" xPosition="620.0" yPosition="20.0">
+      <Fields>
+        <Field name="colName" type="String[]" visibility="private"/>
+        <Field name="ll" type="LinkedList&lt;Mitarbeiter&gt;" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="LinkedList&lt;Mitarbeiter&gt;" name="mitarbeiterlist"/>
+        </Constructor>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="getRowCount" returnType="int" visibility="public"/>
+        <Method name="getColumnCount" returnType="int" visibility="public"/>
+        <Method name="getColumnName" returnType="String" visibility="public">
+          <Argument type="int" name="column"/>
+        </Method>
+        <Method name="getValueAt" returnType="Object" visibility="public">
+          <Argument type="int" name="rowIndex"/>
+          <Argument type="int" name="columnIndex"/>
+        </Method>
+        <Method name="setlist" returnType="void" visibility="public">
+          <Argument type="LinkedList&lt;Mitarbeiter&gt;" name="mitarbeiterfromProjekt"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="ProjectTableModel" package="bl" visibility="public" xPosition="920.0" yPosition="20.0">
+      <Fields>
+        <Field name="colName" type="String[]" visibility="private"/>
+        <Field name="ll" type="LinkedList&lt;Projekt&gt;" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="LinkedList&lt;Projekt&gt;" name="prlist"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getRowCount" returnType="int" visibility="public"/>
+        <Method name="getColumnCount" returnType="int" visibility="public"/>
+        <Method name="getColumnName" returnType="String" visibility="public">
+          <Argument type="int" name="column"/>
+        </Method>
+        <Method name="getValueAt" returnType="Object" visibility="public">
+          <Argument type="int" name="rowIndex"/>
+          <Argument type="int" name="columnIndex"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Projekt" package="bl" visibility="public" xPosition="1220.0" yPosition="20.0">
+      <Fields>
+        <Field name="projektid" type="int" visibility="private"/>
+        <Field name="name" type="String" visibility="private"/>
+        <Field name="anfangsdatum" type="Date" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="String" name="name"/>
+          <Argument type="Date" name="anfangsdatum"/>
+          <Argument type="Date" name="enddatum"/>
+        </Constructor>
+        <Constructor visibility="public">
+          <Argument type="int" name="projektid"/>
+          <Argument type="String" name="name"/>
+          <Argument type="Date" name="anfangsdatum"/>
+          <Argument type="Date" name="enddatum"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getProjektid" returnType="int" visibility="public"/>
+        <Method name="setProjektid" returnType="void" visibility="public">
+          <Argument type="int" name="projektid"/>
+        </Method>
+        <Method name="getName" returnType="String" visibility="public"/>
+        <Method name="setName" returnType="void" visibility="public">
+          <Argument type="String" name="name"/>
+        </Method>
+        <Method name="getAnfangsdatum" returnType="Date" visibility="public"/>
+        <Method name="setAnfangsdatum" returnType="void" visibility="public">
+          <Argument type="Date" name="anfangsdatum"/>
+        </Method>
+        <Method name="getEnddatum" returnType="Date" visibility="public"/>
+        <Method name="setEnddatum" returnType="void" visibility="public">
+          <Argument type="Date" name="enddatum"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Arbeitsschritt" package="classdiagrampackage" visibility="public" xPosition="1520.0" yPosition="20.0">
+      <Fields>
+        <Field name="arbeitsschrittid" type="int" visibility="private"/>
+        <Field name="projectid" type="int" visibility="private"/>
+        <Field name="progressid" type="int" visibility="private"/>
+        <Field name="bezeichnung" type="String" visibility="private"/>
+        <Field name="text" type="String" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="int" name="arbeitsschrittid"/>
+          <Argument type="int" name="projectid"/>
+          <Argument type="int" name="progressid"/>
+          <Argument type="String" name="bezeichnung"/>
+          <Argument type="String" name="text"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getArbeitsschrittid" returnType="int" visibility="public"/>
+        <Method name="setArbeitsschrittid" returnType="void" visibility="public">
+          <Argument type="int" name="arbeitsschrittid"/>
+        </Method>
+        <Method name="getProjectid" returnType="int" visibility="public"/>
+        <Method name="setProjectid" returnType="void" visibility="public">
+          <Argument type="int" name="projectid"/>
+        </Method>
+        <Method name="getProgressid" returnType="int" visibility="public"/>
+        <Method name="setProgressid" returnType="void" visibility="public">
+          <Argument type="int" name="progressid"/>
+        </Method>
+        <Method name="getBezeichnung" returnType="String" visibility="public"/>
+        <Method name="setBezeichnung" returnType="void" visibility="public">
+          <Argument type="String" name="bezeichnung"/>
+        </Method>
+        <Method name="getText" returnType="String" visibility="public"/>
+        <Method name="setText" returnType="void" visibility="public">
+          <Argument type="String" name="text"/>
+        </Method>
+        <Method name="toString" returnType="String" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Database" package="classdiagrampackage" visibility="public" xPosition="1820.0" yPosition="20.0">
+      <Fields>
+        <Field name="DB_Driver" type="String" visibility="private"/>
+        <Field name="DB_Username" type="String" visibility="private"/>
+        <Field name="DB_Password" type="String" visibility="private"/>
+        <Field name="DB_Url" type="String" visibility="private"/>
+        <Field name="con" type="Connection" visibility="package"/>
+        <Field name="fileName" type="String" visibility="private" isFinal="true"/>
+        <Field name="theInstance" type="Database" visibility="private" isStatic="true"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="private"/>
+      </Constructors>
+      <Methods>
+        <Method name="getCon" returnType="Connection" visibility="public"/>
+        <Method name="getInstance" returnType="Database" visibility="public" isStatic="true"/>
+        <Method name="connect" returnType="void" visibility="public">
+          <Argument type="String" name="dbname"/>
+        </Method>
+        <Method name="disconnect" returnType="void" visibility="public"/>
+        <Method name="loadProperties" returnType="void" visibility="private"/>
+      </Methods>
+    </Class>
+    <Class name="DBAccess" package="classdiagrampackage" visibility="public" xPosition="2120.0" yPosition="20.0">
+      <Fields>
+        <Field name="db" type="Database" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="String" name="dbname"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="main" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String[]" name="args"/>
+        </Method>
+        <Method name="insertMitarbeiter" returnType="void" visibility="public">
+          <Argument type="Mitarbeiter" name="m"/>
+        </Method>
+        <Method name="getMitarbeiter" returnType="int" visibility="public">
+          <Argument type="String" name="passwort"/>
+          <Argument type="String" name="nachname"/>
+        </Method>
+        <Method name="checkMitarbeiter" returnType="String" visibility="public">
+          <Argument type="String" name="nachname"/>
+          <Argument type="String" name="passwort"/>
+        </Method>
+        <Method name="getMitarbeiterfromProjekt" returnType="LinkedList&lt;Mitarbeiter&gt;" visibility="public">
+          <Argument type="int" name="projektid"/>
+        </Method>
+        <Method name="insertProjekt" returnType="void" visibility="public">
+          <Argument type="Projekt" name="p"/>
+          <Argument type="int" name="gründerid"/>
+        </Method>
+        <Method name="insertArbeitsschritt" returnType="void" visibility="public">
+          <Argument type="Projekt" name="p"/>
+          <Argument type="Mitarbeiter" name="m"/>
+          <Argument type="Arbeitsschritt" name="a"/>
+        </Method>
+        <Method name="getArbeitsschrittId" returnType="int" visibility="public">
+          <Argument type="String" name="bezeichnung"/>
+          <Argument type="int" name="projektid"/>
+        </Method>
+        <Method name="getProjektId" returnType="int" visibility="public">
+          <Argument type="String" name="name"/>
+        </Method>
+        <Method name="getProjekte" returnType="LinkedList&lt;Projekt&gt;" visibility="public">
+          <Argument type="int" name="id"/>
+        </Method>
+        <Method name="getToDoList" returnType="LinkedList&lt;Arbeitsschritt&gt;" visibility="public">
+          <Argument type="int" name="id"/>
+        </Method>
+        <Method name="getInWorkList" returnType="LinkedList&lt;Arbeitsschritt&gt;" visibility="public">
+          <Argument type="int" name="id"/>
+        </Method>
+        <Method name="getFinishedList" returnType="LinkedList&lt;Arbeitsschritt&gt;" visibility="public">
+          <Argument type="int" name="id"/>
+        </Method>
+        <Method name="updateArbeitsschritt" returnType="boolean" visibility="public">
+          <Argument type="int" name="projektid"/>
+          <Argument type="String" name="sf"/>
+          <Argument type="int" name="i"/>
+        </Method>
+        <Method name="getAllMitarbeiter" returnType="LinkedList&lt;Mitarbeiter&gt;" visibility="public"/>
+        <Method name="getMitarbeiterFromArbeitsschritt" returnType="String" visibility="public">
+          <Argument type="int" name="projektid"/>
+          <Argument type="int" name="arbeitsid"/>
+        </Method>
+        <Method name="getBezeichnung" returnType="String" visibility="public">
+          <Argument type="int" name="projektid"/>
+          <Argument type="int" name="arbeitsid"/>
+        </Method>
+        <Method name="removeArbeitsschritt" returnType="void" visibility="public">
+          <Argument type="int" name="projektid"/>
+          <Argument type="int" name="arbeitsschrittid"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Mitarbeiter" package="classdiagrampackage" visibility="public" xPosition="20.0" yPosition="420.0">
+      <Fields>
+        <Field name="id" type="int" visibility="package"/>
+        <Field name="vorname" type="String" visibility="package"/>
+        <Field name="nachname" type="String" visibility="package"/>
+        <Field name="gebdatum" type="Date" visibility="package"/>
+        <Field name="passwort" type="String" visibility="package"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="int" name="id"/>
+          <Argument type="String" name="vorname"/>
+          <Argument type="String" name="nachname"/>
+          <Argument type="Date" name="gebdatum"/>
+          <Argument type="String" name="passwort"/>
+        </Constructor>
+        <Constructor visibility="public">
+          <Argument type="String" name="vorname"/>
+          <Argument type="String" name="nachname"/>
+          <Argument type="Date" name="gebdatum"/>
+          <Argument type="String" name="passwort"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getId" returnType="int" visibility="public"/>
+        <Method name="getVorname" returnType="String" visibility="public"/>
+        <Method name="setVorname" returnType="void" visibility="public">
+          <Argument type="String" name="vorname"/>
+        </Method>
+        <Method name="getNachname" returnType="String" visibility="public"/>
+        <Method name="setNachname" returnType="void" visibility="public">
+          <Argument type="String" name="nachname"/>
+        </Method>
+        <Method name="getGebdatum" returnType="Date" visibility="public"/>
+        <Method name="setGebdatum" returnType="void" visibility="public">
+          <Argument type="Date" name="gebdatum"/>
+        </Method>
+        <Method name="getPasswort" returnType="String" visibility="public"/>
+        <Method name="setPasswort" returnType="void" visibility="public">
+          <Argument type="String" name="passwort"/>
+        </Method>
+        <Method name="setid" returnType="void" visibility="public">
+          <Argument type="int" name="i"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="MitarbeiterTableModel" package="classdiagrampackage" visibility="public" xPosition="620.0" yPosition="420.0">
+      <Fields>
+        <Field name="colName" type="String[]" visibility="private"/>
+        <Field name="ll" type="LinkedList&lt;Mitarbeiter&gt;" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="LinkedList&lt;Mitarbeiter&gt;" name="mitarbeiterlist"/>
+        </Constructor>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="getRowCount" returnType="int" visibility="public"/>
+        <Method name="getColumnCount" returnType="int" visibility="public"/>
+        <Method name="getColumnName" returnType="String" visibility="public">
+          <Argument type="int" name="column"/>
+        </Method>
+        <Method name="getValueAt" returnType="Object" visibility="public">
+          <Argument type="int" name="rowIndex"/>
+          <Argument type="int" name="columnIndex"/>
+        </Method>
+        <Method name="setlist" returnType="void" visibility="public">
+          <Argument type="LinkedList&lt;Mitarbeiter&gt;" name="mitarbeiterfromProjekt"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="NeuesProjekt" package="classdiagrampackage" visibility="public" xPosition="620.0" yPosition="420.0">
+      <Fields>
+        <Field name="isOk" type="boolean" visibility="public"/>
+        <Field name="p" type="Projekt" visibility="public"/>
+        <Field name="dateformat" type="SimpleDateFormat" visibility="private"/>
+        <Field name="btnabbrechen" type="javax.swing.JButton" visibility="private"/>
+        <Field name="btnok" type="javax.swing.JButton" visibility="private"/>
+        <Field name="jLabel1" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel2" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel3" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="tfbeginndatum" type="javax.swing.JTextField" visibility="private"/>
+        <Field name="tfenddatum" type="javax.swing.JTextField" visibility="private"/>
+        <Field name="tfname" type="javax.swing.JTextField" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="java.awt.Frame" name="parent"/>
+          <Argument type="boolean" name="modal"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="initComponents" returnType="// &lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot;Generated Code&quot;&gt;//GEN-BEGIN:initComponents void" visibility="private"/>
+        <Method name="tfnameActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="btnabbrechenActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="btnokActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="main" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String" name="args"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="NewArbeitsschritt" package="classdiagrampackage" visibility="public" xPosition="920.0" yPosition="420.0">
+      <Fields>
+        <Field name="isOk" type="boolean" visibility="public"/>
+        <Field name="a" type="Arbeitsschritt" visibility="public"/>
+        <Field name="m" type="Mitarbeiter" visibility="private"/>
+        <Field name="dbaccess" type="DBAccess" visibility="private"/>
+        <Field name="alleMitarbeiter" type="LinkedList&lt;Mitarbeiter&gt;" visibility="private"/>
+        <Field name="p" type="Projekt" visibility="private"/>
+        <Field name="btnabbrechen" type="javax.swing.JButton" visibility="private"/>
+        <Field name="btnok" type="javax.swing.JButton" visibility="private"/>
+        <Field name="cbMitarbeiter" type="javax.swing.JComboBox" visibility="private"/>
+        <Field name="jPanel1" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="labMitarbeiter" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="labText" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="labbezeichnung" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="tfBezeichnung" type="javax.swing.JTextField" visibility="private"/>
+        <Field name="tfText" type="javax.swing.JTextField" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="java.awt.Frame" name="parent"/>
+          <Argument type="boolean" name="modal"/>
+          <Argument type="DBAccess" name="dba"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getMitarbeiter" returnType="Mitarbeiter" visibility="public"/>
+        <Method name="setProjekt" returnType="void" visibility="package">
+          <Argument type="Projekt" name="p"/>
+        </Method>
+        <Method name="initComponents" returnType="// &lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot;Generated Code&quot;&gt;//GEN-BEGIN:initComponents void" visibility="private"/>
+        <Method name="tfBezeichnungActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="tfTextActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="btnabbrechenActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="btnokActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="main" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String" name="args"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="NewMitarbeiter" package="classdiagrampackage" visibility="public" xPosition="1220.0" yPosition="420.0">
+      <Fields>
+        <Field name="isOk" type="boolean" visibility="public"/>
+        <Field name="vorname" type="String" visibility="private"/>
+        <Field name="dateformat" type="SimpleDateFormat" visibility="private"/>
+        <Field name="m" type="Mitarbeiter" visibility="public"/>
+        <Field name="btnabbrechen" type="javax.swing.JButton" visibility="private"/>
+        <Field name="btncreateAccount" type="javax.swing.JButton" visibility="private"/>
+        <Field name="jLabel1" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel2" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel3" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel4" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="tfgebdatum" type="javax.swing.JTextField" visibility="private"/>
+        <Field name="tfnachname" type="javax.swing.JTextField" visibility="private"/>
+        <Field name="tfpasswort" type="javax.swing.JPasswordField" visibility="private"/>
+        <Field name="tfvorname" type="javax.swing.JTextField" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="java.awt.Frame" name="parent"/>
+          <Argument type="boolean" name="modal"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="initComponents" returnType="// &lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot;Generated Code&quot;&gt;//GEN-BEGIN:initComponents void" visibility="private"/>
+        <Method name="btncreateAccountActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="btnabbrechenActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="main" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String" name="args"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="ProjectGUI" package="classdiagrampackage" visibility="public" xPosition="1520.0" yPosition="420.0">
+      <Fields>
+        <Field name="ll" type="LinkedList&lt;Projekt&gt;" visibility="private"/>
+        <Field name="dba" type="DBAccess" visibility="private"/>
+        <Field name="prtablemodel" type="ProjectTableModel" visibility="private"/>
+        <Field name="newprojectdialog" type="NeuesProjekt" visibility="private"/>
+        <Field name="mittablemodel" type="MitarbeiterTableModel" visibility="private"/>
+        <Field name="gründerid" type="int" visibility="private"/>
+        <Field name="letzterklick" type="int" visibility="package"/>
+        <Field name="btncreateProjekt" type="javax.swing.JButton" visibility="private"/>
+        <Field name="jScrollPane1" type="javax.swing.JScrollPane" visibility="private"/>
+        <Field name="jScrollPane2" type="javax.swing.JScrollPane" visibility="private"/>
+        <Field name="jSplitPane1" type="javax.swing.JSplitPane" visibility="private"/>
+        <Field name="panbtns" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="tabmitarbeiter" type="javax.swing.JTable" visibility="private"/>
+        <Field name="tabprojekte" type="javax.swing.JTable" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="int" name="mid"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="setDBAccess" returnType="void" visibility="package">
+          <Argument type="DBAccess" name="access"/>
+        </Method>
+        <Method name="initComponents" returnType="// &lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot;Generated Code&quot;&gt;//GEN-BEGIN:initComponents void" visibility="private"/>
+        <Method name="tabprojekteMouseClicked" returnType="void" visibility="private">
+          <Argument type="java.awt.event.MouseEvent" name="evt"/>
+        </Method>
+        <Method name="btncreateProjektActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="tabprojekteMouseEntered" returnType="void" visibility="private">
+          <Argument type="java.awt.event.MouseEvent" name="evt"/>
+        </Method>
+        <Method name="main" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String" name="args"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="ProjectTableModel" package="classdiagrampackage" visibility="public" xPosition="1820.0" yPosition="420.0">
+      <Fields>
+        <Field name="colName" type="String[]" visibility="private"/>
+        <Field name="ll" type="LinkedList&lt;Projekt&gt;" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="LinkedList&lt;Projekt&gt;" name="prlist"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getRowCount" returnType="int" visibility="public"/>
+        <Method name="getColumnCount" returnType="int" visibility="public"/>
+        <Method name="getColumnName" returnType="String" visibility="public">
+          <Argument type="int" name="column"/>
+        </Method>
+        <Method name="getValueAt" returnType="Object" visibility="public">
+          <Argument type="int" name="rowIndex"/>
+          <Argument type="int" name="columnIndex"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Projekt" package="classdiagrampackage" visibility="public" xPosition="2120.0" yPosition="420.0">
+      <Fields>
+        <Field name="projektid" type="int" visibility="private"/>
+        <Field name="name" type="String" visibility="private"/>
+        <Field name="anfangsdatum" type="Date" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="String" name="name"/>
+          <Argument type="Date" name="anfangsdatum"/>
+          <Argument type="Date" name="enddatum"/>
+        </Constructor>
+        <Constructor visibility="public">
+          <Argument type="int" name="projektid"/>
+          <Argument type="String" name="name"/>
+          <Argument type="Date" name="anfangsdatum"/>
+          <Argument type="Date" name="enddatum"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getProjektid" returnType="int" visibility="public"/>
+        <Method name="setProjektid" returnType="void" visibility="public">
+          <Argument type="int" name="projektid"/>
+        </Method>
+        <Method name="getName" returnType="String" visibility="public"/>
+        <Method name="setName" returnType="void" visibility="public">
+          <Argument type="String" name="name"/>
+        </Method>
+        <Method name="getAnfangsdatum" returnType="Date" visibility="public"/>
+        <Method name="setAnfangsdatum" returnType="void" visibility="public">
+          <Argument type="Date" name="anfangsdatum"/>
+        </Method>
+        <Method name="getEnddatum" returnType="Date" visibility="public"/>
+        <Method name="setEnddatum" returnType="void" visibility="public">
+          <Argument type="Date" name="enddatum"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="StartGUI" package="classdiagrampackage" visibility="public" xPosition="20.0" yPosition="820.0">
+      <Fields>
+        <Field name="access" type="DBAccess" visibility="private"/>
+        <Field name="newmitarbeiterdialog" type="NewMitarbeiter" visibility="private"/>
+        <Field name="btncreateaccount" type="javax.swing.JButton" visibility="private"/>
+        <Field name="btnlogin" type="javax.swing.JButton" visibility="private"/>
+        <Field name="jLabel1" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel2" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jPanel1" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="tfname" type="javax.swing.JTextField" visibility="private"/>
+        <Field name="tfpasswort" type="javax.swing.JPasswordField" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="initComponents" returnType="// &lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot;Generated Code&quot;&gt;//GEN-BEGIN:initComponents void" visibility="private"/>
+        <Method name="btnloginActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="btncreateaccountActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="main" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String" name="args"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="TaskboardGUI" package="classdiagrampackage" visibility="public" xPosition="320.0" yPosition="820.0">
+      <Fields>
+        <Field name="todomodel" type="DefaultListModel" visibility="private"/>
+        <Field name="inworkmodel" type="DefaultListModel" visibility="private"/>
+        <Field name="finishedmodel" type="DefaultListModel" visibility="private"/>
+        <Field name="dba" type="DBAccess" visibility="private"/>
+        <Field name="todolist" type="LinkedList&lt;Arbeitsschritt&gt;" visibility="private"/>
+        <Field name="inworklist" type="LinkedList&lt;Arbeitsschritt&gt;" visibility="private"/>
+        <Field name="finishedlist" type="LinkedList&lt;Arbeitsschritt&gt;" visibility="private"/>
+        <Field name="p" type="Projekt" visibility="private"/>
+        <Field name="newarbeitsschrittdialog" type="NewArbeitsschritt" visibility="private"/>
+        <Field name="btnaddArbeitsschritt" type="javax.swing.JButton" visibility="private"/>
+        <Field name="finishedList" type="javax.swing.JList" visibility="private"/>
+        <Field name="inworkList" type="javax.swing.JList" visibility="private"/>
+        <Field name="inwork_finished_left" type="javax.swing.JButton" visibility="private"/>
+        <Field name="inwork_finished_right" type="javax.swing.JButton" visibility="private"/>
+        <Field name="jPanel1" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="jPanel2" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="jPanel3" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="jPanel4" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="jPanel5" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="jPanel6" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="jPanel7" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="jScrollPane1" type="javax.swing.JScrollPane" visibility="private"/>
+        <Field name="jScrollPane2" type="javax.swing.JScrollPane" visibility="private"/>
+        <Field name="jScrollPane3" type="javax.swing.JScrollPane" visibility="private"/>
+        <Field name="jTextField1" type="javax.swing.JTextField" visibility="private"/>
+        <Field name="todoList" type="javax.swing.JList" visibility="private"/>
+        <Field name="todo_inwork_left" type="javax.swing.JButton" visibility="private"/>
+        <Field name="todo_inwork_right" type="javax.swing.JButton" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="Projekt" name="projekt"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="initComponents" returnType="// &lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot;Generated Code&quot;&gt;//GEN-BEGIN:initComponents void" visibility="private"/>
+        <Method name="todo_inwork_rightActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="todo_inwork_leftActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="inwork_finished_rightActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="inwork_finished_leftActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="btnaddArbeitsschrittActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="todoListMouseClicked" returnType="void" visibility="private">
+          <Argument type="java.awt.event.MouseEvent" name="evt"/>
+        </Method>
+        <Method name="inworkListMouseClicked" returnType="void" visibility="private">
+          <Argument type="java.awt.event.MouseEvent" name="evt"/>
+        </Method>
+        <Method name="finishedListMouseClicked" returnType="void" visibility="private">
+          <Argument type="java.awt.event.MouseEvent" name="evt"/>
+        </Method>
+        <Method name="main" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String" name="args"/>
+        </Method>
+        <Method name="write" returnType="DefaultListModel" visibility="private">
+          <Argument type="LinkedList&lt;Arbeitsschritt&gt;" name="list"/>
+          <Argument type="DefaultListModel" name="m"/>
+        </Method>
+        <Method name="mouseclick" returnType="void" visibility="private">
+          <Argument type="JList" name="list"/>
+          <Argument type="DefaultListModel" name="model"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Database" package="database" visibility="public" xPosition="620.0" yPosition="820.0">
+      <Fields>
+        <Field name="DB_Driver" type="String" visibility="private"/>
+        <Field name="DB_Username" type="String" visibility="private"/>
+        <Field name="DB_Password" type="String" visibility="private"/>
+        <Field name="DB_Url" type="String" visibility="private"/>
+        <Field name="con" type="Connection" visibility="package"/>
+        <Field name="fileName" type="String" visibility="private" isFinal="true"/>
+        <Field name="theInstance" type="Database" visibility="private" isStatic="true"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="private"/>
+      </Constructors>
+      <Methods>
+        <Method name="getCon" returnType="Connection" visibility="public"/>
+        <Method name="getInstance" returnType="Database" visibility="public" isStatic="true"/>
+        <Method name="connect" returnType="void" visibility="public">
+          <Argument type="String" name="dbname"/>
+        </Method>
+        <Method name="disconnect" returnType="void" visibility="public"/>
+        <Method name="loadProperties" returnType="void" visibility="private"/>
+      </Methods>
+    </Class>
+    <Class name="DBAccess" package="database" visibility="public" xPosition="920.0" yPosition="820.0">
+      <Fields>
+        <Field name="db" type="Database" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="String" name="dbname"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="main" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String[]" name="args"/>
+        </Method>
+        <Method name="insertMitarbeiter" returnType="void" visibility="public">
+          <Argument type="Mitarbeiter" name="m"/>
+        </Method>
+        <Method name="getMitarbeiter" returnType="int" visibility="public">
+          <Argument type="String" name="passwort"/>
+          <Argument type="String" name="nachname"/>
+        </Method>
+        <Method name="checkMitarbeiter" returnType="String" visibility="public">
+          <Argument type="String" name="nachname"/>
+          <Argument type="String" name="passwort"/>
+        </Method>
+        <Method name="getMitarbeiterfromProjekt" returnType="LinkedList&lt;Mitarbeiter&gt;" visibility="public">
+          <Argument type="int" name="projektid"/>
+        </Method>
+        <Method name="insertProjekt" returnType="void" visibility="public">
+          <Argument type="Projekt" name="p"/>
+          <Argument type="int" name="gründerid"/>
+        </Method>
+        <Method name="insertArbeitsschritt" returnType="void" visibility="public">
+          <Argument type="Projekt" name="p"/>
+          <Argument type="Mitarbeiter" name="m"/>
+          <Argument type="Arbeitsschritt" name="a"/>
+        </Method>
+        <Method name="getArbeitsschrittId" returnType="int" visibility="public">
+          <Argument type="String" name="bezeichnung"/>
+          <Argument type="int" name="projektid"/>
+        </Method>
+        <Method name="getProjektId" returnType="int" visibility="public">
+          <Argument type="String" name="name"/>
+        </Method>
+        <Method name="getProjekte" returnType="LinkedList&lt;Projekt&gt;" visibility="public">
+          <Argument type="int" name="id"/>
+        </Method>
+        <Method name="getToDoList" returnType="LinkedList&lt;Arbeitsschritt&gt;" visibility="public">
+          <Argument type="int" name="id"/>
+        </Method>
+        <Method name="getInWorkList" returnType="LinkedList&lt;Arbeitsschritt&gt;" visibility="public">
+          <Argument type="int" name="id"/>
+        </Method>
+        <Method name="getFinishedList" returnType="LinkedList&lt;Arbeitsschritt&gt;" visibility="public">
+          <Argument type="int" name="id"/>
+        </Method>
+        <Method name="updateArbeitsschritt" returnType="boolean" visibility="public">
+          <Argument type="int" name="projektid"/>
+          <Argument type="String" name="sf"/>
+          <Argument type="int" name="i"/>
+        </Method>
+        <Method name="getAllMitarbeiter" returnType="LinkedList&lt;Mitarbeiter&gt;" visibility="public"/>
+        <Method name="getMitarbeiterFromArbeitsschritt" returnType="String" visibility="public">
+          <Argument type="int" name="projektid"/>
+          <Argument type="int" name="arbeitsid"/>
+        </Method>
+        <Method name="getBezeichnung" returnType="String" visibility="public">
+          <Argument type="int" name="projektid"/>
+          <Argument type="int" name="arbeitsid"/>
+        </Method>
+        <Method name="removeArbeitsschritt" returnType="void" visibility="public">
+          <Argument type="int" name="projektid"/>
+          <Argument type="int" name="arbeitsschrittid"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="NeuesProjekt" package="gui" visibility="public" xPosition="1220.0" yPosition="820.0">
+      <Fields>
+        <Field name="isOk" type="boolean" visibility="public"/>
+        <Field name="p" type="Projekt" visibility="public"/>
+        <Field name="dateformat" type="SimpleDateFormat" visibility="private"/>
+        <Field name="btnabbrechen" type="javax.swing.JButton" visibility="private"/>
+        <Field name="btnok" type="javax.swing.JButton" visibility="private"/>
+        <Field name="jLabel1" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel2" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel3" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="tfbeginndatum" type="javax.swing.JTextField" visibility="private"/>
+        <Field name="tfenddatum" type="javax.swing.JTextField" visibility="private"/>
+        <Field name="tfname" type="javax.swing.JTextField" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="java.awt.Frame" name="parent"/>
+          <Argument type="boolean" name="modal"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="initComponents" returnType="// &lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot;Generated Code&quot;&gt;//GEN-BEGIN:initComponents void" visibility="private"/>
+        <Method name="tfnameActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="btnabbrechenActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="btnokActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="main" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String" name="args"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="NewArbeitsschritt" package="gui" visibility="public" xPosition="1520.0" yPosition="820.0">
+      <Fields>
+        <Field name="isOk" type="boolean" visibility="public"/>
+        <Field name="a" type="Arbeitsschritt" visibility="public"/>
+        <Field name="m" type="Mitarbeiter" visibility="private"/>
+        <Field name="dbaccess" type="DBAccess" visibility="private"/>
+        <Field name="alleMitarbeiter" type="LinkedList&lt;Mitarbeiter&gt;" visibility="private"/>
+        <Field name="p" type="Projekt" visibility="private"/>
+        <Field name="btnabbrechen" type="javax.swing.JButton" visibility="private"/>
+        <Field name="btnok" type="javax.swing.JButton" visibility="private"/>
+        <Field name="cbMitarbeiter" type="javax.swing.JComboBox" visibility="private"/>
+        <Field name="jPanel1" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="labMitarbeiter" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="labText" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="labbezeichnung" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="tfBezeichnung" type="javax.swing.JTextField" visibility="private"/>
+        <Field name="tfText" type="javax.swing.JTextField" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="java.awt.Frame" name="parent"/>
+          <Argument type="boolean" name="modal"/>
+          <Argument type="DBAccess" name="dba"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getMitarbeiter" returnType="Mitarbeiter" visibility="public"/>
+        <Method name="setProjekt" returnType="void" visibility="package">
+          <Argument type="Projekt" name="p"/>
+        </Method>
+        <Method name="initComponents" returnType="// &lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot;Generated Code&quot;&gt;//GEN-BEGIN:initComponents void" visibility="private"/>
+        <Method name="tfBezeichnungActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="tfTextActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="btnabbrechenActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="btnokActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="main" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String" name="args"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="NewMitarbeiter" package="gui" visibility="public" xPosition="1820.0" yPosition="820.0">
+      <Fields>
+        <Field name="isOk" type="boolean" visibility="public"/>
+        <Field name="vorname" type="String" visibility="private"/>
+        <Field name="dateformat" type="SimpleDateFormat" visibility="private"/>
+        <Field name="m" type="Mitarbeiter" visibility="public"/>
+        <Field name="btnabbrechen" type="javax.swing.JButton" visibility="private"/>
+        <Field name="btncreateAccount" type="javax.swing.JButton" visibility="private"/>
+        <Field name="jLabel1" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel2" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel3" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel4" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="tfgebdatum" type="javax.swing.JTextField" visibility="private"/>
+        <Field name="tfnachname" type="javax.swing.JTextField" visibility="private"/>
+        <Field name="tfpasswort" type="javax.swing.JPasswordField" visibility="private"/>
+        <Field name="tfvorname" type="javax.swing.JTextField" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="java.awt.Frame" name="parent"/>
+          <Argument type="boolean" name="modal"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="initComponents" returnType="// &lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot;Generated Code&quot;&gt;//GEN-BEGIN:initComponents void" visibility="private"/>
+        <Method name="btncreateAccountActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="btnabbrechenActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="main" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String" name="args"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="ProjectGUI" package="gui" visibility="public" xPosition="2120.0" yPosition="820.0">
+      <Fields>
+        <Field name="ll" type="LinkedList&lt;Projekt&gt;" visibility="private"/>
+        <Field name="dba" type="DBAccess" visibility="private"/>
+        <Field name="prtablemodel" type="ProjectTableModel" visibility="private"/>
+        <Field name="newprojectdialog" type="NeuesProjekt" visibility="private"/>
+        <Field name="mittablemodel" type="MitarbeiterTableModel" visibility="private"/>
+        <Field name="gründerid" type="int" visibility="private"/>
+        <Field name="letzterklick" type="int" visibility="package"/>
+        <Field name="btncreateProjekt" type="javax.swing.JButton" visibility="private"/>
+        <Field name="jScrollPane1" type="javax.swing.JScrollPane" visibility="private"/>
+        <Field name="jScrollPane2" type="javax.swing.JScrollPane" visibility="private"/>
+        <Field name="jSplitPane1" type="javax.swing.JSplitPane" visibility="private"/>
+        <Field name="panbtns" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="tabmitarbeiter" type="javax.swing.JTable" visibility="private"/>
+        <Field name="tabprojekte" type="javax.swing.JTable" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="int" name="mid"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="setDBAccess" returnType="void" visibility="package">
+          <Argument type="DBAccess" name="access"/>
+        </Method>
+        <Method name="initComponents" returnType="// &lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot;Generated Code&quot;&gt;//GEN-BEGIN:initComponents void" visibility="private"/>
+        <Method name="tabprojekteMouseClicked" returnType="void" visibility="private">
+          <Argument type="java.awt.event.MouseEvent" name="evt"/>
+        </Method>
+        <Method name="btncreateProjektActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="tabprojekteMouseEntered" returnType="void" visibility="private">
+          <Argument type="java.awt.event.MouseEvent" name="evt"/>
+        </Method>
+        <Method name="main" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String" name="args"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="StartGUI" package="gui" visibility="public" xPosition="20.0" yPosition="1220.0">
+      <Fields>
+        <Field name="access" type="DBAccess" visibility="private"/>
+        <Field name="newmitarbeiterdialog" type="NewMitarbeiter" visibility="private"/>
+        <Field name="btncreateaccount" type="javax.swing.JButton" visibility="private"/>
+        <Field name="btnlogin" type="javax.swing.JButton" visibility="private"/>
+        <Field name="jLabel1" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel2" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jPanel1" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="tfname" type="javax.swing.JTextField" visibility="private"/>
+        <Field name="tfpasswort" type="javax.swing.JPasswordField" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="initComponents" returnType="// &lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot;Generated Code&quot;&gt;//GEN-BEGIN:initComponents void" visibility="private"/>
+        <Method name="btnloginActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="btncreateaccountActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="main" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String" name="args"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="TaskboardGUI" package="gui" visibility="public" xPosition="320.0" yPosition="1220.0">
+      <Fields>
+        <Field name="todomodel" type="DefaultListModel" visibility="private"/>
+        <Field name="inworkmodel" type="DefaultListModel" visibility="private"/>
+        <Field name="finishedmodel" type="DefaultListModel" visibility="private"/>
+        <Field name="dba" type="DBAccess" visibility="private"/>
+        <Field name="todolist" type="LinkedList&lt;Arbeitsschritt&gt;" visibility="private"/>
+        <Field name="inworklist" type="LinkedList&lt;Arbeitsschritt&gt;" visibility="private"/>
+        <Field name="finishedlist" type="LinkedList&lt;Arbeitsschritt&gt;" visibility="private"/>
+        <Field name="p" type="Projekt" visibility="private"/>
+        <Field name="newarbeitsschrittdialog" type="NewArbeitsschritt" visibility="private"/>
+        <Field name="btnaddArbeitsschritt" type="javax.swing.JButton" visibility="private"/>
+        <Field name="finishedList" type="javax.swing.JList" visibility="private"/>
+        <Field name="inworkList" type="javax.swing.JList" visibility="private"/>
+        <Field name="inwork_finished_left" type="javax.swing.JButton" visibility="private"/>
+        <Field name="inwork_finished_right" type="javax.swing.JButton" visibility="private"/>
+        <Field name="jPanel1" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="jPanel2" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="jPanel3" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="jPanel4" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="jPanel5" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="jPanel6" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="jPanel7" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="jScrollPane1" type="javax.swing.JScrollPane" visibility="private"/>
+        <Field name="jScrollPane2" type="javax.swing.JScrollPane" visibility="private"/>
+        <Field name="jScrollPane3" type="javax.swing.JScrollPane" visibility="private"/>
+        <Field name="jTextField1" type="javax.swing.JTextField" visibility="private"/>
+        <Field name="todoList" type="javax.swing.JList" visibility="private"/>
+        <Field name="todo_inwork_left" type="javax.swing.JButton" visibility="private"/>
+        <Field name="todo_inwork_right" type="javax.swing.JButton" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="Projekt" name="projekt"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="initComponents" returnType="// &lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot;Generated Code&quot;&gt;//GEN-BEGIN:initComponents void" visibility="private"/>
+        <Method name="todo_inwork_rightActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="todo_inwork_leftActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="inwork_finished_rightActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="inwork_finished_leftActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="btnaddArbeitsschrittActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="todoListMouseClicked" returnType="void" visibility="private">
+          <Argument type="java.awt.event.MouseEvent" name="evt"/>
+        </Method>
+        <Method name="inworkListMouseClicked" returnType="void" visibility="private">
+          <Argument type="java.awt.event.MouseEvent" name="evt"/>
+        </Method>
+        <Method name="finishedListMouseClicked" returnType="void" visibility="private">
+          <Argument type="java.awt.event.MouseEvent" name="evt"/>
+        </Method>
+        <Method name="main" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String" name="args"/>
+        </Method>
+        <Method name="write" returnType="DefaultListModel" visibility="private">
+          <Argument type="LinkedList&lt;Arbeitsschritt&gt;" name="list"/>
+          <Argument type="DefaultListModel" name="m"/>
+        </Method>
+        <Method name="mouseclick" returnType="void" visibility="private">
+          <Argument type="JList" name="list"/>
+          <Argument type="DefaultListModel" name="model"/>
+        </Method>
+      </Methods>
+    </Class>
+  </ClassDiagramComponents>
+  <ClassDiagramRelations>
+    <HasRelation name="m" source="gui.NewMitarbeiter" target="classdiagrampackage.Mitarbeiter" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="gui.TaskboardGUI" target="classdiagrampackage.Arbeitsschritt" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="dbaccess" source="gui.NewArbeitsschritt" target="database.DBAccess" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="database.Database" target="database.Database" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="newarbeitsschrittdialog" source="gui.TaskboardGUI" target="gui.NewArbeitsschritt" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="theInstance" source="database.Database" target="database.Database" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="ll" source="classdiagrampackage.MitarbeiterTableModel" target="classdiagrampackage.Mitarbeiter" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="LinkedList&lt;Mitarbeiter&gt;"/>
+    <HasRelation name="todolist" source="gui.TaskboardGUI" target="classdiagrampackage.Arbeitsschritt" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="LinkedList&lt;Arbeitsschritt&gt;"/>
+    <HasRelation name="m" source="gui.NewArbeitsschritt" target="classdiagrampackage.Mitarbeiter" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="ll" source="gui.ProjectGUI" target="classdiagrampackage.Projekt" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="LinkedList&lt;Projekt&gt;"/>
+    <HasRelation name="newprojectdialog" source="gui.ProjectGUI" target="gui.NeuesProjekt" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="p" source="gui.TaskboardGUI" target="classdiagrampackage.Projekt" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="ll" source="classdiagrampackage.ProjectTableModel" target="classdiagrampackage.Projekt" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="LinkedList&lt;Projekt&gt;"/>
+    <UseRelation source="gui.NewArbeitsschritt" target="classdiagrampackage.Mitarbeiter" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="database.DBAccess" target="classdiagrampackage.Projekt" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="p" source="gui.NewArbeitsschritt" target="classdiagrampackage.Projekt" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="finishedlist" source="gui.TaskboardGUI" target="classdiagrampackage.Arbeitsschritt" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="LinkedList&lt;Arbeitsschritt&gt;"/>
+    <HasRelation name="access" source="gui.StartGUI" target="database.DBAccess" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="newmitarbeiterdialog" source="gui.StartGUI" target="gui.NewMitarbeiter" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="p" source="gui.NeuesProjekt" target="classdiagrampackage.Projekt" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="gui.NewArbeitsschritt" target="classdiagrampackage.Projekt" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="prtablemodel" source="gui.ProjectGUI" target="classdiagrampackage.ProjectTableModel" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="a" source="gui.NewArbeitsschritt" target="classdiagrampackage.Arbeitsschritt" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="database.DBAccess" target="classdiagrampackage.Mitarbeiter" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="classdiagrampackage.MitarbeiterTableModel" target="classdiagrampackage.Mitarbeiter" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="dba" source="gui.ProjectGUI" target="database.DBAccess" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="gui.ProjectGUI" target="database.DBAccess" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="mittablemodel" source="gui.ProjectGUI" target="classdiagrampackage.MitarbeiterTableModel" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="alleMitarbeiter" source="gui.NewArbeitsschritt" target="classdiagrampackage.Mitarbeiter" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="LinkedList&lt;Mitarbeiter&gt;"/>
+    <HasRelation name="db" source="database.DBAccess" target="database.Database" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="inworklist" source="gui.TaskboardGUI" target="classdiagrampackage.Arbeitsschritt" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="LinkedList&lt;Arbeitsschritt&gt;"/>
+    <HasRelation name="dba" source="gui.TaskboardGUI" target="database.DBAccess" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="database.DBAccess" target="classdiagrampackage.Arbeitsschritt" sourceCardinality="1..1" targetCardinality="1..1"/>
+  </ClassDiagramRelations>
+</ClassDiagram>
