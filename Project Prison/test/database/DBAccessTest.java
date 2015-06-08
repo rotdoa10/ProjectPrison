@@ -29,6 +29,10 @@ public class DBAccessTest {
     static Prisoner p1;
     static Prisoner p2;
     
+    /**
+     * Here, the used variables are initialized for use in the Test methods
+     * @throws Exception 
+     */
     @BeforeClass
     public static void setUpClass() throws Exception 
     {
