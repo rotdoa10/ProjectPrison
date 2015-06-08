@@ -61,9 +61,10 @@ public class PrisonGUI implements ActionListener {
         frame.setSize(1000, 800);
         frame.setLayout(new BorderLayout());
         mainpanel = new JPanel();
-        mainpanel.setLayout(new GridLayout(2, (anzahl / 2)));
         a = new DBAccess();
-        anzahl = a.getCells().size();
+        anzahl = (a.getCells().size()+1);
+        mainpanel.setLayout(new GridLayout(2, (anzahl / 2)));
+        
         frame.add(mainpanel, BorderLayout.CENTER);
 
         

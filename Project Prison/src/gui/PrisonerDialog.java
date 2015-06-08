@@ -7,9 +7,7 @@ package gui;
 
 import beans.Prisoner;
 import database.DBAccess;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.LinkedList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
