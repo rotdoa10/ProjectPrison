@@ -9,8 +9,12 @@ import beans.Prisoner;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.LinkedList;
+import org.junit.After;
+import org.junit.AfterClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import org.junit.Before;
+import org.junit.BeforeClass;
 
 /**
  *
@@ -20,7 +24,28 @@ public class DBAccessTest {
     
     public DBAccessTest() {
     }
+
+    static DBAccess instance;
+    static Prisoner p1;
+    static Prisoner p2;
     
+    @BeforeClass
+    public static void setUpClass() throws Exception 
+    {
+        instance = new DBAccess();
+        
+        SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
+        Date d1 = sdf.parse("26.11.1996");
+        Date d2 = sdf.parse("01.03.2013");
+        Date d3 = sdf.parse("22.05.2015");        
+        
+        d1 = sdf.parse("03.01.1996");
+        d2 = sdf.parse("04.05.2015"); 
+        d3 = sdf.parse("01.01.1996");  
+        
+        p1 = new Prisoner(1, "Patrizia", "Neubauer", d1, d2, d3, 4, 5);
+        p2 = new Prisoner(2, "Dominik", "Roth", d1, d2, d3, 4, 5);
+    }
 
     /**
      * Test of getPrisoner method, of class DBAccess.
@@ -30,13 +55,8 @@ public class DBAccessTest {
     public void testGetPrisoner() throws Exception {
         System.out.println("getPrisoner");
         int ID = 1;
-        DBAccess instance = new DBAccess();
-        SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
-        Date d1 = sdf.parse("26.11.1996");
-        Date d2 = sdf.parse("01.03.2013");
-        Date d3 = sdf.parse("22.05.2015");
-        Prisoner p = new Prisoner(1, "Patrizia", "Neubauer", d1, d2, d3, 4, 5);
-        Prisoner expResult = p;
+        
+        Prisoner expResult = p1;
         Prisoner result = instance.getPrisoner(ID);
         assertEquals(expResult, result);
     }
@@ -48,8 +68,7 @@ public class DBAccessTest {
     public void testCheckLogin() throws Exception {
         System.out.println("checkLogin");
         String username = "bernd";
-        String password = "Berni3";
-        DBAccess instance = new DBAccess();
+        String password = "Berni3";      
         boolean expResult = true;
         boolean result = instance.checkLogin(username, password);
         assertEquals(expResult, result);
@@ -63,19 +82,9 @@ public class DBAccessTest {
     public void testGetPrisonersinCell() throws Exception {
         System.out.println("getPrisonersinCell");
         int CID = 5;
-        DBAccess instance = new DBAccess();
+        
         LinkedList<Prisoner> prl= new LinkedList<>();
-        
-        SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
-        Date d1 = sdf.parse("26.11.1996");
-        Date d2 = sdf.parse("01.03.2013");
-        Date d3 = sdf.parse("22.05.2015");
-        Prisoner p1 = new Prisoner(1, "Patrizia", "Neubauer", d1, d2, d3, 4, 5);
-        
-        d1 = sdf.parse("03.01.1996");
-        d2 = sdf.parse("04.05.2015"); 
-        d3 = sdf.parse("01.01.1996");
-        Prisoner p2 = new Prisoner(2, "Dominik", "Roth", d1, d2, d3, 4, 5);
+          
         
         prl.add(p1);
         prl.add(p2);
@@ -93,8 +102,7 @@ public class DBAccessTest {
      */
     @Test
     public void testGetCells() throws Exception {
-        System.out.println("getCells");
-        DBAccess instance = new DBAccess();
+        System.out.println("getCells");       
         LinkedList<Integer> expResult = new LinkedList<>();        
         for (int i = 1; i < 10; i++) 
         {
@@ -112,10 +120,24 @@ public class DBAccessTest {
     public void testGetAuthortiy() throws Exception {
         System.out.println("getAuthortiy");
         String username = "heino";
-        DBAccess instance = new DBAccess();
         int expResult = 1;
         int result = instance.getAuthortiy(username);
         assertEquals(expResult, result);
     }
-    
+
+
+    /**
+     * Test of checkPriority method, of class DBAccess.
+     */
+    @Test
+    public void testCheckPriority() throws Exception {
+        System.out.println("checkPriority");
+        int cID = 4;
+        int priority = 3;
+        
+        boolean expResult = false;
+        boolean result = instance.checkPriority(cID, priority);
+        assertEquals(expResult, result);
+
+    }
 }
