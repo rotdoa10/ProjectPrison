@@ -13,6 +13,7 @@ import java.util.Date;
 import java.util.LinkedList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -133,7 +134,14 @@ public class PrisonerDialog extends javax.swing.JDialog {
         SimpleDateFormat sdf = new SimpleDateFormat("DD.MM.YYYY");
         
         try {
-            dba.updatePrisoner(pt.getId(), sdf.parse(tfOutDat.getText()) , Integer.parseInt((String) cbPriority.getSelectedItem()), Integer.parseInt((String)cbCellNr.getSelectedItem()));
+            if(dba.checkPriority(Integer.parseInt(cbCellNr.getSelectedItem().toString()), Integer.parseInt(cbPriority.getSelectedItem().toString())))
+            {
+                dba.updatePrisoner(pt.getId(), sdf.parse(tfOutDat.getText()) , Integer.parseInt((String) cbPriority.getSelectedItem()), Integer.parseInt((String)cbCellNr.getSelectedItem()));
+            }
+            else
+            {
+                JOptionPane.showMessageDialog(this, "Die Priorität des Insassen passt nicht mit der Priorität der Zelle zusammen!");
+            }
         } catch (Exception ex) {
             Logger.getLogger(PrisonerDialog.class.getName()).log(Level.SEVERE, null, ex);
         }
