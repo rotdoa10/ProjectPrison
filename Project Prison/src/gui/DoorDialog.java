@@ -9,7 +9,7 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author patzineubi
+ * @author Patrizia Neubauer, Project Prison, 10.06.2015
  */
 public class DoorDialog extends javax.swing.JDialog {
 
@@ -21,19 +21,21 @@ public class DoorDialog extends javax.swing.JDialog {
 
         try {
             initComponents();
-            
+
             this.setSize(400, 400);
             this.setLocationRelativeTo(parent);
-            
+
             // EditorKit erzeugen
             javax.swing.text.html.HTMLEditorKit eKit = new javax.swing.text.html.HTMLEditorKit();
 
             // EditorKit setzen
             pane.setEditorKit(eKit);
 
+            System.out.println(btnName);
+
             // Zugriff zur Datenbank
             a = new DBAccess();
-            
+
             String[] split = btnName.split(" ");
             list = a.getPrisonersinCell(Integer.parseInt(split[1]));
             System.out.println(list.size());

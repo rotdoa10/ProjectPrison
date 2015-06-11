@@ -11,7 +11,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author patzineubi
+ * @author Patrizia Neubauer, Project Prison, 10.06.2015
  */
 public class AddPrisonerDialog extends javax.swing.JDialog {
 

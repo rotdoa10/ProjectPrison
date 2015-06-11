@@ -61,7 +61,7 @@
         </Method>
       </Methods>
     </Class>
-    <Class name="CachedConnection" package="database" visibility="public" xPosition="320.0" yPosition="20.0">
+    <Class name="CachedConnection" package="database" visibility="public" xPosition="293.0" yPosition="630.0">
       <Fields>
         <Field name="statQueue" type="Queue&lt;Statement&gt;" visibility="private"/>
         <Field name="con" type="Connection" visibility="private"/>
@@ -78,7 +78,7 @@
         </Method>
       </Methods>
     </Class>
-    <Class name="DataBase" package="database" visibility="public" isFinal="true" xPosition="620.0" yPosition="20.0">
+    <Class name="DataBase" package="database" visibility="public" isFinal="true" xPosition="737.0" yPosition="20.0">
       <Fields>
         <Field name="URL" type="String" visibility="private"/>
         <Field name="USER" type="String" visibility="private"/>
@@ -107,7 +107,7 @@
         <Method name="disconnect" returnType="void" visibility="public"/>
       </Methods>
     </Class>
-    <Class name="DBAccess" package="database" visibility="public" xPosition="920.0" yPosition="20.0">
+    <Class name="DBAccess" package="database" visibility="public" xPosition="568.0" yPosition="718.0">
       <Fields>
         <Field name="db" type="DataBase" visibility="private"/>
         <Field name="con" type="Connection" visibility="private"/>
@@ -160,7 +160,7 @@
         <Method name="close" returnType="void" visibility="public"/>
       </Methods>
     </Class>
-    <Class name="AddPrisonerDialog" package="gui" visibility="public" xPosition="1220.0" yPosition="20.0">
+    <Class name="AddPrisonerDialog" package="gui" visibility="public" xPosition="1024.0" yPosition="20.0">
       <Fields>
         <Field name="a" type="DBAccess" visibility="private"/>
         <Field name="list" type="LinkedList&lt;String&gt;" visibility="private"/>
@@ -190,8 +190,7 @@
         </Constructor>
       </Constructors>
       <Methods>
-        <Method name="initComponents" returnType="// &lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot;Generated Code&quot;&gt;//GEN-BEGIN:initComponents
-void" visibility="private"/>
+        <Method name="initComponents" returnType="// &lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot;Generated Code&quot;&gt;//GEN-BEGIN:initComponents void" visibility="private"/>
         <Method name="btnOKActionPerformed" returnType="void" visibility="private">
           <Argument type="java.awt.event.ActionEvent" name="evt"/>
         </Method>
@@ -203,7 +202,7 @@ void" visibility="private"/>
         </Method>
       </Methods>
     </Class>
-    <Class name="DoorDialog" package="gui" visibility="public" xPosition="1520.0" yPosition="20.0">
+    <Class name="DoorDialog" package="gui" visibility="public" xPosition="1330.0" yPosition="769.0">
       <Fields>
         <Field name="a" type="DBAccess" visibility="private"/>
         <Field name="list" type="LinkedList&lt;Prisoner&gt;" visibility="private"/>
@@ -220,8 +219,7 @@ void" visibility="private"/>
         </Constructor>
       </Constructors>
       <Methods>
-        <Method name="initComponents" returnType="// &lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot;Generated Code&quot;&gt;//GEN-BEGIN:initComponents
-void" visibility="private"/>
+        <Method name="initComponents" returnType="// &lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot;Generated Code&quot;&gt;//GEN-BEGIN:initComponents void" visibility="private"/>
         <Method name="exitBtnActionPerformed" returnType="void" visibility="private">
           <Argument type="java.awt.event.ActionEvent" name="evt"/>
         </Method>
@@ -230,7 +228,7 @@ void" visibility="private"/>
         </Method>
       </Methods>
     </Class>
-    <Class name="LoginGUI" package="gui" visibility="public" xPosition="1820.0" yPosition="20.0">
+    <Class name="LoginGUI" package="gui" visibility="public" xPosition="1058.0" yPosition="1128.0">
       <Fields>
         <Field name="dba" type="DBAccess" visibility="package"/>
         <Field name="btnWeiter" type="javax.swing.JButton" visibility="private"/>
@@ -246,8 +244,7 @@ void" visibility="private"/>
         <Constructor visibility="public"/>
       </Constructors>
       <Methods>
-        <Method name="initComponents" returnType="// &lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot;Generated Code&quot;&gt;//GEN-BEGIN:initComponents
-void" visibility="private"/>
+        <Method name="initComponents" returnType="// &lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot;Generated Code&quot;&gt;//GEN-BEGIN:initComponents void" visibility="private"/>
         <Method name="onWeiter" returnType="void" visibility="private">
           <Argument type="java.awt.event.ActionEvent" name="evt"/>
         </Method>
@@ -256,7 +253,7 @@ void" visibility="private"/>
         </Method>
       </Methods>
     </Class>
-    <Class name="PrisonerDialog" package="gui" visibility="public" xPosition="2120.0" yPosition="20.0">
+    <Class name="PrisonerDialog" package="gui" visibility="public" xPosition="215.0" yPosition="1128.0">
       <Fields>
         <Field name="dba" type="DBAccess" visibility="package"/>
         <Field name="pt" type="Prisoner" visibility="package"/>
@@ -284,8 +281,7 @@ void" visibility="private"/>
         </Constructor>
       </Constructors>
       <Methods>
-        <Method name="initComponents" returnType="// &lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot;Generated Code&quot;&gt;//GEN-BEGIN:initComponents
-void" visibility="private"/>
+        <Method name="initComponents" returnType="// &lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot;Generated Code&quot;&gt;//GEN-BEGIN:initComponents void" visibility="private"/>
         <Method name="onCancel" returnType="void" visibility="private">
           <Argument type="java.awt.event.ActionEvent" name="evt"/>
         </Method>
@@ -297,7 +293,7 @@ void" visibility="private"/>
         </Method>
       </Methods>
     </Class>
-    <Class name="PrisonGUI" package="gui" visibility="public" xPosition="20.0" yPosition="420.0">
+    <Class name="PrisonGUI" package="gui" visibility="public" xPosition="20.0" yPosition="736.0">
       <Fields>
         <Field name="list" type="LinkedList&lt;Prisoner&gt;" visibility="private"/>
         <Field name="panelFeld" type="LinkedList&lt;JPanel&gt;" visibility="private"/>
@@ -328,18 +324,18 @@ void" visibility="private"/>
     </Class>
   </ClassDiagramComponents>
   <ClassDiagramRelations>
-    <HasRelation name="a" source="gui.PrisonGUI" target="database.DBAccess" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <HasRelation name="pt" source="gui.PrisonerDialog" target="beans.Prisoner" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <HasRelation name="a" source="gui.AddPrisonerDialog" target="database.DBAccess" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <HasRelation name="list" source="gui.PrisonGUI" target="beans.Prisoner" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="LinkedList&lt;Prisoner&gt;"/>
     <HasRelation name="dba" source="gui.PrisonerDialog" target="database.DBAccess" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <HasRelation name="list" source="gui.DoorDialog" target="beans.Prisoner" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="LinkedList&lt;Prisoner&gt;"/>
-    <HasRelation name="cc" source="database.DataBase" target="database.CachedConnection" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <HasRelation name="dba" source="gui.LoginGUI" target="database.DBAccess" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <HasRelation name="INSTANCE" source="database.DataBase" target="database.DataBase" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
     <HasRelation name="db" source="database.DBAccess" target="database.DataBase" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="a" source="gui.AddPrisonerDialog" target="database.DBAccess" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="dba" source="gui.LoginGUI" target="database.DBAccess" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="list" source="gui.PrisonGUI" target="beans.Prisoner" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="LinkedList&lt;Prisoner&gt;"/>
+    <HasRelation name="INSTANCE" source="database.DataBase" target="database.DataBase" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
     <HasRelation name="a" source="gui.DoorDialog" target="database.DBAccess" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <UseRelation source="database.DataBase" target="database.DataBase" sourceCardinality="1..1" targetCardinality="1..1"/>
     <UseRelation source="database.DBAccess" target="beans.Prisoner" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="pt" source="gui.PrisonerDialog" target="beans.Prisoner" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="cc" source="database.DataBase" target="database.CachedConnection" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="database.DataBase" target="database.DataBase" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="a" source="gui.PrisonGUI" target="database.DBAccess" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="list" source="gui.DoorDialog" target="beans.Prisoner" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="LinkedList&lt;Prisoner&gt;"/>
   </ClassDiagramRelations>
 </ClassDiagram>
