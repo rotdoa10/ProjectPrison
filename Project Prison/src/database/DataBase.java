@@ -12,7 +12,7 @@ import java.util.Properties;
 
 /**
  *
- * @author 
+ * @author Dominik Roth, ProjectPrison, 10.06.2015 
  */
 public final class DataBase {
 

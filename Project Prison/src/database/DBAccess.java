@@ -14,7 +14,7 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author Dominik
+ * @author Dominik Roth, ProjectPrison, 10.06.2015
  */
 public class DBAccess {
 

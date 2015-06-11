@@ -7,7 +7,7 @@ import java.util.Queue;
 
 /**
  *
- * @author 
+ * @author Dominik Roth, ProjectPrison, 10.06.2015
  */
 public class CachedConnection {
 

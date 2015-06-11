@@ -8,7 +8,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author Dominik
+ * @author Dominik Roth, ProjectPrison, 10.06.2015
  */
 public class LoginGUI extends javax.swing.JFrame {
 
