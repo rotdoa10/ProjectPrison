@@ -26,7 +26,7 @@ import javax.swing.border.TitledBorder;
 
 /**
  *
- * @author patzineubi
+ * @author Patrizia Neubauer, Project Prison, 10.06.2015
  */
 public class PrisonGUI implements ActionListener {
 
