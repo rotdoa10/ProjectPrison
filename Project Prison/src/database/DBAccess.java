@@ -327,24 +327,38 @@ public class DBAccess {
      * Überprüft ob in der gegebenen Zelle nur Personen mit der Gleichen Priorität sind.
      * @param cID
      * @param priority
+     * @param prID
      * @return boolean
      * @throws Exception 
      */
-    public boolean checkPriority(int cID, int priority) throws Exception
+    public boolean checkPriority(int cID, int priority, int prID) throws Exception
     {
         boolean check = false;
 
-        Statement stat = db.getStatement();
+        Statement stat = db.getStatement();        
 
-        String sqlString = "SELECT pid "
-                + "FROM prisoner "
-                + "WHERE cellid='"+cID+"';";
-
+         String sqlString = "SELECT COUNT(*) AS \"Count\" " +
+                            "FROM prisoner " +
+                            "WHERE cellid='"+cID+"'";
+         
         ResultSet rs = stat.executeQuery(sqlString);
         rs.next();
+        if(rs.getInt("Count") <= 1)
+        {
+            check = true;
+            return check;
+        }
+        
+         
+       sqlString = "SELECT pid "
+                + "FROM prisoner "
+                + "WHERE cellid='"+cID+"' AND prid <> "+prID+";";
 
-        do{
-            if(Integer.parseInt(rs.getString("pid"))==priority)
+        ResultSet rs2 = stat.executeQuery(sqlString);
+        rs2.next();
+
+        do{            
+            if(rs2.getInt("pid")==priority)
             {
                 check = true;
             }
@@ -352,9 +366,8 @@ public class DBAccess {
             {
                 check = false;                
                 return check;
-            }
-            rs.next();
-        }while(!rs.isLast());          
+            }                    
+        }while(rs2.next());          
 
         return check;
     }

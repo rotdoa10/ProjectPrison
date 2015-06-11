@@ -15,7 +15,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author patzineubi
+ * @author Dominik
  */
 public class PrisonerDialog extends javax.swing.JDialog {
 
@@ -132,7 +132,7 @@ public class PrisonerDialog extends javax.swing.JDialog {
         SimpleDateFormat sdf = new SimpleDateFormat("DD.MM.YYYY");
         
         try {
-            if(dba.checkPriority(Integer.parseInt(cbCellNr.getSelectedItem().toString()), Integer.parseInt(cbPriority.getSelectedItem().toString())))
+            if(dba.checkPriority(Integer.parseInt(cbCellNr.getSelectedItem().toString()), Integer.parseInt(cbPriority.getSelectedItem().toString()), pt.getId()))
             {
                 dba.updatePrisoner(pt.getId(), sdf.parse(tfOutDat.getText()) , Integer.parseInt((String) cbPriority.getSelectedItem()), Integer.parseInt((String)cbCellNr.getSelectedItem()));
             }
