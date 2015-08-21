@@ -3,16 +3,7 @@ package bl;
 import beans.Location;
 import java.io.IOException;
 import java.io.InputStream;
-import java.text.ParseException;
 import java.util.LinkedList;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import org.json.JSONString;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-
-import org.json.simple.parser.JSONParser;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 
